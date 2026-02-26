@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import productImg from "../assets/product.jpg";
 import ChatBot from "../components/ChatBot";
 
@@ -7,33 +7,73 @@ const ProductDetails = () => {
   const { pipeType } = useParams();
   const decodedName = decodeURIComponent(pipeType);
 
-  // Base price per coil (match your dataset)
-  const pricePerCoil = useMemo(() => {
-    if (decodedName.includes("Premium 16mm")) return 1250;
-    if (decodedName.includes("Premium 20mm")) return 1450;
-    if (decodedName.includes("Gold 16mm")) return 1350;
-    if (decodedName.includes("Supreme 20mm")) return 1600;
-    return 1200;
-  }, [decodedName]);
-
   const metersPerCoil = 300;
 
   const [quantity, setQuantity] = useState(1);
   const [region, setRegion] = useState("Pune");
   const [message, setMessage] = useState("");
 
+  const [aiPrice, setAiPrice] = useState(null);
+  const [predictedDemand, setPredictedDemand] = useState(null);
+  const [loadingPrice, setLoadingPrice] = useState(false);
+
   const totalMeters = quantity * metersPerCoil;
-  const totalPrice = quantity * pricePerCoil;
 
-  const requiresApproval = quantity > 100;
+  /* =========================
+     Fetch AI Dynamic Price
+  ========================= */
+  useEffect(() => {
+    const fetchAiPrice = async () => {
+      try {
+        setLoadingPrice(true);
+        setAiPrice(null);
 
+        const response = await fetch("http://localhost:5000/api/ai-price", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            pipe_type: decodedName,
+            region: region,
+            month: new Date().getMonth() + 1,
+            year: new Date().getFullYear()
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.recommended_price) {
+          setAiPrice(data.recommended_price);
+          setPredictedDemand(data.predicted_demand);
+        } else {
+          setAiPrice(null);
+        }
+
+      } catch (error) {
+        setAiPrice(null);
+      } finally {
+        setLoadingPrice(false);
+      }
+    };
+
+    fetchAiPrice();
+
+  }, [decodedName, region]);
+
+  /* =========================
+     Place Order
+  ========================= */
   const handleOrder = async () => {
+    if (!aiPrice) {
+      setMessage("AI price not available. Try again.");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:5000/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          pipe_type: decodedName.trim(), // important fix
+          pipe_type: decodedName.trim(),
           quantity: Number(quantity),
           region
         })
@@ -46,6 +86,7 @@ const ProductDetails = () => {
       } else {
         setMessage("Order placed successfully!");
       }
+
     } catch (error) {
       setMessage("Order failed");
     }
@@ -58,6 +99,7 @@ const ProductDetails = () => {
 
         {/* LEFT SIDE */}
         <div>
+
           <img
             src={productImg}
             alt="Product"
@@ -84,14 +126,15 @@ const ProductDetails = () => {
             <div>✔ Suitable for Sugarcane, Cotton & Vegetable Farming</div>
             <div>✔ Long Operational Life</div>
           </div>
+
         </div>
 
-        {/* RIGHT SIDE - ORDER PANEL */}
+        {/* RIGHT SIDE */}
         <div className="bg-white p-8 rounded-2xl shadow-xl h-fit sticky top-10">
 
           <div className="mb-4">
             <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
-              In Stock
+              AI Dynamic Pricing Enabled
             </span>
           </div>
 
@@ -102,6 +145,7 @@ const ProductDetails = () => {
           <label className="block font-medium mb-2">
             Quantity (Coils)
           </label>
+
           <input
             type="number"
             min="1"
@@ -110,20 +154,43 @@ const ProductDetails = () => {
             className="border p-3 w-full mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
 
+          {/* Pricing Box */}
           <div className="bg-gray-50 p-4 rounded-lg mb-6 text-sm text-gray-700">
-            <p>Total Length: <strong>{totalMeters} meters</strong></p>
-            <p>Total Price: <strong>₹ {totalPrice}</strong></p>
 
-            {requiresApproval && (
+            <p>
+              Total Length: <strong>{totalMeters} meters</strong>
+            </p>
+
+            {loadingPrice ? (
+              <p>Calculating AI Price...</p>
+            ) : aiPrice ? (
+              <>
+                <p>
+                  Predicted Demand: <strong>{predictedDemand}</strong>
+                </p>
+                <p>
+                  AI Price per Coil: <strong>₹ {aiPrice}</strong>
+                </p>
+                <p>
+                  Total Price: <strong>₹ {aiPrice * quantity}</strong>
+                </p>
+              </>
+            ) : (
+              <p className="text-red-500">AI price unavailable</p>
+            )}
+
+            {quantity > 1000 && (
               <p className="text-red-600 mt-2 font-medium">
                 Large order – Requires Admin Approval
               </p>
             )}
+
           </div>
 
           <label className="block font-medium mb-2">
             Select Region
           </label>
+
           <select
             value={region}
             onChange={(e) => setRegion(e.target.value)}
@@ -137,7 +204,8 @@ const ProductDetails = () => {
 
           <button
             onClick={handleOrder}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl text-lg font-semibold transition"
+            disabled={!aiPrice}
+            className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white py-3 rounded-xl text-lg font-semibold transition"
           >
             Place Order
           </button>
@@ -153,6 +221,7 @@ const ProductDetails = () => {
       </div>
 
       <ChatBot />
+
     </div>
   );
 };

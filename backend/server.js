@@ -41,7 +41,20 @@ app.post("/api/ai-price", async (req, res) => {
       "http://localhost:5001/calculate-price",
       req.body
     );
-    res.json(response.data);
+
+    // Normalize AI response key
+    const aiPrice =
+      response.data.price ||
+      response.data.calculated_price ||
+      response.data.final_price;
+
+    if (!aiPrice) {
+      return res.status(400).json({ error: "Invalid AI price response" });
+    }
+
+    // Always return consistent structure
+    res.json({ price: aiPrice });
+
   } catch (error) {
     console.error("AI Pricing Error:", error.message);
     res.status(500).json({ error: "AI pricing failed" });
@@ -49,7 +62,7 @@ app.post("/api/ai-price", async (req, res) => {
 });
 
 /* =========================
-   Approve Price
+   Approve Price (Admin)
 ========================= */
 app.post("/api/approve-price", async (req, res) => {
   try {
@@ -147,8 +160,8 @@ app.post("/api/orders", async (req, res) => {
     let status = "Shipped";
     let requiresApproval = false;
 
-    // If quantity > 1000 → manual approval required
-    if (quantity > 1000) {
+    // If quantity > 100 coils → manual approval required
+    if (quantity > 100) {
       status = "Pending Approval";
       requiresApproval = true;
     } else {
