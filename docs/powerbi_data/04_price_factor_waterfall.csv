@@ -1,0 +1,8 @@
+Step,Factor_Name,Factor_Value,Effect_Type,Price_After_Step,Calculation_Note,Example_Pipe
+0,Base Price (Manufacturing Cost),1050,Starting Point,1050,Raw material + production + overhead per 300m bundle,16mm Inline
+1,Demand Factor (ML Model Output),1.082,Multiplier,1136,demand_ratio=1.33 -> factor=1+0.25*(1.33-1)=1.082. Range capped 0.84-1.20,16mm Inline
+2,Competitor Factor (Market Positioning),0.971,Multiplier,1103,Strong demand -> lean toward competitor. Price diff ratio=0.156 -> factor=1-0.05*0.156,16mm Inline
+3,Smoothing (Stability vs AI Signal),—,Weighted Average,1066,0.55*1050 + 0.45*1103 = 1082. Prevents day-to-day price swings for distributors,16mm Inline
+4,Logistics Factor (Maharashtra to Gujarat),1.040,Multiplier,1109,500km NH48 route. LTL freight rate ₹28/km/MT applied,16mm Inline
+5,Adoption Factor (Market Premium),1.025,Multiplier,1137,Gujarat adoption=1.42 -> 1.0+(1.42-1.0)*0.06=1.025. High adoption = market absorbs premium,16mm Inline
+6,Final Rounded Price,—,Round to ₹10,1140,Round(1137/10)*10 = 1140,16mm Inline

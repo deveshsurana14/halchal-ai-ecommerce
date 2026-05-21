@@ -1,0 +1,21 @@
+State,Zone_ID,Logistics_Factor,Approx_Distance_from_Pune_km,Freight_Cost_Tier,Road_Type,Reason
+Maharashtra,Z1,1.000,0,Home Base,National Highway + State Highway,Factory base — no transport surcharge
+Goa,Z1,1.022,400,Tier 1,NH66 Coastal,Short distance — coastal route
+Karnataka,Z3,1.032,550,Tier 1,NH48 + NH75,Good highway connectivity
+Andhra Pradesh,Z3,1.036,700,Tier 1,NH65 + NH44,Moderate distance with good NH
+Telangana,Z3,1.036,600,Tier 1,NH44 direct,Hyderabad hub — excellent connectivity
+Gujarat,Z2,1.040,500,Tier 1,NH48 + NH27,Well-connected — Surat/Ahmedabad hub
+Madhya Pradesh,Z2,1.046,750,Tier 2,NH46 + NH44,Inland route — moderate freight
+Chhattisgarh,Z2,1.056,950,Tier 2,NH53 partial,Mixed road quality
+Tamil Nadu,Z3,1.055,1100,Tier 2,NH44 + NH32,Long haul but strong highway network
+Kerala,Z3,1.062,1200,Tier 2,NH66 coastal,Hilly terrain adds cost
+Rajasthan,Z4,1.062,1100,Tier 2,NH48 + NH58,Semi-arid terrain — longer route
+Odisha,Z5,1.066,1300,Tier 2,NH16 + NH49,Moderate connectivity
+Jharkhand,Z5,1.074,1400,Tier 3,NH33,Mixed road quality
+Delhi,Z4,1.076,1400,Tier 3,NH48 (Expressway),Distance offset by expressway speed
+Uttar Pradesh,Z4,1.082,1300,Tier 3,NH19 + NH27,Multiple state borders — octroi
+Haryana,Z4,1.082,1500,Tier 3,NH48 + NH709,Similar to UP logistics
+Bihar,Z5,1.088,1700,Tier 3,NH31 + NH319,Weak road infrastructure east of UP
+West Bengal,Z5,1.086,1900,Tier 3,NH19 + NH12,Long haul — Kolkata hub
+Punjab,Z4,1.092,1800,Tier 3,NH44 full,Long but highway-linked
+Assam,Z5,1.122,2600,Tier 4,NH15 + NH37,Northeast corridor — high logistics cost

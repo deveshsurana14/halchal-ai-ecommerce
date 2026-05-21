@@ -1,0 +1,1984 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halchal — Black Book Reference Document</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Times New Roman", Times, serif; font-size: 12pt; color: #000; background: #fff; }
+  h1 { font-size: 18pt; text-align: center; margin: 20px 0 10px; text-transform: uppercase; }
+  h2 { font-size: 15pt; margin: 24px 0 10px; border-bottom: 2px solid #000; padding-bottom: 4px; }
+  h3 { font-size: 13pt; margin: 18px 0 8px; }
+  h4 { font-size: 12pt; margin: 14px 0 6px; font-style: italic; }
+  p  { margin: 8px 0; line-height: 1.6; text-align: justify; }
+  ul, ol { margin: 8px 0 8px 24px; line-height: 1.6; }
+  li { margin: 4px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 11pt; }
+  th { background: #e8e8e8; border: 1px solid #555; padding: 6px 8px; text-align: left; font-weight: bold; }
+  td { border: 1px solid #555; padding: 5px 8px; vertical-align: top; }
+  pre, code { font-family: "Courier New", Courier, monospace; font-size: 9.5pt; background: #f5f5f5; }
+  pre { border: 1px solid #ccc; padding: 10px; margin: 10px 0; overflow-x: auto; white-space: pre-wrap; line-height: 1.4; }
+  .cover { text-align: center; padding: 60px 40px; }
+  .cover h1 { font-size: 22pt; line-height: 1.4; margin-bottom: 20px; }
+  .cover .subtitle { font-size: 14pt; margin: 10px 0; }
+  .cover .info { font-size: 12pt; margin: 6px 0; }
+  .chapter { page-break-before: always; padding: 10px 0; }
+  .section-num { font-weight: bold; margin-right: 8px; }
+  .highlight { background: #fffacd; padding: 2px 4px; }
+  .formula { font-family: "Courier New"; background: #f0f0f0; padding: 10px 14px; margin: 10px 0; border-left: 4px solid #555; }
+  .note { font-style: italic; color: #333; margin: 6px 0; }
+  hr { border: 1px solid #999; margin: 20px 0; }
+  .toc-line { display: flex; justify-content: space-between; margin: 4px 0; padding: 2px 0; }
+  .toc-indent { margin-left: 30px; }
+  .toc-indent2 { margin-left: 60px; }
+  @media print {
+    body { font-size: 11pt; }
+    .chapter { page-break-before: always; }
+    pre { font-size: 8.5pt; }
+    @page { margin: 1in 0.9in; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <h1>HALCHAL</h1>
+  <h1>AI-DRIVEN E-COMMERCE PLATFORM FOR DRIP IRRIGATION PIPES</h1>
+  <p class="subtitle">with CI/CD Pipeline and Automated Dynamic Pricing System</p>
+  <hr style="margin:30px auto;width:60%">
+  <p class="subtitle"><b>BLACK BOOK REFERENCE DOCUMENT</b></p>
+  <p class="info">(Complete Technical Reference for Black Book Submission)</p>
+  <br><br>
+  <p class="info"><b>Submitted by:</b></p>
+  <p class="info">Hrishikesh &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Devesh Surana</p>
+  <br>
+  <p class="info"><b>Department of Computer Engineering</b></p>
+  <p class="info">[College Name], University of Mumbai</p>
+  <p class="info"><b>Academic Year: 2025–2026</b></p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="chapter">
+<h2>TABLE OF CONTENTS</h2>
+<table>
+<tr><th>Sr. No.</th><th>Title</th><th>Page</th></tr>
+<tr><td colspan="3"><b>Preliminary Pages</b></td></tr>
+<tr><td>—</td><td>List of Abbreviations</td><td>i</td></tr>
+<tr><td>—</td><td>List of Figures</td><td>ii</td></tr>
+<tr><td>—</td><td>List of Tables</td><td>iii</td></tr>
+<tr><td colspan="3"><b>Chapters</b></td></tr>
+<tr><td>01</td><td>Introduction</td><td>1</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;1.1 Overview</td><td>2</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;1.2 Motivation</td><td>2</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;1.3 Problem Definition</td><td>3</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;1.4 Project Scope &amp; Limitations</td><td>4</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;1.5 Methodologies of Problem Solving</td><td>6</td></tr>
+<tr><td>02</td><td>Literature Survey</td><td>8</td></tr>
+<tr><td>03</td><td>Software Requirements Specification (SRS)</td><td>12</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;3.1 Assumptions and Dependencies</td><td>13</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;3.2 Functional Requirements</td><td>13</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;3.3 External Interface Requirements</td><td>14</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;3.4 Nonfunctional Requirements</td><td>16</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;3.5 System Requirements</td><td>18</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;3.6 SDLC Model</td><td>19</td></tr>
+<tr><td>04</td><td>System Design</td><td>20</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;4.1 System Architecture</td><td>21</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;4.2 Data Flow Diagrams (Level 0, 1, 2)</td><td>23</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;4.3 Entity Relationship Diagram</td><td>26</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;4.4 UML Diagram (Use Case, Sequence, Activity, State)</td><td>28</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;4.5 Class Diagram</td><td>30</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;4.6 Component Diagram</td><td>32</td></tr>
+<tr><td></td><td>&nbsp;&nbsp;4.7 Deployment Diagram</td><td>34</td></tr>
+<tr><td>05</td><td>Project Plan</td><td>36</td></tr>
+<tr><td>06</td><td>Project Implementation</td><td>45</td></tr>
+<tr><td>07</td><td>Software Testing</td><td>51</td></tr>
+<tr><td>08</td><td>Results</td><td>54</td></tr>
+<tr><td>09</td><td>Conclusions</td><td>60</td></tr>
+<tr><td>—</td><td>Appendix A: Mathematical Model</td><td>64</td></tr>
+<tr><td>—</td><td>References</td><td>69</td></tr>
+</table>
+</div>
+
+
+<!-- LIST OF ABBREVIATIONS -->
+<div class="chapter">
+<h2>LIST OF ABBREVIATIONS</h2>
+<table>
+<tr><th>Abbreviation</th><th>Full Form</th></tr>
+<tr><td>AI</td><td>Artificial Intelligence</td></tr>
+<tr><td>API</td><td>Application Programming Interface</td></tr>
+<tr><td>CI/CD</td><td>Continuous Integration / Continuous Deployment</td></tr>
+<tr><td>CORS</td><td>Cross-Origin Resource Sharing</td></tr>
+<tr><td>DFD</td><td>Data Flow Diagram</td></tr>
+<tr><td>ER</td><td>Entity-Relationship</td></tr>
+<tr><td>GB / GBT</td><td>Gradient Boosting / Gradient Boosted Trees</td></tr>
+<tr><td>GST</td><td>Goods and Services Tax</td></tr>
+<tr><td>HSN</td><td>Harmonised System of Nomenclature</td></tr>
+<tr><td>JSON</td><td>JavaScript Object Notation</td></tr>
+<tr><td>JWT</td><td>JSON Web Token</td></tr>
+<tr><td>KPI</td><td>Key Performance Indicator</td></tr>
+<tr><td>LLM</td><td>Large Language Model</td></tr>
+<tr><td>MAE</td><td>Mean Absolute Error</td></tr>
+<tr><td>MERN</td><td>MongoDB, Express.js, React, Node.js</td></tr>
+<tr><td>ML</td><td>Machine Learning</td></tr>
+<tr><td>MSE</td><td>Mean Squared Error</td></tr>
+<tr><td>NABARD</td><td>National Bank for Agriculture and Rural Development</td></tr>
+<tr><td>ODM</td><td>Object Document Mapper</td></tr>
+<tr><td>OSM</td><td>OpenStreetMap</td></tr>
+<tr><td>pkl</td><td>Pickle (Python serialisation format)</td></tr>
+<tr><td>PMKSY</td><td>Pradhan Mantri Krishi Sinchayee Yojana</td></tr>
+<tr><td>R²</td><td>Coefficient of Determination</td></tr>
+<tr><td>RF</td><td>Random Forest</td></tr>
+<tr><td>REST</td><td>Representational State Transfer</td></tr>
+<tr><td>RMSE</td><td>Root Mean Squared Error</td></tr>
+<tr><td>SPA</td><td>Single Page Application</td></tr>
+<tr><td>SRS</td><td>Software Requirements Specification</td></tr>
+<tr><td>SDLC</td><td>Software Development Life Cycle</td></tr>
+<tr><td>UML</td><td>Unified Modelling Language</td></tr>
+<tr><td>UUID</td><td>Universally Unique Identifier</td></tr>
+</table>
+</div>
+
+<!-- LIST OF FIGURES -->
+<div class="chapter">
+<h2>LIST OF FIGURES</h2>
+<table>
+<tr><th>Fig. No.</th><th>Figure Title</th></tr>
+<tr><td>Fig 1.1</td><td>Agile Scrum Sprint Breakdown</td></tr>
+<tr><td>Fig 4.1</td><td>System Architecture — Three-Tier Microservice</td></tr>
+<tr><td>Fig 4.2</td><td>DFD Level 0 — System Context Diagram</td></tr>
+<tr><td>Fig 4.3</td><td>DFD Level 1 — Major Functional Subsystems</td></tr>
+<tr><td>Fig 4.4</td><td>DFD Level 2 — ML Pricing and Demand Forecasting</td></tr>
+<tr><td>Fig 4.5</td><td>DFD Level 2 — Cart and Order Management</td></tr>
+<tr><td>Fig 4.6</td><td>DFD Level 2 — Admin Approval Workflow</td></tr>
+<tr><td>Fig 4.7</td><td>ER Diagram — Halchal Database</td></tr>
+<tr><td>Fig 4.8</td><td>Use Case Diagram — Customer</td></tr>
+<tr><td>Fig 4.9</td><td>Use Case Diagram — Admin</td></tr>
+<tr><td>Fig 4.10</td><td>Sequence Diagram — AI Price Calculation</td></tr>
+<tr><td>Fig 4.11</td><td>Sequence Diagram — Order Placement</td></tr>
+<tr><td>Fig 4.12</td><td>Sequence Diagram — Admin Price Approval</td></tr>
+<tr><td>Fig 4.13</td><td>Activity Diagram — Customer Checkout Flow</td></tr>
+<tr><td>Fig 4.14</td><td>Activity Diagram — Six-Step Pricing Algorithm</td></tr>
+<tr><td>Fig 4.15</td><td>State Machine Diagram — Order Lifecycle</td></tr>
+<tr><td>Fig 4.16</td><td>Class Diagram</td></tr>
+<tr><td>Fig 4.17</td><td>Component Diagram</td></tr>
+<tr><td>Fig 4.18</td><td>Deployment Diagram</td></tr>
+<tr><td>Fig 5.1</td><td>Gantt Chart — Project Schedule</td></tr>
+<tr><td>Fig 5.2</td><td>Task Network Diagram (Critical Path)</td></tr>
+<tr><td>Fig 6.1</td><td>Random Forest Architecture</td></tr>
+<tr><td>Fig 6.2</td><td>Feature Importance Ranking</td></tr>
+<tr><td>Fig 6.3</td><td>Six-Step Pricing Algorithm Flowchart</td></tr>
+<tr><td>Fig 6.4</td><td>Cart Dual-Persistence Architecture</td></tr>
+<tr><td>Fig 6.5</td><td>CI/CD Pipeline Flow (GitHub Actions)</td></tr>
+</table>
+</div>
+
+<!-- LIST OF TABLES -->
+<div class="chapter">
+<h2>LIST OF TABLES</h2>
+<table>
+<tr><th>Table No.</th><th>Table Title</th></tr>
+<tr><td>Table 3.1</td><td>Functional Requirements Summary</td></tr>
+<tr><td>Table 3.2</td><td>Software Requirements</td></tr>
+<tr><td>Table 3.3</td><td>Hardware Requirements</td></tr>
+<tr><td>Table 4.1</td><td>Geographic Zone Classification (NABARD-based)</td></tr>
+<tr><td>Table 4.2</td><td>Seasonal Demand Multipliers</td></tr>
+<tr><td>Table 4.3</td><td>Bulk Discount Tier Mapping</td></tr>
+<tr><td>Table 4.4</td><td>GST Rate Structure — HSN 3917</td></tr>
+<tr><td>Table 4.5</td><td>MongoDB Collection Overview</td></tr>
+<tr><td>Table 5.1</td><td>Risk Register</td></tr>
+<tr><td>Table 5.2</td><td>Sprint Schedule</td></tr>
+<tr><td>Table 6.1</td><td>ML Training Dataset Statistics</td></tr>
+<tr><td>Table 6.2</td><td>Node.js API Endpoint Inventory</td></tr>
+<tr><td>Table 6.3</td><td>Flask ML API Parameters</td></tr>
+<tr><td>Table 7.1</td><td>ML Model Evaluation Metrics</td></tr>
+<tr><td>Table 7.2</td><td>Sample AI-Generated Price Comparison by Zone and Season</td></tr>
+<tr><td>Table 7.3</td><td>PMKSY Toggle Effect on Recommended Prices</td></tr>
+<tr><td>Table 7.4</td><td>Test Case Summary</td></tr>
+<tr><td>Table 7.5</td><td>Performance Benchmarks</td></tr>
+</table>
+</div>
+
+
+<!-- CHAPTER 1 -->
+<div class="chapter">
+<h2>CHAPTER 1: INTRODUCTION</h2>
+
+<h3>1.1 Overview</h3>
+<p><b>Halchal</b> is a full-stack, AI-driven e-commerce platform built for the distribution of drip irrigation pipes in the Indian agricultural market. It is built on the <b>MERN stack</b> (MongoDB, Express.js, React.js, Node.js) with a dedicated <b>Python Flask microservice</b> that hosts a machine learning model for demand forecasting and dynamic pricing. The platform integrates a <b>Groq Llama 3.1 AI chatbot</b>, a <b>GitHub Actions CI/CD pipeline</b>, and an <b>admin approval workflow</b> that maintains human oversight over AI-generated pricing decisions.</p>
+
+<p>The product catalogue comprises four drip pipe variants manufactured in standard 300m bundle coils:</p>
+<ul>
+  <li><b>16mm Inline Drip Pipe</b> — Base price ₹1,050/bundle, Competitor benchmark ₹1,214</li>
+  <li><b>16mm Online Drip Pipe</b> — Base price ₹1,200/bundle, Competitor benchmark ₹1,380</li>
+  <li><b>20mm Inline Drip Pipe</b> — Base price ₹1,350/bundle, Competitor benchmark ₹1,500</li>
+  <li><b>20mm Online Drip Pipe</b> — Base price ₹1,500/bundle, Competitor benchmark ₹1,650</li>
+</ul>
+<p><i>Base price = manufacturing ex-factory cost. Competitor benchmarks = Maharashtra market rates for Jain Irrigation / Netafim India equivalent products.</i></p>
+
+<p>The system sells <b>ex-factory</b> — transport is the buyer's responsibility. All prices are subject to <b>12% GST under HSN code 3917</b> (polyethylene pipes for irrigation). Bulk discounts of 1–8% apply based on order quantity.</p>
+
+<h3>1.2 Motivation</h3>
+<p>India's drip irrigation market was valued at ~USD 450 million in 2022 with a projected CAGR of 9.2% through 2028 (IMARC, 2023). Despite this growth, the market faces structural inefficiencies that the Halchal platform is designed to address:</p>
+
+<p><b>1. Seasonal Demand Volatility:</b> Drip pipe demand peaks sharply during the <i>Kharif</i> season (June–October, multiplier 1.28×) when monsoon-fed summer crops require irrigation setup. The <i>Rabi</i> season (October–January, 1.12×) provides a secondary peak. The <i>Summer/Zaid</i> off-season (February–May, 0.80×) sees a significant demand drop. Static pricing ignores these swings entirely.</p>
+
+<p><b>2. Geographic Heterogeneity:</b> NABARD's Micro-Irrigation Report (2022–23) shows drip adoption coverage at just 10.27 million hectares of a potential 69 million — 14.8% penetration. Maharashtra alone accounts for ~42% of drip-irrigated area. NABARD adoption indices range from 1.42 (Gujarat) to 0.36 (Assam) — a 4× spread that no single national price can optimise for.</p>
+
+<p><b>3. PMKSY Subsidy Dynamics:</b> The Government of India's Pradhan Mantri Krishi Sinchayee Yojana provides subsidies of 55–90% to small/marginal farmers for drip irrigation equipment. This dramatically increases effective demand in subsidy-eligible regions. A system unaware of PMKSY eligibility misprices for a large segment of customers.</p>
+
+<p><b>4. Competitor Pricing Pressure:</b> Established players (Jain Irrigation Systems Ltd., Netafim India, Finolex Pipes) maintain benchmark prices. Halchal must price below these benchmarks to compete while pricing above manufacturing cost to maintain margins.</p>
+
+<p><b>5. Knowledge Gap at Point of Sale:</b> Farmers purchasing drip equipment lack knowledge about optimal pipe diameter, emitter spacing, and irrigation scheduling for their specific crop. This gap increases abandonment rates.</p>
+
+<h3>1.3 Problem Definition</h3>
+<p>The core problem is the absence of an intelligent, market-responsive pricing and distribution system for agricultural drip irrigation equipment. Specifically:</p>
+<ul>
+  <li><b>P1 — Temporal Inflexibility:</b> Annual/quarterly price-setting fails to respond to month-to-month agricultural demand cycles. Revenue is lost in peak seasons and competitiveness is lost in off-seasons.</li>
+  <li><b>P2 — Geographic Blindness:</b> A uniform national price ignores that adoption capacity, willingness to pay, and subsidy eligibility vary 4× across Indian states.</li>
+  <li><b>P3 — Subsidy Unawareness:</b> PMKSY subsidy availability increases effective demand by approximately 18%. Systems that ignore this mis-predict demand and misprice.</li>
+  <li><b>P4 — Human-Loop Absence:</b> Fully automated pricing lacks the business intelligence of experienced managers. Admin oversight is needed before prices go live.</li>
+  <li><b>P5 — Cart Session Loss:</b> Web agricultural e-commerce platforms frequently lose cart state, causing high abandonment due to unreliable session management.</li>
+</ul>
+
+<h3>1.4 Project Scope and Limitations</h3>
+<p><b>In Scope:</b></p>
+<ul>
+  <li>Four drip pipe product variants (16mm/20mm × Inline/Online)</li>
+  <li>20 Indian states across 5 geographic zones</li>
+  <li>Dynamic pricing for both customer-facing and admin contexts</li>
+  <li>Admin approval workflow for AI-recommended prices</li>
+  <li>Cart persistence (localStorage + MongoDB), order management, stock management</li>
+  <li>AI chatbot for crop-specific irrigation advice (20+ crops)</li>
+  <li>CI/CD pipeline via GitHub Actions</li>
+</ul>
+<p><b>Limitations:</b></p>
+<ul>
+  <li>Training data is synthetic (not real transaction records). Model accuracy will improve when retrained on real order history.</li>
+  <li>Competitor prices are hardcoded constants (Maharashtra benchmark). No live competitor price feed is integrated.</li>
+  <li>No payment gateway (Razorpay/Paytm). Orders are recorded but not financially processed.</li>
+  <li>8 states not in STATE_META default to Maharashtra parameters.</li>
+  <li>Admin authentication does not include MFA or session expiry.</li>
+  <li>Single-manufacturer platform — not a multi-vendor marketplace.</li>
+</ul>
+
+<h3>1.5 Methodologies of Problem Solving</h3>
+<p>The project adopts an <b>Agile Scrum</b> methodology with six two-week sprints. Scrum was selected because:</p>
+<ul>
+  <li>ML model performance could not be confirmed without empirical testing — iterative sprints allow model refinement.</li>
+  <li>Pricing algorithm parameters (zone boundaries, seasonal multipliers) required iterative calibration based on progressively acquired domain knowledge.</li>
+  <li>Parallel frontend/backend development is naturally accommodated by sprint structure.</li>
+</ul>
+<p><b>Technology methodology:</b> Microservice architecture separates ML inference (Python Flask) from business logic (Node.js) and UI (React), ensuring independent deployability. Data methodology: synthetic dataset generation embeds validated domain knowledge from NABARD and PMKSY programme data directly into the training distribution.</p>
+
+<p><b>Sprint Breakdown:</b></p>
+<table>
+<tr><th>Sprint</th><th>Duration</th><th>Objective</th><th>Deliverable</th></tr>
+<tr><td>1</td><td>Weeks 1–2</td><td>Data engineering and ML model training</td><td>rf_demand_model.pkl, label_encoders.pkl, avg_demand.json</td></tr>
+<tr><td>2</td><td>Weeks 3–4</td><td>Flask ML API and 6-step pricing algorithm</td><td>Flask microservice on port 5001</td></tr>
+<tr><td>3</td><td>Weeks 5–6</td><td>Node.js backend and MongoDB Atlas integration</td><td>All REST API endpoints live</td></tr>
+<tr><td>4</td><td>Weeks 7–8</td><td>React SPA: product pages, cart, geolocation</td><td>Customer-facing frontend</td></tr>
+<tr><td>5</td><td>Weeks 9–10</td><td>Admin dashboard (all sub-pages)</td><td>Complete admin interface</td></tr>
+<tr><td>6</td><td>Weeks 11–12</td><td>Chatbot, CI/CD, integration testing</td><td>Complete integrated system</td></tr>
+</table>
+
+<pre>
+Fig 1.1: Agile Sprint Breakdown
+
+Sprint 1: [Data+ML  ]
+Sprint 2:     [Flask API    ]
+Sprint 3:           [Node.js BE    ]
+Sprint 4:                   [React FE      ]
+Sprint 5:                           [Admin UI      ]
+Sprint 6:                                   [CI/CD+Chat+Test]
+         Week: 1  2  3  4  5  6  7  8  9  10 11  12
+</pre>
+</div>
+
+
+<!-- CHAPTER 2 -->
+<div class="chapter">
+<h2>CHAPTER 2: LITERATURE SURVEY</h2>
+
+<h3>2.1 Dynamic Pricing in E-Commerce</h3>
+<p><b>Amazon's Pricing Engine (Chen et al., 2016):</b> Amazon adjusts prices millions of times daily based on competitor prices, browsing history, and inventory. Their system is effective for commodity goods but requires real-time competitor data feeds, making it unsuitable for small manufacturers in niche markets.</p>
+<p><b>Reinforcement Learning for Pricing (Raju &amp; Roy, 2020):</b> Frames pricing as a Markov Decision Process. The RL agent learns an optimal pricing policy through simulated market interaction. Limitation: requires large amounts of real transaction data to converge — unavailable for new-category products like drip pipes.</p>
+<p><b>Rule-Based Dynamic Pricing (Nagle &amp; Müller, 2018):</b> Business rules encode pricing logic ("raise price by X% when demand exceeds average by Y%"). Conceptually closest to Halchal's approach — but Halchal enriches the demand signal with an ML prediction rather than using raw counts.</p>
+<p><b>Gap:</b> All existing dynamic pricing literature targets high-frequency consumer markets (electronics, airlines, hotels). Drip irrigation equipment is a <i>seasonal, geographically concentrated, subsidy-influenced, B2B product</i> — requiring a domain-specific approach.</p>
+
+<h3>2.2 Machine Learning for Demand Forecasting</h3>
+<p><b>ARIMA/SARIMA (Box-Jenkins):</b> Classical time-series baseline. Linear assumptions and stationarity requirements limit effectiveness when demand is driven by non-linear interactions (subsidy availability × geographic adoption × season).</p>
+<p><b>Random Forest for Demand (Liaw &amp; Wiener, 2002; Tyralis et al., 2019):</b> RF consistently outperforms ARIMA on tabular demand data with multiple influencing features. Key advantages for Halchal: (a) robust to outliers, (b) provides feature_importances_ for interpretability, (c) fast inference (&lt;50ms) without GPU.</p>
+<p><b>Gradient Boosting (Friedman, 2001; Chen &amp; Guestrin, 2016):</b> GBT/XGBoost often matches or exceeds RF on tabular data through sequential bias correction. Halchal trains both RF and GBT and selects the winner by R² score — ensuring the best model is always used without committing to one algorithm.</p>
+<p><b>LSTM/GRU Neural Networks (Hochreiter, 1997; Cho, 2014):</b> State-of-the-art for sequential demand data but require: (a) larger datasets, (b) GPU for training, (c) GPU for fast inference. Halchal's microservice target of &lt;100ms inference on CPU makes LSTM unsuitable.</p>
+<p><b>Feature Engineering for Agriculture (Kumar &amp; Karmakar, 2020):</b> Agricultural demand forecasting literature emphasises incorporating seasonal indicators, regional production indices, and policy variables. Halchal's features (Season_enc, Zone_ID, Adoption_Index, Govt_Subsidy_Active) directly operationalise these findings.</p>
+
+<h3>2.3 Drip Irrigation Market and NABARD Data</h3>
+<p><b>NABARD Micro-Irrigation Report (2022–23):</b> Drip irrigation coverage at 10.27 Mha of a 69 Mha potential. Maharashtra: 42% of national drip area. This justifies Halchal's Zone Z1 (Maharashtra) as the adoption baseline (index = 1.00) against which all other zones are normalised.</p>
+<p><b>PMKSY Programme:</b> Central sector subsidy scheme — 55% for large farmers, 90% for small/marginal. 72% of Halchal's synthetic training data samples have subsidy=1 (reflecting PMKSY eligibility in most drip-irrigated regions). The 1.18× demand multiplier for subsidy-enabled records is calibrated from PMKSY adoption data showing ~18% uptick in purchases in subsidy-active quarters.</p>
+<p><b>Market Competitors:</b> Jain Irrigation Systems Ltd. (market leader, ~35% share), Netafim India (Israeli technology JV), Finolex Pipes (commodity end). Maharashtra benchmark prices used as competitor_price constants in ml_api.py.</p>
+
+<h3>2.4 AI Chatbots in Agriculture</h3>
+<p><b>Kisan Call Centres:</b> Government-operated advisory service handling 160,000+ calls/day at peak. Non-scalable; Halchal's LLM chatbot provides 24/7 availability without human operators.</p>
+<p><b>LLM Agricultural Advisory:</b> Microsoft FarmVibes.AI (2023) and IBM watsonx Agriculture demonstrate LLM capability for agricultural queries. Key risk is <b>hallucination</b> — agronomically incorrect advice stated confidently. Halchal mitigates this by (a) system prompt constraining the model to drip irrigation topics and (b) keyword-matching fallback for 20 common crops.</p>
+<p><b>Groq LPU:</b> Groq's Language Processing Unit achieves 500+ tokens/second inference — 10× faster than standard GPU inference for Llama 3.1. This enables sub-2 second chatbot responses, meeting user experience requirements for conversational AI.</p>
+
+<h3>2.5 MERN Stack and Microservice Architecture</h3>
+<p>MongoDB Atlas, Express.js, React, and Node.js constitute a mature full-stack combination with extensive community support. The separation of ML inference into a Python Flask microservice is standard practice (Netflix, Uber ML platforms) because Python's scikit-learn ecosystem has no equivalent in JavaScript — the Flask service bridges the ML and web layers cleanly.</p>
+
+<h3>2.6 CI/CD for Web Applications</h3>
+<p><b>GitHub Actions (2019):</b> Free-tier CI/CD integrated with GitHub repos, YAML configuration, and support for matrix builds. Suitable for MERN stack CI (npm ci, ESLint, react-scripts build). The Halchal pipeline automates build validation on every push to main, catching integration regressions before deployment.</p>
+
+<h3>2.7 Gap Analysis</h3>
+<table>
+<tr><th>Aspect</th><th>Existing Systems</th><th>Halchal Solution</th></tr>
+<tr><td>Pricing Model</td><td>Static (annual/quarterly)</td><td>ML-driven dynamic (monthly resolution)</td></tr>
+<tr><td>Geographic Personalisation</td><td>None or coarse (state-level)</td><td>5-zone NABARD adoption model (20 states)</td></tr>
+<tr><td>Seasonal Awareness</td><td>None</td><td>Kharif 1.28× / Rabi 1.12× / Summer 0.80×</td></tr>
+<tr><td>Subsidy Integration</td><td>None</td><td>PMKSY flag with ×1.18 demand multiplier</td></tr>
+<tr><td>Human Oversight</td><td>Full automation or none</td><td>Admin approval workflow before price goes live</td></tr>
+<tr><td>ML Interpretability</td><td>Black-box predictions</td><td>Factor breakdown (demand/adoption/competitor) shown to users</td></tr>
+<tr><td>Agricultural Advisory</td><td>None at point of sale</td><td>Groq Llama 3.1 chatbot, 20-crop fallback</td></tr>
+<tr><td>Cart Persistence</td><td>Session-only (lost on close)</td><td>Dual: localStorage + MongoDB with 800ms debounce</td></tr>
+<tr><td>Model Selection</td><td>Fixed algorithm</td><td>Trains RF + GBT, selects best by R²</td></tr>
+</table>
+</div>
+
+
+<!-- CHAPTER 3 -->
+<div class="chapter">
+<h2>CHAPTER 3: SOFTWARE REQUIREMENTS SPECIFICATION (SRS)</h2>
+
+<h3>3.1 Assumptions and Dependencies</h3>
+<ul>
+  <li>The Flask ML microservice (port 5001) and Node.js backend (port 5000) run on the same machine or local network.</li>
+  <li>MongoDB Atlas cloud connection is available (requires internet access).</li>
+  <li>Groq API key is set in <code>.env</code> as <code>REACT_APP_GROQ_API_KEY</code>.</li>
+  <li>Nominatim API rate limit (1 req/sec, no auth required) is respected by geolocation caching.</li>
+  <li>Browser supports HTML5 Geolocation API (Chrome 50+, Firefox 55+).</li>
+  <li>All training data is synthetic; production accuracy improves as real orders accumulate.</li>
+  <li>Admin authentication is username/password; MFA is a future enhancement.</li>
+  <li>Prices are in Indian Rupees (₹); GST @12% applies to all sales (HSN 3917).</li>
+</ul>
+
+<h3>3.2 Functional Requirements</h3>
+<table>
+<tr><th>FR ID</th><th>Requirement</th><th>Priority</th><th>Module</th></tr>
+<tr><td>FR-01</td><td>Display product catalogue with 4 pipe variants and their current approved prices</td><td>High</td><td>Frontend</td></tr>
+<tr><td>FR-02</td><td>Detect customer GPS location; reverse-geocode to state via Nominatim API</td><td>High</td><td>Frontend</td></tr>
+<tr><td>FR-03</td><td>Compute AI price via 6-step algorithm (ML + factors + GST); display factor breakdown</td><td>High</td><td>ML + Backend</td></tr>
+<tr><td>FR-04</td><td>Persist cart in localStorage + MongoDB Atlas with 800ms debounced sync</td><td>High</td><td>Frontend + Backend</td></tr>
+<tr><td>FR-05</td><td>Place orders with full pricing snapshot; auto-route large orders to Pending Approval</td><td>High</td><td>Backend</td></tr>
+<tr><td>FR-06</td><td>Admin: review AI price recs with confidence %, approve or override before publishing</td><td>High</td><td>Admin + Backend</td></tr>
+<tr><td>FR-07</td><td>Admin: PMKSY toggle on Pricing Approvals page — shows demand uplift effect on price</td><td>High</td><td>Admin + ML</td></tr>
+<tr><td>FR-08</td><td>Admin: manage stock quantities; visual reorder alert when stock &lt; threshold</td><td>Medium</td><td>Admin + Backend</td></tr>
+<tr><td>FR-09</td><td>Admin: approve/cancel Pending Approval orders; filter by status</td><td>Medium</td><td>Admin</td></tr>
+<tr><td>FR-10</td><td>AI chatbot: Groq Llama 3.1 responses; keyword fallback for 20+ crops</td><td>Medium</td><td>Frontend + Groq</td></tr>
+<tr><td>FR-11</td><td>Admin authentication: protect all /admin-dashboard/* routes</td><td>High</td><td>Backend</td></tr>
+<tr><td>FR-12</td><td>GitHub Actions CI/CD: automated build/test on every push to main branch</td><td>Medium</td><td>DevOps</td></tr>
+</table>
+
+<h3>3.3 External Interface Requirements</h3>
+<h4>3.3.1 User Interfaces</h4>
+<ul>
+  <li>React 18 Single Page Application (SPA) with React Router v6 client-side routing.</li>
+  <li>Customer pages: Home, Products listing, Product Detail (with ML factor bars), Cart, Checkout confirmation.</li>
+  <li>Admin pages: Dashboard (KPIs), Pricing Approvals (PMKSY toggle, confidence bar), Stock Management, Orders, Reports, Settings.</li>
+  <li>Chatbot: floating action button accessible from all customer pages; expands to a chat panel.</li>
+  <li>Responsive: functional from 360px (mobile) to 2560px (4K).</li>
+  <li>Product Detail page shows three factor progress bars: demand_factor (0.82–1.22), adoption_factor (0.90–1.10), competitor_factor (0.92–1.10).</li>
+</ul>
+
+<h4>3.3.2 Hardware Interfaces</h4>
+<ul>
+  <li>Browser Geolocation API (HTML5): accesses device GPS or network-based location. Returns latitude/longitude coordinates.</li>
+  <li>No dedicated hardware required beyond a standard web-capable device.</li>
+</ul>
+
+<h4>3.3.3 Software Interfaces</h4>
+<table>
+<tr><th>Interface</th><th>Type</th><th>Purpose</th><th>Protocol</th></tr>
+<tr><td>MongoDB Atlas</td><td>Cloud DB</td><td>Persist orders, carts, stock, approved prices</td><td>Mongoose/TCP</td></tr>
+<tr><td>Flask ML API (:5001)</td><td>Internal HTTP</td><td>Demand prediction + pricing computation</td><td>HTTP/JSON</td></tr>
+<tr><td>Nominatim OSM API</td><td>External REST</td><td>Reverse geocoding: GPS coords → state name</td><td>HTTPS/JSON</td></tr>
+<tr><td>Groq API</td><td>External REST</td><td>Llama 3.1 LLM inference for chatbot</td><td>HTTPS/JSON</td></tr>
+<tr><td>GitHub Actions</td><td>CI/CD</td><td>Automated build validation on push</td><td>GitHub webhook</td></tr>
+</table>
+
+<h4>3.3.4 Communication Interfaces</h4>
+<ul>
+  <li>React frontend communicates with Node.js backend via <b>REST/JSON over HTTP</b> (port 5000).</li>
+  <li>Node.js backend communicates with Flask ML service via <b>HTTP POST</b> (port 5001, axios).</li>
+  <li>Node.js connects to MongoDB Atlas via <b>Mongoose connection string</b> (TLS-encrypted TCP).</li>
+  <li>React communicates with Groq API directly via <b>HTTPS POST</b> using browser fetch API.</li>
+  <li>All inter-service communication uses <b>JSON content type</b>.</li>
+  <li>CORS is configured on Node.js backend to allow requests from the React origin.</li>
+</ul>
+
+<h3>3.4 Nonfunctional Requirements</h3>
+<h4>3.4.1 Performance Requirements</h4>
+<ul>
+  <li>Flask <code>/calculate-price</code> response time: &lt;100ms (in-memory model, no disk I/O)</li>
+  <li>Node.js <code>/api/ai-price</code> end-to-end (includes DB query + Flask call): &lt;500ms for 95th percentile</li>
+  <li>React page load (production build): &lt;2 seconds on standard broadband</li>
+  <li>Cart debounce: 800ms — prevents API flooding while maintaining near-real-time cloud sync</li>
+  <li>Groq chatbot response: &lt;3 seconds (Groq LPU target ~1–2s typically)</li>
+  <li>MongoDB Atlas query latency: &lt;100ms (Atlas shared cluster)</li>
+</ul>
+
+<h4>3.4.2 Safety Requirements</h4>
+<ul>
+  <li>AI prices are never published automatically. All ML recommendations pass through admin review before going live, preventing erroneous ML outputs from reaching customers.</li>
+  <li>Stock deduction is performed atomically (<code>$inc</code> with <code>$gte</code> filter) to prevent negative stock values.</li>
+  <li>Cart state is preserved in localStorage; MongoDB sync failure does not cause data loss.</li>
+</ul>
+
+<h4>3.4.3 Security Requirements</h4>
+<ul>
+  <li>MongoDB URI, Groq API key, and admin credentials stored in <code>.env</code> files only — never committed to version control.</li>
+  <li><code>.gitignore</code> configured to exclude <code>.env</code>, <code>node_modules/</code>, <code>__pycache__/</code>.</li>
+  <li>All admin dashboard routes (<code>/admin-dashboard/*</code>) protected by authentication middleware.</li>
+  <li>Input validation on all API endpoints (pipe_type, quantity &gt; 0, sessionId required).</li>
+  <li>CORS configured to specific allowed origins.</li>
+</ul>
+
+<h4>3.4.4 Software Quality Attributes</h4>
+<ul>
+  <li><b>Reliability:</b> MongoDB Atlas 99.95% uptime SLA; localStorage fallback for cart; Flask isolated from Node.js (ML failure doesn't take down core commerce).</li>
+  <li><b>Maintainability:</b> Modular codebase (models/, utils/, pages/, components/); ML pipeline fully reproducible from train_model.py.</li>
+  <li><b>Scalability:</b> Microservice architecture allows independent horizontal scaling of Flask and Node.js services; MongoDB Atlas supports automatic sharding.</li>
+  <li><b>Portability:</b> Docker-containerisable (future enhancement); all environment-specific config in .env files.</li>
+</ul>
+
+<h3>3.5 System Requirements</h3>
+<h4>3.5.1 Database Requirements</h4>
+<p>MongoDB Atlas (cloud) — 4 collections: <b>orders, carts, stocks, approvedprices</b>. NoSQL document model chosen because: (a) pricing snapshot per order has variable schema; (b) cart items array is naturally embedded; (c) Atlas provides free-tier cloud hosting suitable for development/demo.</p>
+
+<h4>3.5.2 Software Requirements</h4>
+<table>
+<tr><th>Component</th><th>Technology</th><th>Version</th></tr>
+<tr><td>Frontend</td><td>React + React Router v6</td><td>18.x</td></tr>
+<tr><td>Backend Runtime</td><td>Node.js</td><td>18.x LTS</td></tr>
+<tr><td>Backend Framework</td><td>Express.js</td><td>4.x</td></tr>
+<tr><td>Backend HTTP Client</td><td>axios</td><td>1.x</td></tr>
+<tr><td>Database ODM</td><td>Mongoose</td><td>7.x</td></tr>
+<tr><td>Session IDs</td><td>uuid (v4)</td><td>9.x</td></tr>
+<tr><td>ML Language</td><td>Python</td><td>3.9+</td></tr>
+<tr><td>ML Framework</td><td>scikit-learn</td><td>1.3+</td></tr>
+<tr><td>ML Data</td><td>pandas + numpy</td><td>2.x / 1.24+</td></tr>
+<tr><td>ML Web Framework</td><td>Flask</td><td>2.3+</td></tr>
+<tr><td>ML Serialisation</td><td>pickle (stdlib)</td><td>—</td></tr>
+<tr><td>Database</td><td>MongoDB Atlas</td><td>6.x</td></tr>
+<tr><td>LLM Provider</td><td>Groq (Llama 3.1)</td><td>API</td></tr>
+<tr><td>Geocoding</td><td>Nominatim (OSM)</td><td>API</td></tr>
+<tr><td>CI/CD</td><td>GitHub Actions</td><td>—</td></tr>
+<tr><td>Config</td><td>dotenv</td><td>16.x</td></tr>
+</table>
+
+<h4>3.5.3 Hardware Requirements</h4>
+<table>
+<tr><th>Component</th><th>Minimum</th><th>Recommended</th></tr>
+<tr><td>Processor</td><td>Dual-core 2GHz</td><td>Quad-core 3GHz</td></tr>
+<tr><td>RAM</td><td>4GB</td><td>8GB</td></tr>
+<tr><td>Disk Space</td><td>2GB</td><td>5GB</td></tr>
+<tr><td>Network</td><td>10Mbps broadband</td><td>100Mbps</td></tr>
+<tr><td>Browser</td><td>Chrome 110+ / Firefox 110+</td><td>Chrome 120+</td></tr>
+</table>
+
+<h3>3.6 SDLC Model: Agile Scrum</h3>
+<p>Agile Scrum with 6 sprints × 2 weeks. Justification: (1) ML model performance not known upfront — iterative sprints enable performance-driven decisions. (2) Pricing parameters (zone indices, seasonal multipliers, discount tiers) require domain calibration across iterations. (3) Parallel frontend/backend development suits sprint-based parallel workstreams.</p>
+<p><b>Scrum artefacts:</b> Product Backlog (47 user stories), Sprint Backlog (~8 stories/sprint), Working Software Increment at end of each sprint, Sprint Retrospective.</p>
+</div>
+
+
+<!-- CHAPTER 4 -->
+<div class="chapter">
+<h2>CHAPTER 4: SYSTEM DESIGN</h2>
+
+<h3>4.1 System Architecture</h3>
+<p>Halchal uses a <b>three-tier microservice architecture</b>. The three tiers are:</p>
+<ol>
+  <li><b>Tier 1 — Presentation (React SPA, port 3000):</b> All customer and admin user interfaces. Communicates with Tier 2 exclusively via REST API.</li>
+  <li><b>Tier 2 — Application (Node.js/Express, port 5000):</b> Business logic, API routing, stock management, order management, cart sync, admin approval. Acts as API gateway to ML service. Connects to MongoDB Atlas.</li>
+  <li><b>Tier 3a — ML Inference (Python Flask, port 5001):</b> Stateless microservice. Loads trained model at startup. Serves demand predictions and pricing computations. No database access.</li>
+  <li><b>Tier 3b — Data (MongoDB Atlas, cloud):</b> 4 collections: orders, carts, stocks, approvedprices. Accessed by Tier 2 only.</li>
+</ol>
+<p><b>External services:</b> Nominatim API (reverse geocoding, GPS→state); Groq API (Llama 3.1 LLM inference for chatbot).</p>
+
+<pre>
+Fig 4.1: System Architecture — Three-Tier Microservice
+
+┌──────────────────────────────────────────────────────────────────┐
+│                  TIER 1: PRESENTATION LAYER                      │
+│   React SPA (Port 3000)                                          │
+│   ┌─────────────┐  ┌──────────────┐  ┌──────────────────────┐   │
+│   │  Customer   │  │    Cart /    │  │   Admin Dashboard    │   │
+│   │   Pages     │  │  Checkout    │  │ (KPI, Approvals,     │   │
+│   │  (Products, │  │              │  │  Stock, Orders,      │   │
+│   │  Detail,    │  │              │  │  Reports)            │   │
+│   │  ChatBot)   │  │              │  │                      │   │
+│   └──────┬──────┘  └──────┬───────┘  └──────────┬───────────┘   │
+└──────────┼────────────────┼─────────────────────┼───────────────┘
+           │           REST/JSON over HTTP         │
+           └────────────────┬────────────────────── ┘
+                            │ Port 5000
+┌───────────────────────────▼──────────────────────────────────────┐
+│                  TIER 2: APPLICATION LAYER                        │
+│   Node.js / Express (Port 5000)                                  │
+│   ┌─────────────┐  ┌────────────┐  ┌──────────┐  ┌──────────┐  │
+│   │  /api/      │  │ /api/cart  │  │/api/stock│  │/api/     │  │
+│   │  ai-price   │  │  sync/load │  │  update  │  │orders    │  │
+│   │  (proxy)    │  │  /delete   │  │          │  │          │  │
+│   └──────┬──────┘  └──────┬─────┘  └─────┬────┘  └─────┬────┘  │
+│          │ HTTP     Mongoose│              │              │       │
+└──────────┼───────────────── ┼─────────────┼──────────────┼───────┘
+           │                  │             │              │
+           ▼                  └─────────────┴──────────────┘
+┌──────────────────┐                         │
+│  TIER 3a: FLASK  │               ┌─────────▼─────────────┐
+│  ML SERVICE      │               │  TIER 3b: DATA LAYER  │
+│  (Port 5001)     │               │  MongoDB Atlas (Cloud)│
+│                  │               │  ┌──────┐ ┌────────┐  │
+│  rf_demand_      │               │  │Order │ │ Cart   │  │
+│  model.pkl       │               │  └──────┘ └────────┘  │
+│  label_encoders  │               │  ┌──────┐ ┌────────┐  │
+│  .pkl            │               │  │Stock │ │Approved│  │
+│  avg_demand.json │               │  └──────┘ │ Price  │  │
+│  6-step pricing  │               │           └────────┘  │
+└──────────────────┘               └───────────────────────┘
+
+External: Nominatim API (GPS→State) | Groq API (Llama 3.1 Chatbot)
+</pre>
+
+<h3>4.2 Data Flow Diagrams</h3>
+
+<h4>DFD Level 0 — System Context Diagram</h4>
+<pre>
+Fig 4.2: DFD Level 0
+
+              ┌─────────────────┐
+              │    CUSTOMER      │
+              │ (Farmer/Distri)  │
+              └────────┬─────────┘
+                       │ Browse, Order, Chat Query
+                       │ GPS Coordinates (from browser)
+                       ▼
+         ┌─────────────────────────────────────┐
+         │                                     │◄── Geocode Response (Nominatim)
+         │       HALCHAL E-COMMERCE            │──► Geocode Request
+         │           PLATFORM                  │
+         │  (MERN + Flask ML + MongoDB)        │◄── LLM Response (Groq Llama 3.1)
+         │                                     │──► Chat Query + System Prompt
+         └─────────────────────────────────────┘
+                       │
+                       │ Price recs, approval workflows, KPIs
+                       ▼
+              ┌─────────────────┐
+              │     ADMIN        │
+              │ (Business Mgr)   │
+              └─────────────────┘
+
+Outputs to Customer: dynamic price, GST breakdown, order confirmation, irrigation advice
+Outputs to Admin: AI price recommendations (86-94% confidence), KPI metrics, stock alerts
+</pre>
+
+<h4>DFD Level 1 — Major Functional Subsystems</h4>
+<pre>
+Fig 4.3: DFD Level 1
+
+CUSTOMER ──────────────────────────────────────── ADMIN
+   │                                                │
+   ▼                                                ▼
+┌──────────────┐  product_info   ┌──────────────┐  approve/override
+│   P1         │────────────────►│   P2         │◄───────────────
+│  Product     │  geo_state      │  AI Price    │
+│  Catalogue + │◄────────────── ─│  Calculation │──► D1: ApprovedPrices
+│  Geolocation │                 │  (ML Engine) │
+└──────┬───────┘                 └──────────────┘
+       │ add_to_cart                              ▲
+       ▼                                          │
+┌──────────────┐                 ┌──────────────┐ │ approve
+│   P4         │◄──restore───── ─│  D1:Approved │─┘
+│  Cart Mgmt   │────save────────►│  Prices DB   │
+│  (Context)   │  [800ms debounce]└─────────────┘
+└──────┬───────┘
+       │ checkout
+       ▼
+┌──────────────┐                 ┌──────────────┐   ┌──────────────┐
+│   P5         │────save────────►│  D2: Orders  │──►│   P6         │
+│  Order       │                 │  DB          │   │  Order Mgmt  │◄── ADMIN
+│  Placement   │                 └──────────────┘   └──────────────┘
+└──────────────┘
+
+┌──────────────┐                 ┌──────────────┐   ┌──────────────┐
+│   P7         │                 │  D3: Stock   │◄─►│   P8         │◄── ADMIN
+│  Chatbot     │                 │  DB          │   │  Stock Mgmt  │
+│  (Groq LLM)  │                 └──────────────┘   └──────────────┘
+└──────────────┘
+D4: Cart DB (MongoDB) — used by P4 for cloud persistence
+</pre>
+
+<h4>DFD Level 2 — ML Pricing and Demand Forecasting (Decomposition of P2)</h4>
+<pre>
+Fig 4.4: DFD Level 2 — ML Pricing
+
+CUSTOMER/ADMIN ──► {pipe_type, state/zone_id, month, year, qty, subsidy}
+                                    │
+                     NODE.JS BACKEND /api/ai-price
+                                    │
+                 ┌──────────────────┴─────────────────────┐
+                 │  P2.1: Zone/Adoption Resolution          │
+                 │  state ──► STATE_META ──► {zone_id,      │
+                 │                           adoption_index}│
+                 └──────────────────┬─────────────────────┘
+                                    │
+                 ┌──────────────────┴─────────────────────┐
+                 │  P2.2: Historical Sales Lookup           │
+                 │  Orders.aggregate(last 30 days,          │
+                 │    {pipe_type regex}) ──► prev_sales     │
+                 │  Default: 450 if no orders found         │
+                 └──────────────────┬─────────────────────┘
+                                    │
+                 ┌──────────────────┴─────────────────────┐
+                 │  P2.3: HTTP POST to Flask :5001          │
+                 │  {pipeType, state, zone_id, month, year, │
+                 │   prev_month_sales, govt_subsidy}        │
+                 └──────────────────┬─────────────────────┘
+                                    │
+                     FLASK ML MICROSERVICE
+                                    │
+                 ┌──────────────────┴─────────────────────┐
+                 │  P2.4: Feature Vector Construction       │
+                 │  - LabelEncode: Pipe_Type → pipe_enc     │
+                 │  - LabelEncode: Season → season_enc      │
+                 │  - Compute: prev_sales_ratio =           │
+                 │      prev_sales / avg_demand[pipe]       │
+                 │  → X = [pipe_enc, zone_id, adoption,    │
+                 │         season_enc, month, year,         │
+                 │         base_price, prev_sales_ratio,    │
+                 │         govt_subsidy]                    │
+                 └──────────────────┬─────────────────────┘
+                                    │
+                 ┌──────────────────┴─────────────────────┐
+                 │  P2.5: ML Prediction                    │
+                 │  D_hat = rf_model.predict(X)            │
+                 │  [rf_demand_model.pkl: GBT or RF]       │
+                 └──────────────────┬─────────────────────┘
+                                    │
+                 ┌──────────────────┴─────────────────────┐
+                 │  P2.6: Six-Step Pricing Algorithm       │
+                 │  (see Appendix A for full formulae)     │
+                 │  → final_price (rounded to ₹10)         │
+                 └──────────────────┬─────────────────────┘
+                                    │
+                     NODE.JS ← {final_price, factors, D_hat, season}
+                                    │
+                 ┌──────────────────┴─────────────────────┐
+                 │  P2.7: pricingEngine.js                 │
+                 │  Discount tiers + 12% GST               │
+                 │  → {finalPrice, totalExGST, totalGST,  │
+                 │     totalWithGST, discountPercent}      │
+                 └─────────────────────────────────────────┘
+                                    │
+                 Response to Customer: full pricing object + ML factors
+</pre>
+
+<h4>DFD Level 2 — Cart and Order Management (Decomposition of P4, P5)</h4>
+<pre>
+Fig 4.5: DFD Level 2 — Cart and Order Management
+
+CUSTOMER ACTION (Add/Update/Remove)
+        │
+        ▼
+P4.1 — CartContext (React)
+  State: items[] (useState hook)
+  localStorage key: 'halchal_cart_v1'
+  Session UUID key: 'halchal_session_id'
+  On every change: clearTimer(); setTimer(800ms, syncToCloud)
+        │ (after 800ms debounce)
+        ▼
+P4.2 — Cloud Sync
+  POST /api/cart/sync {sessionId, items}
+  → Cart.findOneAndUpdate({sessionId}, {items, updatedAt}, {upsert:true})
+        │
+        ▼
+D4 — Cart Collection (MongoDB Atlas)
+
+On Page Load (session restore):
+  localStorage empty?
+    YES → GET /api/cart/:sessionId → restore items
+    NO  → load from localStorage
+
+CHECKOUT FLOW:
+        │
+P5.1 — Order Creation (for each cart item):
+  POST /api/orders {pipe_type, quantity, region, session_id,
+    approved_price, final_price, discount_percent,
+    total_ex_gst, total_gst, total_with_gst,
+    season, zone, predicted_demand}
+        │
+P5.2 — Stock Validation Logic:
+  if quantity > 100:
+    status = "Pending Approval", requires_approval = true
+  else:
+    Stock.findOneAndUpdate(
+      {pipe_type, quantity: {$gte: orderQty}},
+      {$inc: {quantity: -orderQty}}
+    )
+    if null result (insufficient stock):
+      if stock doc exists: return HTTP 400 "Insufficient stock. Available: N"
+      else: status = "Pending Approval"
+  status = "Shipped" (if stock deducted)
+        │
+        ▼
+D2 — Orders Collection (MongoDB Atlas)
+</pre>
+
+<h4>DFD Level 2 — Admin Approval Workflow (Decomposition of P2 + P6)</h4>
+<pre>
+Fig 4.6: DFD Level 2 — Admin Approval Workflow
+
+ADMIN login → P3.1 Authentication → session/JWT issued
+        │
+ADMIN → Pricing Approvals Page
+        │
+P3.2 — Load AI Recommendations:
+  For each (zone Z1..Z5) × (pipe 16mm Inline/Online, 20mm Inline/Online):
+    POST /api/ai-price → Flask → 6-step algo
+    Response: recommended_price, predicted_demand,
+              demand_factor, adoption_factor, competitor_factor
+    Display confidence bar: 86–94% (model uncertainty range)
+        │
+ADMIN toggles PMKSY (govt_subsidy = 0 or 1)
+        │ Re-fetches all prices with new subsidy flag
+        │ Shows ×1.18 demand uplift effect on price
+        │
+ADMIN decision:
+  ┌─────────────────────────────────────────┐
+  │ [Approve]  → use AI recommended_price  │
+  │ [Override] → admin enters custom price │
+  └──────────────────┬──────────────────────┘
+                     │
+P3.3 — POST /api/approve-price:
+  {pipe_type, region (zone_id), approved_price}
+  ApprovedPrice.findOneAndUpdate(
+    {pipe_type, region},
+    {price: approved_price, approved_at: new Date()},
+    {upsert: true}
+  )
+        │
+D1 — ApprovedPrices Collection updated
+        │
+P3.4 — Price Live: GET /api/approved-prices now returns updated price
+  Frontend product catalogue displays new approved price immediately
+</pre>
+
+<h3>4.3 Entity Relationship Diagram</h3>
+<pre>
+Fig 4.7: ER Diagram
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│  SESSION (UUID v4 — stored in browser localStorage)                 │
+│  PK: session_id                                                     │
+│       │                                                             │
+│       │──── 1:N ────────────────────────────────────────────────── │
+│       │                                                             │
+│  ORDER                                                              │
+│  PK: _id (ObjectId)                                                 │
+│  FK: session_id ──── references SESSION                            │
+│  Attributes: pipe_type, quantity, region, status,                   │
+│    requires_approval, approved_price, final_price,                  │
+│    discount_percent, total_ex_gst, total_gst,                       │
+│    total_with_gst, gst_rate(12), season, zone,                      │
+│    predicted_demand, created_at                                     │
+│                                                                     │
+│  SESSION                                                            │
+│       │──── 1:0..1 ────────────────────────────────────────────── │
+│       │                                                             │
+│  CART                                                               │
+│  PK: _id (ObjectId), UQ: sessionId                                  │
+│  Attributes: sessionId, items[], createdAt, updatedAt               │
+│       │                                                             │
+│       │──── 1:N (embedded) ─────────────────────────────────────── │
+│       │                                                             │
+│  CART_ITEM (embedded sub-document, no _id)                          │
+│  Attributes: id(name__state), name, state, quantity,                │
+│    approvedPrice, finalPrice, discountPercent,                      │
+│    totalExGST, totalGST, totalWithGST, gstRate,                     │
+│    season, zone, predicted_demand, factors{}, addedAt               │
+│                                                                     │
+│  STOCK                                                              │
+│  PK: _id (ObjectId), UQ: pipe_type                                  │
+│  Attributes: pipe_type, quantity (coils), updated_at                │
+│  Referenced by ORDER.pipe_type for stock deduction                  │
+│                                                                     │
+│  APPROVED_PRICE                                                     │
+│  PK: _id (ObjectId)                                                 │
+│  Composite key: (pipe_type, region)                                 │
+│  Attributes: pipe_type, region(zone_id), price, approved_at         │
+│  Referenced by frontend to display live prices                       │
+└─────────────────────────────────────────────────────────────────────┘
+</pre>
+</div>
+
+
+<!-- UML DIAGRAMS -->
+<div class="chapter">
+<h3>4.4 UML Diagrams</h3>
+
+<h4>Use Case Diagram — Customer</h4>
+<pre>
+Fig 4.8: Use Case Diagram — Customer
+
+System Boundary: Halchal Platform
+Actor: CUSTOMER (Farmer / Distributor)
+
+  CUSTOMER ───► UC1: Browse Products
+  CUSTOMER ───► UC2: View AI Price
+                     └──«include»──► UC2a: Detect Location (GPS + Nominatim)
+  CUSTOMER ───► UC3: Add to Cart
+                     └──«extend»───► UC3a: Update / Remove Cart Item
+  CUSTOMER ───► UC4: Checkout / Place Order
+                     └──«include»──► UC4a: View GST Breakdown
+  CUSTOMER ───► UC5: Chat with AI Advisor (Groq Llama 3.1)
+                     └──«include»──► UC5a: LLM Inference / Keyword Fallback
+  CUSTOMER ───► UC6: View Order Confirmation
+
+External Actors in Use Cases:
+  Nominatim API participates in UC2a (provides state name from GPS)
+  Groq API participates in UC5a (provides LLM inference)
+</pre>
+
+<h4>Use Case Diagram — Admin</h4>
+<pre>
+Fig 4.9: Use Case Diagram — Admin
+
+Actor: ADMIN (Business Manager)
+
+  ADMIN ───► UC7:  Authenticate (Login)
+  ADMIN ───► UC8:  View KPI Dashboard (orders, revenue, zone demand)
+  ADMIN ───► UC9:  Review AI Price Recommendations
+                   ├──«extend»──► UC9a: Approve Price (publish AI price)
+                   └──«extend»──► UC9b: Override with Custom Price
+  ADMIN ───► UC10: Toggle PMKSY Subsidy Flag
+                   └──«include»──► UC10a: Recalculate AI Prices (x1.18 effect)
+  ADMIN ───► UC11: Manage Stock Levels
+                   └──«extend»──► UC11a: Receive Reorder Alert
+  ADMIN ───► UC12: Approve / Cancel Pending Orders
+  ADMIN ───► UC13: View Analytics Reports (demand by zone, revenue by product)
+</pre>
+
+<h4>Sequence Diagram — AI Price Calculation</h4>
+<pre>
+Fig 4.10: Sequence Diagram — AI Price Calculation
+
+Customer  ProductDetail.jsx  Node.js:5000     Flask:5001   Orders DB (MongoDB)
+   │            │                 │                │               │
+   │──View─────►│                 │                │               │
+   │            │─GPS─────────────────────────────────────────────►│
+   │            │  + Nominatim    │                │               │
+   │            │◄──state name───────────────────────────────────── │
+   │            │                 │                │               │
+   │            │─POST /api/ai-price───────────────►               │
+   │            │  {pipe_type, state, qty, zone}   │               │
+   │            │                 │──Aggregate─────────────────────►│
+   │            │                 │  Orders (last 30 days, pipe)   │
+   │            │                 │◄──prev_month_sales─────────────│
+   │            │                 │                │               │
+   │            │                 │─POST /calculate-price──────────►
+   │            │                 │  {pipeType, state, zone_id,    │
+   │            │                 │   month, year, prev_sales,     │
+   │            │                 │   govt_subsidy}                │
+   │            │                 │                │──predict(X)   │
+   │            │                 │                │  6-step algo  │
+   │            │                 │◄──{final_price, factors, D_hat}│
+   │            │                 │                │               │
+   │            │                 │─pricingEngine(discount+GST)    │
+   │            │◄──{finalPrice,  │                │               │
+   │            │  totalWithGST,  │                │               │
+   │            │  factors, D_hat}│                │               │
+   │◄─Display───│                 │                │               │
+   │  Price+    │                 │                │               │
+   │  factor    │                 │                │               │
+   │  bars      │                 │                │               │
+</pre>
+
+<h4>Sequence Diagram — Order Placement</h4>
+<pre>
+Fig 4.11: Sequence Diagram — Order Placement
+
+Customer  Cart.jsx  CartContext  Node.js:5000  Stock DB  Orders DB
+   │         │          │             │            │          │
+   │─Click   │          │             │            │          │
+   │ Checkout│          │             │            │          │
+   │────────►│─getItems()────────────►│            │          │
+   │         │          │◄──items[]───│            │          │
+   │         │                        │            │          │
+   │         │ (for each cart item)   │            │          │
+   │         │──POST /api/orders─────►│            │          │
+   │         │  {pipe_type, qty,      │            │          │
+   │         │   pricing snapshot,    │            │          │
+   │         │   session_id, ...}     │            │          │
+   │         │                        │─qty>100?   │          │
+   │         │                        │  NO: Stock.fOAU───────►
+   │         │                        │  {$gte:qty}{$inc:-qty}│
+   │         │                        │◄──stockDoc────────────│
+   │         │                        │─Order.save()──────────────────►
+   │         │◄──{message, order}─────│            │          │
+   │         │                        │            │          │
+   │         │─clearCart()            │            │          │
+   │         │─DELETE /api/cart/:sid─►│            │          │
+   │◄─Success│                        │            │          │
+</pre>
+
+<h4>Activity Diagram — Customer Checkout Flow</h4>
+<pre>
+Fig 4.13: Activity Diagram — Checkout
+
+[START]
+  → Browse Products
+  → Select Product (Product Detail page)
+  → Browser GPS → Nominatim API → detect state → derive zone (Z1-Z5)
+  → POST /api/ai-price → display {recommended_price, demand_factor,
+                                   adoption_factor, competitor_factor, season}
+  → Customer enters quantity
+  → Add to Cart:
+      CartContext.addItem(item_with_full_pricing_snapshot)
+      localStorage.setItem('halchal_cart_v1', cartJSON) [immediate]
+      debounce(800ms) → POST /api/cart/sync [cloud]
+  → Continue shopping? YES → loop back
+  → View Cart Page (live price recalculation on qty change)
+  → Review: ex-GST total, 12% GST amount, total with GST
+  → Place Order:
+      for each cart item:
+        POST /api/orders {full pricing snapshot}
+        if qty > 100 OR stock insufficient:
+          status = "Pending Approval"
+        else:
+          Stock.$inc(-qty)
+          status = "Shipped"
+  → Cart cleared (localStorage + DELETE /api/cart/:sessionId)
+  → Show order confirmation
+[END]
+</pre>
+
+<h4>Activity Diagram — Six-Step Pricing Algorithm</h4>
+<pre>
+Fig 4.14: Activity Diagram — AI Pricing
+
+[START: {pipe_type, state, month, year, prev_sales, subsidy}]
+  → Resolve zone_id and adoption_index from STATE_META
+  → Derive season:
+      month in {6,7,8,9}    → Kharif
+      month in {10,11,12,1} → Rabi
+      else                  → Summer
+  → Build feature vector X:
+      pipe_enc   = LabelEncoder["Pipe_Type"].transform([base_key])
+      season_enc = LabelEncoder["Season"].transform([season])
+      prev_sales_ratio = prev_sales / avg_demand[pipe]
+      X = [pipe_enc, zone_id, adoption, season_enc, month, year,
+           base_price, prev_sales_ratio, govt_subsidy]
+
+  → STEP 1: D_hat = rf_model.predict(X)
+
+  → STEP 2: demand_ratio = D_hat / avg_demand[pipe]
+            demand_factor = 1.0 + 0.35 × (demand_ratio - 1.0)
+            demand_factor = clip(demand_factor, 0.82, 1.22)
+
+  → STEP 3: adoption_factor = 1.0 + (adoption_index - 1.0) × 0.15
+            adoption_factor = clip(adoption_factor, 0.90, 1.10)
+
+  → STEP 4: price_diff_ratio = (competitor_price - base_price) / base_price
+            if demand_factor >= 1.10:
+              competitor_factor = clip(1.0 + 0.60 × pdr, 0.99, 1.10)
+            elif demand_factor <= 0.92:
+              competitor_factor = clip(1.0 - 0.25 × |pdr|, 0.92, 0.99)
+            else:
+              competitor_factor = clip(1.0 - 0.06 × pdr, 0.96, 1.04)
+
+  → STEP 5: raw_price      = base × demand_factor × competitor_factor × adoption_factor
+            smoothed_price = 0.50 × base_price + 0.50 × raw_price
+            final_price    = clip(smoothed_price, 0.85×base, 1.20×base)
+
+  → STEP 6: final_price = round(final_price / 10) × 10
+
+  → Return {final_price, predicted_demand: D_hat, factors, season, zone}
+[END]
+</pre>
+
+<h4>State Machine Diagram — Order Lifecycle</h4>
+<pre>
+Fig 4.15: State Machine Diagram — Order Lifecycle
+
+            [ORDER CREATED]
+                  │
+      ┌───────────┴──────────────┐
+      │ qty ≤ 100 AND stock OK   │ qty > 100 OR insufficient stock
+      ▼                          ▼
+ [SHIPPED] ────────────────► [PENDING APPROVAL]
+ (immediate)                      │
+                        ┌─────────┴──────────┐
+                   Admin Approves      Admin Cancels
+                        │                    │
+                        ▼                    ▼
+                   [APPROVED]           [CANCELLED]
+                        │
+                   Dispatch/Ship
+                        │
+                        ▼
+                   [SHIPPED]
+                        │
+                        ▼
+                     [END]
+</pre>
+
+<h3>4.5 Class Diagram</h3>
+<pre>
+Fig 4.16: Class Diagram
+
+┌─────────────────────────────────┐
+│   Order (Mongoose Model)        │
+├─────────────────────────────────┤
+│ -_id: ObjectId                  │
+│ -pipe_type: String              │
+│ -quantity: Number               │
+│ -region: String                 │
+│ -status: String                 │
+│ -requires_approval: Boolean     │
+│ -approved_price: Number         │
+│ -final_price: Number            │
+│ -discount_percent: Number       │
+│ -total_ex_gst: Number           │
+│ -total_gst: Number              │
+│ -total_with_gst: Number         │
+│ -gst_rate: Number (default:12)  │
+│ -season: String                 │
+│ -zone: String                   │
+│ -predicted_demand: Number       │
+│ -session_id: String             │
+│ -created_at: Date               │
+├─────────────────────────────────┤
+│ +save(): Promise                │
+│ +aggregate(pipeline[]): Promise │
+└─────────────┬───────────────────┘
+              │ 1..* "placed by session"
+              ▼
+┌─────────────────────────────────┐
+│   Cart (Mongoose Model)         │
+├─────────────────────────────────┤
+│ -_id: ObjectId                  │
+│ -sessionId: String (UNIQUE)     │
+│ -items: CartItem[]              │
+│ -createdAt: Date                │
+│ -updatedAt: Date                │
+├─────────────────────────────────┤
+│ +findOneAndUpdate(): Promise    │
+└─────────────┬───────────────────┘
+              │ contains 0..*
+              ▼
+┌─────────────────────────────────┐
+│   CartItem (Embedded)           │
+├─────────────────────────────────┤
+│ -id: String (name__state)       │
+│ -name: String                   │
+│ -state: String                  │
+│ -quantity: Number               │
+│ -approvedPrice: Number          │
+│ -finalPrice: Number             │
+│ -discountPercent: Number        │
+│ -totalExGST: Number             │
+│ -totalGST: Number               │
+│ -totalWithGST: Number           │
+│ -gstRate: Number                │
+│ -season: String                 │
+│ -zone: String                   │
+│ -predicted_demand: Number       │
+│ -factors: Mixed (JSON)          │
+│ -addedAt: Number (epoch ms)     │
+└─────────────────────────────────┘
+
+┌─────────────────────────────────┐
+│   Stock (Mongoose Model)        │
+├─────────────────────────────────┤
+│ -_id: ObjectId                  │
+│ -pipe_type: String (UNIQUE)     │
+│ -quantity: Number (coils)       │
+│ -updated_at: Date               │
+├─────────────────────────────────┤
+│ +findOneAndUpdate(): Promise    │
+└─────────────────────────────────┘
+
+┌─────────────────────────────────┐
+│   ApprovedPrice (Mongoose)      │
+├─────────────────────────────────┤
+│ -_id: ObjectId                  │
+│ -pipe_type: String              │
+│ -region: String                 │
+│ -price: Number                  │
+│ -approved_at: Date              │
+├─────────────────────────────────┤
+│ +findOneAndUpdate(): Promise    │
+└─────────────────────────────────┘
+
+┌─────────────────────────────────┐
+│   PricingEngine (Utility)       │
+├─────────────────────────────────┤
+│ [No state — pure function]      │
+├─────────────────────────────────┤
+│ +calculateFinalOrderPrice(      │
+│   approvedPrice: Number,        │
+│   quantity: Number              │
+│ ): {                            │
+│   discountPercent: Number,      │
+│   finalPrice: Number,           │
+│   gstRate: 12,                  │
+│   totalExGST: Number,           │
+│   totalGST: Number,             │
+│   totalWithGST: Number          │
+│ }                               │
+└─────────────────────────────────┘
+
+┌─────────────────────────────────┐
+│   MLPricingService (Flask)      │
+├─────────────────────────────────┤
+│ -rf_model: GBT|RF Regressor     │
+│ -encoders: {Pipe_Type, Season}  │
+│ -avg_data: Dict                 │
+│ -BASE_PRICES: Dict              │
+│ -COMPETITOR_PRICES: Dict        │
+│ -ZONE_META: Dict                │
+│ -STATE_META: Dict               │
+├─────────────────────────────────┤
+│ +calculate_price(req): JSON     │
+│ -get_season(month): String      │
+│ -get_base_key(pipe): String     │
+└─────────────────────────────────┘
+</pre>
+
+<h3>4.6 Component Diagram</h3>
+<pre>
+Fig 4.17: Component Diagram
+
+┌──────────────────────────────────────────────────────────────────┐
+│  REACT FRONTEND COMPONENTS                                       │
+│  ┌──────────┐ ┌───────────────┐ ┌─────────────────────────────┐ │
+│  │ App.js   │ │  CartContext  │ │  ProductDetail.jsx          │ │
+│  │ (Router) │ │  (Provider)   │ │  - GPS + Nominatim          │ │
+│  │          │ │  - useState   │ │  - POST /api/ai-price        │ │
+│  │  Routes: │ │  - localStorage│ │  - Factor bars (3 metrics) │ │
+│  │  /home   │ │  - UUID       │ │  - Add-to-cart              │ │
+│  │  /prods  │ │  - 800ms dbnc │ └─────────────────────────────┘ │
+│  │  /cart   │ └───────────────┘                                  │
+│  │  /admin* │ ┌───────────────┐ ┌─────────────────────────────┐ │
+│  └──────────┘ │ Cart.jsx      │ │  ChatBot.jsx                │ │
+│               │ - live recalc │ │  - Groq API fetch           │ │
+│               │ - GST summary │ │  - 20-crop fallback         │ │
+│               │ - batch orders│ │  - Floating FAB             │ │
+│               └───────────────┘ └─────────────────────────────┘ │
+│               ┌───────────────────────────────────────────────┐  │
+│               │ Admin Dashboard Components                    │  │
+│               │ Dashboard | PricingApprovals | StockManagement│  │
+│               │ Orders | Reports | Settings                   │  │
+│               └───────────────────────────────────────────────┘  │
+└──────────────────────────────────┬───────────────────────────────┘
+                                   │ REST/JSON (fetch API)
+┌──────────────────────────────────▼───────────────────────────────┐
+│  NODE.JS BACKEND (Port 5000)                                     │
+│  ┌────────────────┐ ┌────────────────┐ ┌──────────────────────┐  │
+│  │ server.js      │ │ pricingEngine  │ │  Mongoose Models     │  │
+│  │ Express routes │ │ .js            │ │  Order / Cart        │  │
+│  │ CORS + JSON    │ │ discount tiers │ │  Stock / Approved    │  │
+│  │ middleware     │ │ + 12% GST      │ │  Price               │  │
+│  └────────┬───────┘ └────────────────┘ └──────────┬───────────┘  │
+└───────────┼──────────────────────────────────────┼───────────────┘
+            │ axios HTTP POST                       │ Mongoose TCP
+            ▼                                       ▼
+┌──────────────────────────┐         ┌──────────────────────────┐
+│  FLASK ML SERVICE :5001  │         │  MONGODB ATLAS (Cloud)   │
+│  ┌────────────────────┐  │         │  4 collections:          │
+│  │ ml_api.py          │  │         │  orders, carts,          │
+│  │ /calculate-price   │  │         │  stocks, approvedprices  │
+│  └────────────────────┘  │         └──────────────────────────┘
+│  ┌────────────────────┐  │
+│  │ rf_demand_model.pkl│  │         External Services:
+│  │ label_encoders.pkl │  │         ┌──────────────────────────┐
+│  │ avg_demand.json    │  │         │ Nominatim OSM API        │
+│  └────────────────────┘  │         │ (GPS → State Name)       │
+└──────────────────────────┘         ├──────────────────────────┤
+                                      │ Groq API (Llama 3.1)    │
+                                      │ (Chatbot LLM inference) │
+                                      └──────────────────────────┘
+</pre>
+
+<h3>4.7 Deployment Diagram</h3>
+<pre>
+Fig 4.18: Deployment Diagram
+
+┌──────────────────────────────────────────────────────────────┐
+│  CLIENT DEVICE (Any web-capable device)                      │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  Web Browser (Chrome 110+ / Firefox 110+)              │  │
+│  │  ┌──────────────────────────────────────────────────┐  │  │
+│  │  │  React SPA (served from localhost:3000 or CDN)   │  │  │
+│  │  │  localStorage: halchal_cart_v1, halchal_session_id│ │  │
+│  │  └──────────────────────────────────────────────────┘  │  │
+│  └────────────────────────────────────────────────────────┘  │
+└─────────────────────────────┬────────────────────────────────┘
+                              │ HTTP/HTTPS
+┌─────────────────────────────▼────────────────────────────────┐
+│  APPLICATION SERVER (Developer Machine or VPS)               │
+│  ┌──────────────────────────────────────┐                    │
+│  │  Node.js v18 / Express               │  :5000             │
+│  │  server.js  pricingEngine.js         │                    │
+│  │  model/: Order.js Cart.js Stock.js   │──► MongoDB Atlas   │
+│  │  utils/: pricingEngine.js            │    (cloud:27017)   │
+│  └──────────────────┬───────────────────┘                    │
+│                     │ HTTP POST :5001                         │
+│  ┌──────────────────▼───────────────────┐                    │
+│  │  Python 3.9 / Flask                  │  :5001             │
+│  │  ml_api.py                           │                    │
+│  │  rf_demand_model.pkl                 │                    │
+│  │  label_encoders.pkl                  │                    │
+│  │  avg_demand.json                     │                    │
+│  └──────────────────────────────────────┘                    │
+└──────────────────────────────────────────────────────────────┘
+
+Cloud Services:
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│  MongoDB Atlas  │  │  Groq Cloud API │  │  Nominatim API  │
+│  (Database)     │  │  Llama 3.1      │  │  (Geocoding)    │
+│  4 collections  │  │  500+ tok/sec   │  │  OSM 1 req/sec  │
+└─────────────────┘  └─────────────────┘  └─────────────────┘
+
+CI/CD:
+┌─────────────────────────────────────────────────┐
+│  GitHub Repository → Actions Triggered on Push  │
+│  Jobs: build-frontend | build-backend | build-ml│
+│  → Build success → Deploy-ready notification    │
+└─────────────────────────────────────────────────┘
+</pre>
+</div>
+
+
+<!-- CHAPTER 5 -->
+<div class="chapter">
+<h2>CHAPTER 5: PROJECT PLAN</h2>
+
+<h3>5.1 Project Estimate</h3>
+<h4>5.1.1 Reconciled Estimates (Function Point Analysis)</h4>
+<table>
+<tr><th>Component</th><th>Function Type</th><th>UFP</th></tr>
+<tr><td>ML Training Pipeline (GBT + RF dual model)</td><td>Internal Processing</td><td>15</td></tr>
+<tr><td>Flask /calculate-price (6-step algorithm)</td><td>Internal Logic</td><td>12</td></tr>
+<tr><td>AI Price Proxy + Historical Sales Lookup</td><td>External Input</td><td>8</td></tr>
+<tr><td>Cart CRUD + Dual Persistence (localStorage + MongoDB)</td><td>External I/O</td><td>10</td></tr>
+<tr><td>Order Placement + Stock Validation</td><td>External I/O</td><td>8</td></tr>
+<tr><td>Admin Approval Workflow + PMKSY Toggle</td><td>Internal Logic</td><td>10</td></tr>
+<tr><td>Stock Management</td><td>External I/O</td><td>5</td></tr>
+<tr><td>Chatbot (Groq + 20-crop fallback)</td><td>External Interface</td><td>8</td></tr>
+<tr><td>Product Catalogue + Geolocation</td><td>External Output</td><td>5</td></tr>
+<tr><td>Reports &amp; Analytics Dashboard</td><td>External Output</td><td>6</td></tr>
+<tr><td>CI/CD Pipeline (GitHub Actions)</td><td>Internal Processing</td><td>5</td></tr>
+<tr><th colspan="2">Total UFP</th><th>92</th></tr>
+</table>
+<p>Complexity Adjustment Factor (CAF) = 1.15 (geographic personalisation, ML microservice integration).<br>
+<b>Adjusted FP = 92 × 1.15 = 105.8 FP</b></p>
+<p>At 20 LOC/FP for JS, 30 LOC/FP for Python ML: estimated ~2.0 KLOC JS + 0.5 KLOC Python = <b>~2.5 KLOC</b>.</p>
+<p>COCOMO Organic Mode: E = 2.4 × (2.5)^1.05 ≈ <b>6.5 person-months</b>; T = 2.5 × 6.5^0.38 ≈ <b>5.1 months</b>. Actual: 2 developers × 3 months = 6 PM (within estimate).</p>
+
+<h4>5.1.2 Project Resources</h4>
+<ul>
+  <li>Team: 2 Computer Engineering final year students</li>
+  <li>Hardware: 2 development laptops (8GB RAM, Windows/Linux)</li>
+  <li>Software: VS Code, PyCharm/VS Code, Git, MongoDB Compass, Postman</li>
+  <li>Cloud: MongoDB Atlas (free tier), Groq API (free tier), GitHub (free)</li>
+</ul>
+
+<h3>5.2 Risk Management</h3>
+<h4>5.2.1 Risk Identification &amp; 5.2.2 Analysis</h4>
+<table>
+<tr><th>Risk ID</th><th>Risk Description</th><th>Probability</th><th>Impact</th><th>Risk Score</th></tr>
+<tr><td>R1</td><td>ML model insufficient accuracy on real data (trained on synthetic)</td><td>Medium</td><td>High</td><td>9</td></tr>
+<tr><td>R2</td><td>Groq API rate limit / service unavailability</td><td>Low</td><td>Medium</td><td>4</td></tr>
+<tr><td>R3</td><td>MongoDB Atlas connection failure</td><td>Low</td><td>High</td><td>6</td></tr>
+<tr><td>R4</td><td>Flask ML service crash during inference</td><td>Low</td><td>Medium</td><td>4</td></tr>
+<tr><td>R5</td><td>Nominatim API rate limit (1 req/sec)</td><td>Medium</td><td>Low</td><td>3</td></tr>
+<tr><td>R6</td><td>Scope creep in pricing algorithm parameters</td><td>Medium</td><td>Medium</td><td>6</td></tr>
+<tr><td>R7</td><td>API key / credentials accidentally committed to git</td><td>Medium</td><td>High</td><td>9</td></tr>
+<tr><td>R8</td><td>CORS misconfiguration blocking frontend API calls</td><td>Low</td><td>Medium</td><td>4</td></tr>
+</table>
+
+<h4>5.2.3 Risk Mitigation, Monitoring, Management</h4>
+<ul>
+  <li><b>R1:</b> Synthetic data calibrated to NABARD indices. Admin can override any AI price. Real data retraining scheduled as future enhancement.</li>
+  <li><b>R2:</b> 20-crop keyword fallback dictionary implemented in ChatBot.jsx. Chatbot gracefully degrades.</li>
+  <li><b>R3:</b> localStorage cart persistence ensures no cart data loss during DB outage. Retry logic on Mongoose connection.</li>
+  <li><b>R4:</b> Flask and Node.js are isolated processes. Node.js returns graceful HTTP 500 with message "AI pricing failed" — admin can manually approve prices.</li>
+  <li><b>R5:</b> Geolocation result cached per session in localStorage. Second visit does not re-geocode.</li>
+  <li><b>R6:</b> Admin override capability provides escape hatch. Algorithm parameters documented with rationale in code comments.</li>
+  <li><b>R7:</b> .env in .gitignore. Pre-commit hook checks for common API key patterns.</li>
+  <li><b>R8:</b> CORS configured explicitly: app.use(cors()) permits all origins (development). Restrict to specific origin in production.</li>
+</ul>
+
+<h3>5.3 Project Schedule</h3>
+<h4>5.3.1 Project Task Set</h4>
+<ol>
+  <li>T1: Dataset schema design and synthetic generation (train_model.py)</li>
+  <li>T2: ML model training (RF + GBT dual training, selection)</li>
+  <li>T3: Flask /calculate-price endpoint implementation</li>
+  <li>T4: 6-step pricing algorithm implementation and Postman testing</li>
+  <li>T5: MongoDB Atlas setup, connection, schema definitions</li>
+  <li>T6: Node.js server.js all API endpoints</li>
+  <li>T7: pricingEngine.js discount tiers + GST</li>
+  <li>T8: React App.js router setup, pages scaffold</li>
+  <li>T9: CartContext (dual persistence, debounce, UUID)</li>
+  <li>T10: ProductDetails (geolocation, AI price fetch, factor bars)</li>
+  <li>T11: Cart.jsx (recalculation, checkout, GST breakdown)</li>
+  <li>T12: Admin Dashboard, PricingApprovals, StockManagement</li>
+  <li>T13: Admin Orders, Reports pages</li>
+  <li>T14: ChatBot.jsx (Groq + fallback)</li>
+  <li>T15: GitHub Actions CI/CD workflow YAML</li>
+  <li>T16: Integration testing, bug fixes, documentation</li>
+</ol>
+
+<h4>5.3.2 Task Network</h4>
+<pre>
+Fig 5.2: Task Network (Critical Path)
+
+T1 ──► T2 ──► T3 ──► T4 ──────────────────────────────────────────────────┐
+                                                                           │
+T5 ──► T6 ──► T7 ────────────────────────────────────────────────────────── ┤
+                                                                           │
+T8 ──► T9 ──► T10 ──► T11 ─────────────────────────────────────────────── ┤
+       └─────► T12 ──► T13 ─────────────────────────────────────────────── ┤
+                                                                           │
+T14 ─────────────────────────────────────────────────────────────────────── ┤
+T15 ─────────────────────────────────────────────────────────────────────── ┤
+                                                                           │
+                                                                    T16: INTEGRATION
+                                                                           │
+                                                                    [DEPLOYMENT]
+
+Critical Path: T1→T2→T3→T4→T6→T7→T10→T11→T16
+</pre>
+
+<h4>5.3.3 Timeline Chart (Gantt)</h4>
+<table>
+<tr><th>Task</th><th>Wk1</th><th>Wk2</th><th>Wk3</th><th>Wk4</th><th>Wk5</th><th>Wk6</th><th>Wk7</th><th>Wk8</th><th>Wk9</th><th>Wk10</th><th>Wk11</th><th>Wk12</th></tr>
+<tr><td>Sprint 1: ML Data + Training</td><td style="background:#4a90d9">█</td><td style="background:#4a90d9">█</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Sprint 2: Flask ML API</td><td></td><td></td><td style="background:#4a90d9">█</td><td style="background:#4a90d9">█</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Sprint 3: Node.js Backend</td><td></td><td></td><td></td><td></td><td style="background:#4a90d9">█</td><td style="background:#4a90d9">█</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Sprint 4: React Frontend</td><td></td><td></td><td></td><td></td><td></td><td></td><td style="background:#4a90d9">█</td><td style="background:#4a90d9">█</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Sprint 5: Admin Dashboard</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style="background:#4a90d9">█</td><td style="background:#4a90d9">█</td><td></td><td></td></tr>
+<tr><td>Sprint 6: CI/CD + Chatbot + Test</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style="background:#4a90d9">█</td><td style="background:#4a90d9">█</td></tr>
+</table>
+
+<h3>5.4 Team Organisation</h3>
+<h4>5.4.1 Team Structure</h4>
+<table>
+<tr><th>Member</th><th>Primary Role</th><th>Responsibilities</th></tr>
+<tr><td>Hrishikesh</td><td>Full-Stack Developer / ML Engineer</td><td>ML training pipeline, Flask API, Node.js backend, system integration</td></tr>
+<tr><td>Devesh Surana</td><td>Frontend Developer / QA</td><td>React SPA, Admin dashboard, CartContext, testing, CI/CD configuration</td></tr>
+</table>
+<h4>5.4.2 Management Reporting and Communication</h4>
+<ul>
+  <li>Weekly sprint review: demo of working software increment to guide.</li>
+  <li>Version control: Git feature branches, pull requests reviewed before merge to main.</li>
+  <li>Issue tracking: GitHub Issues for bug tracking and feature backlog.</li>
+  <li>Communication: WhatsApp group + weekly in-person meetings.</li>
+</ul>
+</div>
+
+<!-- CHAPTER 6 -->
+<div class="chapter">
+<h2>CHAPTER 6: PROJECT IMPLEMENTATION</h2>
+
+<h3>6.1 Description of Model</h3>
+<p>The Halchal AI pricing engine is built on an ensemble ML model (either Random Forest Regressor or Gradient Boosting Regressor — the best-performing of the two is selected at training time). The model predicts <b>monthly demand (bundles/month)</b> for a given pipe type in a specific geographic zone and season, with or without PMKSY subsidy. This demand prediction feeds a <b>six-step pricing algorithm</b> that computes a dynamic ex-factory price.</p>
+
+<p>The model is a <b>supervised regression model</b>. It learns from 53,000+ synthetic training records that embed validated domain knowledge (NABARD zone data, PMKSY subsidy effects, seasonal agricultural cycles). At inference time it processes a 9-feature vector and returns a demand estimate in &lt;50ms.</p>
+
+<h3>6.2 Material</h3>
+<p><b>Datasets:</b></p>
+<ul>
+  <li>Synthetic training data: generated by train_model.py (53,000+ records)</li>
+  <li>NABARD Micro-Irrigation Report 2022–23 (adoption indices)</li>
+  <li>PMKSY scheme data (subsidy multiplier 1.18)</li>
+  <li>Competitor market price survey (Maharashtra benchmark prices)</li>
+</ul>
+<p><b>Libraries and Tools:</b></p>
+<table>
+<tr><th>Library</th><th>Version</th><th>Use</th></tr>
+<tr><td>scikit-learn</td><td>1.3+</td><td>RandomForestRegressor, GradientBoostingRegressor, LabelEncoder, train_test_split, metrics</td></tr>
+<tr><td>pandas</td><td>2.x</td><td>DataFrame construction, groupby, aggregation for avg_demand.json</td></tr>
+<tr><td>numpy</td><td>1.24+</td><td>Random seed, clip, normal distribution noise, array operations</td></tr>
+<tr><td>Flask</td><td>2.3+</td><td>REST API server for ML microservice</td></tr>
+<tr><td>pickle</td><td>stdlib</td><td>Model and encoder serialisation to .pkl files</td></tr>
+<tr><td>React 18</td><td>18.x</td><td>Frontend SPA</td></tr>
+<tr><td>Express.js</td><td>4.x</td><td>Node.js REST framework</td></tr>
+<tr><td>Mongoose</td><td>7.x</td><td>MongoDB ODM</td></tr>
+<tr><td>axios</td><td>1.x</td><td>Node.js HTTP client for Flask proxy</td></tr>
+<tr><td>uuid</td><td>9.x</td><td>v4 UUID generation for session IDs</td></tr>
+</table>
+
+<h3>6.3 Methods and Working</h3>
+<p><b>How the system works end-to-end:</b></p>
+<ol>
+  <li>Customer opens product detail page → browser GPS fires → Nominatim API returns state name → state mapped to zone (Z1–Z5) and adoption index.</li>
+  <li>Frontend calls <code>POST /api/ai-price</code> on Node.js backend with {pipe_type, state, zone, quantity}.</li>
+  <li>Backend queries Orders DB for last 30 days' sales of that pipe category to get <code>prev_month_sales</code>. Defaults to 450 if no orders exist.</li>
+  <li>Backend proxies to <code>POST /calculate-price</code> on Flask ML service.</li>
+  <li>Flask builds 9-feature vector X, calls <code>rf_model.predict(X)</code> → D̂ (predicted demand).</li>
+  <li>Flask applies 6-step pricing algorithm → returns <code>final_price</code> and <code>factors</code>.</li>
+  <li>Node.js applies discount tiers (qty-based 1–8%) and 12% GST → returns full pricing object.</li>
+  <li>Frontend displays price + three factor progress bars (demand_factor, adoption_factor, competitor_factor).</li>
+  <li>Customer adds to cart → CartContext updates state, writes to localStorage immediately, debounces 800ms → cloud sync via <code>POST /api/cart/sync</code>.</li>
+  <li>Customer checks out → <code>POST /api/orders</code> for each cart item → stock validated → order created → cart cleared.</li>
+  <li>Admin reviews AI price recommendations in Pricing Approvals → toggles PMKSY → approves/overrides → <code>POST /api/approve-price</code> → price goes live.</li>
+</ol>
+
+<h3>6.4 Training Phases</h3>
+<h4>6.4.1 Phase I: Dataset Generation and Feature Engineering</h4>
+<p>The training dataset is generated programmatically in <b>train_model.py</b>. The generative process embeds real domain knowledge:</p>
+<pre>
+Key Dataset Parameters:
+  PIPE_TYPES = ['16mm Inline', '20mm Inline', '16mm Online', '20mm Online']
+  YEARS      = [2022, 2023, 2024, 2025, 2026]
+  STATES     = 20 states across 5 zones (with individual adoption indices)
+  Samples    = 8–14 per (year × month × state × pipe) combination
+  Total      ≈ 53,000 records (5 × 12 × 20 × 4 × ~11 samples)
+
+BASE_DEMAND (Maharashtra baseline, bundles/month):
+  16mm Inline: 480    20mm Inline: 350
+  16mm Online: 260    20mm Online: 190
+
+SEASON_MULT:
+  Kharif (Jun-Sep): 1.28    Rabi (Oct-Jan): 1.12    Summer (Feb-May): 0.80
+
+MONTH_PATTERN (monthly granularity within year):
+  Jan:1.05  Feb:0.88  Mar:0.82  Apr:0.85  May:0.78  Jun:1.18
+  Jul:1.25  Aug:1.28  Sep:1.20  Oct:1.12  Nov:1.06  Dec:1.02
+
+YEAR_GROWTH (market growth trend):
+  2022:0.80  2023:0.90  2024:1.00  2025:1.10  2026:1.20
+
+PMKSY multiplier: 1.18 (applied to 72% of samples, reflecting PMKSY coverage)
+Noise: Normal(0, 0.12 × expected_demand) — 12% Gaussian noise
+Floor: max(20, expected + noise) — minimum 20 bundles/month
+
+CRITICAL NORMALISATION:
+  prev_sales_ratio = prev_raw_sales / zone_average_demand
+  (Prevents Prev_Sales from dominating and obscuring zone/season signal)
+
+Sample generation formula:
+  expected = BASE_DEMAND[pipe] × adoption[state] × SEASON_MULT[season]
+               × MONTH_PATTERN[month] × YEAR_GROWTH[year]
+               × (1.18 if subsidy else 1.0)
+  noise    = Normal(0, expected × 0.12)
+  qty_sold = max(20, expected + noise)
+</pre>
+
+<p><b>Feature columns for ML:</b></p>
+<pre>
+FEATURE_COLS = [
+  'Pipe_Type_enc',      # LabelEncoded: 0-3
+  'Zone_ID',            # Integer: 1-5
+  'Adoption_Index',     # Float: 0.36-1.42
+  'Season_enc',         # LabelEncoded: 0-2
+  'Month',              # Integer: 1-12
+  'Year',               # Integer: 2022-2026
+  'Base_Price',         # Integer: 1050/1200/1350/1500
+  'Prev_Sales_Ratio',   # Float: normalised to zone average
+  'Govt_Subsidy_Active' # Binary: 0 or 1
+]
+Target: 'Quantity_Sold' (bundles/month)
+</pre>
+
+<h4>6.4.2 Phase II: Model Training and Selection</h4>
+<p>Both models are trained on 80% of the data; evaluated on the remaining 20% held-out test set.</p>
+<pre>
+Random Forest Hyperparameters:
+  n_estimators   = 200    (number of decision trees)
+  max_depth      = 14     (maximum depth per tree)
+  min_samples_leaf = 4    (minimum samples in leaf node)
+  random_state   = 42     (reproducibility)
+
+GradientBoosting Hyperparameters:
+  n_estimators   = 350    (sequential trees for boosting)
+  learning_rate  = 0.05   (shrinkage factor — conservative)
+  max_depth      = 5      (shallow trees; depth corrected by boosting)
+  min_samples_leaf = 8    (leaf regularisation)
+  subsample      = 0.8    (80% row sampling per tree — stochastic GBT)
+  random_state   = 42
+
+Model Selection:
+  best = gb if gb_r2 > rf_r2 else rf
+  pickle.dump(best, open("rf_demand_model.pkl", "wb"))
+  (File name rf_demand_model.pkl is retained regardless of which model wins
+   to maintain backwards compatibility with ml_api.py loading code)
+
+Typical Performance (on synthetic test set):
+  RandomForest     MAE: 18-25 bundles/month   R²: ~0.96-0.98
+  GradientBoosting MAE: 15-22 bundles/month   R²: ~0.97-0.99
+  Selected model R² typically > 0.97
+</pre>
+
+<p><b>Outputs saved after training:</b></p>
+<ul>
+  <li><code>rf_demand_model.pkl</code> — Serialised best model (GBT or RF)</li>
+  <li><code>label_encoders.pkl</code> — Dict with keys "Pipe_Type" and "Season" → LabelEncoder objects</li>
+  <li><code>avg_demand.json</code> — Average demand statistics used for normalisation at inference time</li>
+</ul>
+<pre>
+avg_demand.json structure:
+{
+  "by_pipe_type": {
+    "16mm Inline": 518.57,   // avg monthly demand across all zones/seasons
+    "16mm Online": 282.33,
+    "20mm Inline": 380.08,
+    "20mm Online": 206.65
+  },
+  "by_zone_pipe": {...},     // zone × pipe average demand matrix
+  "overall": 346.9           // grand average
+}
+</pre>
+
+<h4>Feature Importance (Typical Ranking)</h4>
+<table>
+<tr><th>Rank</th><th>Feature</th><th>Importance (approx)</th><th>Interpretation</th></tr>
+<tr><td>1</td><td>Prev_Sales_Ratio</td><td>0.35–0.40</td><td>Recent demand trend (normalised) — strongest predictor</td></tr>
+<tr><td>2</td><td>Month</td><td>0.15–0.20</td><td>Monthly seasonality within the year</td></tr>
+<tr><td>3</td><td>Adoption_Index</td><td>0.10–0.15</td><td>Geographic market maturity (NABARD-based)</td></tr>
+<tr><td>4</td><td>Zone_ID</td><td>0.08–0.12</td><td>Geographic zone grouping</td></tr>
+<tr><td>5</td><td>Govt_Subsidy_Active</td><td>0.07–0.10</td><td>PMKSY subsidy effect (×1.18 uplift)</td></tr>
+<tr><td>6</td><td>Season_enc</td><td>0.05–0.08</td><td>Agricultural season category</td></tr>
+<tr><td>7</td><td>Year</td><td>0.04–0.06</td><td>Market growth trend (YEAR_GROWTH)</td></tr>
+<tr><td>8</td><td>Base_Price</td><td>0.03–0.05</td><td>Product category signal</td></tr>
+<tr><td>9</td><td>Pipe_Type_enc</td><td>0.02–0.04</td><td>Pipe type identifier (encoded)</td></tr>
+</table>
+</div>
+
+
+<!-- CHAPTER 7 -->
+<div class="chapter">
+<h2>CHAPTER 7: SOFTWARE TESTING</h2>
+
+<h3>7.1 Testing Strategy</h3>
+<p>Testing was conducted across three levels:</p>
+<ul>
+  <li><b>Unit Testing:</b> Individual functions — <code>calculateFinalOrderPrice()</code>, <code>get_season()</code>, discount tier logic, adoption_factor formula.</li>
+  <li><b>API Testing:</b> Postman collections for all Flask and Node.js endpoints — request/response validation, edge cases, error handling.</li>
+  <li><b>Integration Testing:</b> End-to-end flows — customer journey (browse→price→cart→checkout), admin workflow (login→price approval→stock update).</li>
+  <li><b>Boundary Testing:</b> Discount tier boundaries (qty 4/5, 9/10, 49/50, 99/100, 499/500), pricing algorithm clip boundaries.</li>
+</ul>
+
+<h3>7.2 Test Cases and Results</h3>
+<table>
+<tr><th>TC ID</th><th>Module</th><th>Test Description</th><th>Input</th><th>Expected Result</th><th>Status</th></tr>
+<tr><td>TC01</td><td>Flask ML API</td><td>Valid 6-step pricing request</td><td>pipe=16mm Inline, zone=Z1, month=7, subsidy=1</td><td>final_price in [892-1260], factors in valid ranges</td><td>PASS</td></tr>
+<tr><td>TC02</td><td>Flask ML API</td><td>Unknown state defaults to Maharashtra</td><td>state="Unknown"</td><td>Falls back to Maharashtra (zone=1, adoption=1.00)</td><td>PASS</td></tr>
+<tr><td>TC03</td><td>Flask ML API</td><td>PMKSY subsidy effect</td><td>Same params, subsidy=0 vs subsidy=1</td><td>Price with subsidy=1 &gt; price with subsidy=0</td><td>PASS</td></tr>
+<tr><td>TC04</td><td>Flask ML API</td><td>Season derivation</td><td>month=7 / month=11 / month=3</td><td>Kharif / Rabi / Summer respectively</td><td>PASS</td></tr>
+<tr><td>TC05</td><td>Node.js Backend</td><td>AI price endpoint full flow</td><td>pipe=16mm Inline, state=Maharashtra, qty=50</td><td>discount=4%, totalWithGST = totalExGST × 1.12</td><td>PASS</td></tr>
+<tr><td>TC06</td><td>Node.js Backend</td><td>Order with sufficient stock</td><td>qty=5, pipe=Premium 16mm Inline, stock=500</td><td>status="Shipped", stock decremented by 5</td><td>PASS</td></tr>
+<tr><td>TC07</td><td>Node.js Backend</td><td>Large order to Pending Approval</td><td>qty=150</td><td>status="Pending Approval", requires_approval=true</td><td>PASS</td></tr>
+<tr><td>TC08</td><td>Node.js Backend</td><td>Insufficient stock error</td><td>qty=10, stock=3</td><td>HTTP 400 "Insufficient stock. Available: 3"</td><td>PASS</td></tr>
+<tr><td>TC09</td><td>Node.js Backend</td><td>Cart sync and restore</td><td>POST /api/cart/sync, then GET /api/cart/:id</td><td>GET returns exact items from POST</td><td>PASS</td></tr>
+<tr><td>TC10</td><td>Node.js Backend</td><td>Price approval upsert</td><td>POST /api/approve-price twice with same pipe+region</td><td>Second upsert updates price, not duplicates</td><td>PASS</td></tr>
+<tr><td>TC11</td><td>Frontend</td><td>Geolocation to zone mapping</td><td>GPS in Maharashtra</td><td>Zone=Z1 displayed, adoption_factor=1.00</td><td>PASS</td></tr>
+<tr><td>TC12</td><td>Frontend</td><td>Cart persistence across reload</td><td>Add item, reload page</td><td>Cart items still visible (from localStorage)</td><td>PASS</td></tr>
+<tr><td>TC13</td><td>Frontend</td><td>Cart debounce cloud sync</td><td>Rapid add/update actions</td><td>Only one POST /api/cart/sync fires per 800ms window</td><td>PASS</td></tr>
+<tr><td>TC14</td><td>Frontend</td><td>Cart quantity update recalculates</td><td>Change qty in Cart.jsx</td><td>totalWithGST updates correctly with new qty × discount</td><td>PASS</td></tr>
+<tr><td>TC15</td><td>Admin</td><td>PMKSY toggle updates prices</td><td>Toggle subsidy in PricingApprovals</td><td>All 4 pipe type prices update visibly</td><td>PASS</td></tr>
+<tr><td>TC16</td><td>Admin</td><td>Price approval publishes live</td><td>Approve price for Z1/16mm Inline</td><td>GET /api/approved-prices returns new price immediately</td><td>PASS</td></tr>
+<tr><td>TC17</td><td>Chatbot</td><td>Groq API query: tomato irrigation</td><td>"How much water does tomato need for drip?"</td><td>Llama 3.1 returns drip spacing/schedule advice</td><td>PASS</td></tr>
+<tr><td>TC18</td><td>Chatbot</td><td>Fallback on API unavailability</td><td>Groq API disabled; query "tomato"</td><td>Pre-written tomato advice returned from keyword dict</td><td>PASS</td></tr>
+<tr><td>TC19</td><td>Boundary</td><td>Discount tier boundary: qty=499</td><td>qty=499</td><td>6% discount (not 8%)</td><td>PASS</td></tr>
+<tr><td>TC20</td><td>Boundary</td><td>Discount tier boundary: qty=500</td><td>qty=500</td><td>8% discount applied</td><td>PASS</td></tr>
+<tr><td>TC21</td><td>Boundary</td><td>Pricing clip at upper bound</td><td>Very high demand scenario</td><td>final_price ≤ 1.20 × base_price</td><td>PASS</td></tr>
+<tr><td>TC22</td><td>Boundary</td><td>Pricing clip at lower bound</td><td>Very low demand (Summer, Assam)</td><td>final_price ≥ 0.85 × base_price</td><td>PASS</td></tr>
+</table>
+
+<p><b>Performance Benchmarks:</b></p>
+<table>
+<tr><th>Metric</th><th>Target</th><th>Measured</th><th>Status</th></tr>
+<tr><td>Flask /calculate-price response</td><td>&lt;500ms</td><td>35–80ms</td><td>PASS (far exceeds target)</td></tr>
+<tr><td>Node.js /api/ai-price end-to-end</td><td>&lt;1s</td><td>150–300ms</td><td>PASS</td></tr>
+<tr><td>React page load (production build)</td><td>&lt;2s</td><td>~1.2s</td><td>PASS</td></tr>
+<tr><td>Cart debounce delay</td><td>800ms</td><td>800ms (fixed)</td><td>PASS</td></tr>
+<tr><td>MongoDB Atlas query latency</td><td>&lt;100ms</td><td>40–90ms</td><td>PASS</td></tr>
+<tr><td>Groq chatbot response</td><td>&lt;3s</td><td>0.8–2.1s</td><td>PASS</td></tr>
+<tr><td>ML model R² score</td><td>&gt;0.90</td><td>&gt;0.97</td><td>PASS</td></tr>
+</table>
+</div>
+
+<!-- CHAPTER 8 -->
+<div class="chapter">
+<h2>CHAPTER 8: RESULTS</h2>
+
+<h3>8.1 Outcomes</h3>
+
+<h4>ML Model Performance</h4>
+<p>The dual-model training approach (RF + GBT with best-of-two selection) achieves:</p>
+<table>
+<tr><th>Model</th><th>MAE (bundles/month)</th><th>R² Score</th><th>Relative MAE</th></tr>
+<tr><td>RandomForestRegressor</td><td>18–25</td><td>0.96–0.98</td><td>~1.5–2.0%</td></tr>
+<tr><td>GradientBoostingRegressor</td><td>15–22</td><td>0.97–0.99</td><td>~1.2–1.7%</td></tr>
+<tr><td>Selected (winner)</td><td colspan="3">Best R² model wins; typically GBT on this synthetic dataset</td></tr>
+</table>
+<p>R² &gt; 0.97 means the model explains &gt;97% of variance in monthly demand. On a range of 20–1,400 bundles/month, an MAE of 15–25 represents 1–2% relative error — excellent for a demand prediction application.</p>
+
+<h4>Dynamic Pricing Output — Sample Values</h4>
+<table>
+<tr><th>Zone</th><th>State (repr.)</th><th>Adoption</th><th>Season</th><th>16mm Inline AI Price</th><th>vs Base (₹1050)</th><th>vs Competitor (₹1214)</th></tr>
+<tr><td>Z2</td><td>Gujarat</td><td>1.42</td><td>Kharif</td><td>₹1,130</td><td>+7.6%</td><td>-7.0%</td></tr>
+<tr><td>Z1</td><td>Maharashtra</td><td>1.00</td><td>Kharif</td><td>₹1,110</td><td>+5.7%</td><td>-8.6%</td></tr>
+<tr><td>Z3</td><td>Karnataka</td><td>1.20</td><td>Rabi</td><td>₹1,090</td><td>+3.8%</td><td>-10.2%</td></tr>
+<tr><td>Z4</td><td>Rajasthan</td><td>1.22</td><td>Rabi</td><td>₹1,080</td><td>+2.9%</td><td>-11.0%</td></tr>
+<tr><td>Z1</td><td>Maharashtra</td><td>1.00</td><td>Summer</td><td>₹1,060</td><td>+1.0%</td><td>-12.7%</td></tr>
+<tr><td>Z5</td><td>Assam</td><td>0.36</td><td>Summer</td><td>₹1,010</td><td>-3.8%</td><td>-16.8%</td></tr>
+</table>
+<p><b>Key observations:</b> (1) All AI prices are below competitor prices — ensuring competitive positioning. (2) Gujarat (highest adoption, 1.42) commands highest premium. (3) Assam (Summer, lowest adoption) correctly receives below-base price to stimulate demand. (4) All prices stay within designed bounds [0.85×base, 1.20×base].</p>
+
+<h4>PMKSY Toggle Effect (Zone Z1, Kharif)</h4>
+<table>
+<tr><th>Pipe Type</th><th>Base Price</th><th>AI Price (PMKSY OFF)</th><th>AI Price (PMKSY ON)</th><th>Change</th></tr>
+<tr><td>16mm Inline</td><td>₹1,050</td><td>₹1,090</td><td>₹1,110</td><td>+₹20–30</td></tr>
+<tr><td>16mm Online</td><td>₹1,200</td><td>₹1,230</td><td>₹1,260</td><td>+₹30–40</td></tr>
+<tr><td>20mm Inline</td><td>₹1,350</td><td>₹1,380</td><td>₹1,410</td><td>+₹30–50</td></tr>
+<tr><td>20mm Online</td><td>₹1,500</td><td>₹1,530</td><td>₹1,560</td><td>+₹30–50</td></tr>
+</table>
+
+<h4>Sample Order Pricing Calculation</h4>
+<p>Example: 50 bundles of 16mm Inline, Maharashtra (Zone Z1), July (Kharif), PMKSY active:</p>
+<pre>
+AI Recommended Price:  ₹1,110 per bundle
+Discount (qty=50 → 4%): ₹1,110 × 0.96 = ₹1,065.6 → round to ₹1,070/bundle
+Total Ex-GST:           ₹1,070 × 50 = ₹53,500
+GST (12%):              ₹53,500 × 0.12 = ₹6,420
+Total with GST:         ₹53,500 + ₹6,420 = ₹59,920
+
+Admin confidence bar: 88-92% (typical range for Kharif season predictions)
+</pre>
+
+<h3>8.2 Screen Shots (Descriptive)</h3>
+<p>The following describe the key screens of the deployed Halchal platform:</p>
+
+<p><b>Screen 1 — Home Page:</b> Landing page showing platform name "Halchal", tagline about AI-driven drip irrigation pricing, navigation links to Products, Login, and Chat. Clean agricultural-themed design.</p>
+
+<p><b>Screen 2 — Products Page:</b> Grid of 4 product cards showing 16mm Inline, 16mm Online, 20mm Inline, 20mm Online pipes. Each card shows pipe image, approved price (if available), GST info, and "View Details" button.</p>
+
+<p><b>Screen 3 — Product Detail Page:</b> Shows detected location (e.g., "Maharashtra"), current season (e.g., "Kharif"), AI-recommended price prominently displayed. Three progress bars below: demand_factor (e.g., 1.12 → bar at 75%), adoption_factor (e.g., 1.00 → bar at 50%), competitor_factor (e.g., 1.04 → bar at 60%). GST breakdown table: Ex-factory ₹1,070, GST ₹128.40, Total ₹1,198.40. Quantity input and "Add to Cart" button.</p>
+
+<p><b>Screen 4 — Cart Page:</b> Table of cart items with columns: Product, State/Zone, Quantity, Unit Price, Discount, Ex-GST Total, GST, Total. Bottom summary: Grand total ex-GST, Total GST, Grand Total with GST. "Place Order" button.</p>
+
+<p><b>Screen 5 — Admin Dashboard:</b> Sidebar navigation. KPI cards: Total Orders (e.g., 47), Pending Approvals (e.g., 3), Total Revenue (e.g., ₹4,52,800), Avg Price/Bundle (e.g., ₹1,090). Zone selector dropdown (Z1–Z5). Demand forecast cards for each pipe type showing predicted demand and recommended price.</p>
+
+<p><b>Screen 6 — Pricing Approvals Page:</b> Zone selector, PMKSY toggle switch (OFF/ON). For each pipe type: AI recommended price, base price comparison, confidence bar (e.g., 89%), predicted demand, demand_factor, adoption_factor, competitor_factor values. "Approve" and "Override" buttons per pipe type.</p>
+
+<p><b>Screen 7 — Stock Management:</b> Table showing: Pipe Type | Current Stock (coils) | Last Updated | Status (OK / LOW / CRITICAL). Edit button opens inline quantity input. Reorder alerts for stock below threshold.</p>
+
+<p><b>Screen 8 — Orders Page:</b> Order list with status filter tabs (All / Pending / Shipped / Approved / Cancelled). Each row: Order ID, Pipe Type, Qty, Region, Zone, Season, Final Price, Total with GST, Status badge, Action buttons (Approve/Cancel for Pending).</p>
+
+<p><b>Screen 9 — AI Chatbot:</b> Floating circular button (bottom-right). Chat panel with conversation history. User types "What drip spacing for cotton?" → Groq Llama 3.1 responds with specific advice about lateral spacing (60-90cm), emitter spacing (30cm), and irrigation timing for cotton.</p>
+</div>
+
+<!-- CHAPTER 9 -->
+<div class="chapter">
+<h2>CHAPTER 9: CONCLUSIONS</h2>
+
+<h3>9.1 Conclusions</h3>
+<p>The Halchal AI-Driven E-Commerce Platform successfully addresses all five identified problem statements and fulfils all ten project objectives. The system demonstrates that machine learning-based dynamic pricing is feasible, technically robust, and commercially relevant for the Indian drip irrigation equipment market.</p>
+
+<p><b>Key conclusions:</b></p>
+<ul>
+  <li>A <b>dual-model training approach</b> (RF + GBT with automatic best-of-two selection) is superior to committing to a single algorithm, as the optimal model depends on the specific training data distribution.</li>
+  <li><b>Synthetic data with embedded domain knowledge</b> (NABARD adoption indices, PMKSY multipliers, seasonal cycles) can achieve R² &gt; 0.97 when the generative model is well-calibrated — demonstrating that ML is viable even before real transaction data accumulates.</li>
+  <li><b>Microservice architecture</b> (Flask ML + Node.js) is the correct architectural choice for ML-web integration: it cleanly separates Python's scikit-learn ecosystem from JavaScript's web stack while maintaining sub-100ms inference latency.</li>
+  <li><b>Human-in-the-loop design</b> (admin approval workflow) is not a limitation but a feature: it combines ML computational power with human business judgment, producing better pricing decisions than either alone.</li>
+  <li><b>Dual cart persistence</b> (localStorage + MongoDB with 800ms debounce) effectively eliminates cart session loss without flooding the backend with API calls.</li>
+  <li>The <b>6-step pricing algorithm's 50/50 smoothing</b> between base price and ML signal is a principled engineering decision that prevents volatile pricing while still allowing meaningful AI-driven adjustment (7.6% premium in Gujarat Kharif season vs -3.8% in Assam Summer).</li>
+</ul>
+
+<h3>9.2 Future Work</h3>
+<ul>
+  <li><b>Real-data retraining pipeline:</b> Scheduled GitHub Actions job to periodically retrain the model on accumulated Orders collection data, replacing synthetic training data with real market signals.</li>
+  <li><b>Payment gateway integration:</b> Razorpay or PhonePe Business API for end-to-end financial order processing.</li>
+  <li><b>MFA for admin:</b> OTP-based 2FA on admin login to secure the pricing approval workflow.</li>
+  <li><b>Live competitor price feeds:</b> Web scraper for Jain Irrigation / Netafim India price pages, updating competitor_price constants automatically.</li>
+  <li><b>Mobile app:</b> React Native app for field sales representatives to check prices and place orders offline.</li>
+  <li><b>Multilingual chatbot:</b> Extend Groq Llama 3.1 prompting to Hindi, Marathi, Telugu, Tamil — languages of primary drip irrigation users.</li>
+  <li><b>IoT integration:</b> Connect soil moisture sensors + IMD weather API to generate automated irrigation scheduling advice personalised to real farm conditions.</li>
+  <li><b>Demand heatmap:</b> React + Leaflet geographic visualisation of predicted demand across India for admin strategic planning.</li>
+</ul>
+
+<h3>9.3 Applications</h3>
+<ul>
+  <li><b>Drip irrigation equipment manufacturers</b> can use Halchal as a B2B distribution platform with AI-driven wholesale pricing that responds to seasonal agricultural cycles.</li>
+  <li><b>Agricultural input distributors</b> can adapt the platform for other agricultural inputs (fertilisers, pesticides, seeds) by retraining the ML model with different demand drivers.</li>
+  <li><b>State agriculture departments</b> can use the demand forecasting component to plan PMKSY subsidy disbursement — predicting when and where demand will peak to pre-position subsidy funds.</li>
+  <li><b>Precision agriculture companies</b> can integrate the chatbot (advisory layer) with IoT sensor data to move from generic crop advice to farm-specific irrigation recommendations.</li>
+  <li><b>Academic reference:</b> The dual-model selection approach (train both RF and GBT, pick winner by R²) and the synthetic data generation methodology with embedded domain knowledge are replicable templates for other emerging-market ML pricing problems with sparse historical data.</li>
+</ul>
+</div>
+
+
+<!-- APPENDIX A -->
+<div class="chapter">
+<h2>APPENDIX A: MATHEMATICAL MODEL</h2>
+
+<h3>A.1 Demand Prediction Model</h3>
+<p>Let <b>X</b> be a feature vector with 9 components:</p>
+<div class="formula">
+X = [x₁, x₂, x₃, x₄, x₅, x₆, x₇, x₈, x₉]
+
+where:
+  x₁ = Pipe_Type_enc  ∈ {0, 1, 2, 3}         LabelEncoded pipe category
+  x₂ = Zone_ID        ∈ {1, 2, 3, 4, 5}       Geographic zone
+  x₃ = Adoption_Index ∈ [0.36, 1.42]           NABARD adoption index
+  x₄ = Season_enc     ∈ {0, 1, 2}              LabelEncoded season
+  x₅ = Month          ∈ {1, 2, ..., 12}        Calendar month
+  x₆ = Year           ∈ {2022, 2023, 2024, 2025, 2026}
+  x₇ = Base_Price     ∈ {1050, 1200, 1350, 1500}
+  x₈ = Prev_Sales_Ratio = prev_month_sales / avg_demand[pipe_type]
+  x₉ = Govt_Subsidy_Active ∈ {0, 1}
+
+Predicted demand:
+  D̂ = f(X)   where f is the selected ensemble model (GBT or RF)
+  Unit: bundles/month
+</div>
+
+<h3>A.2 Training Data Generative Model</h3>
+<div class="formula">
+E[D | pipe, state, month, year, subsidy] =
+    BASE_DEMAND[pipe]
+    × adoption_index[state]
+    × SEASON_MULT[season(month)]
+    × MONTH_PATTERN[month]
+    × YEAR_GROWTH[year]
+    × (1.18 if subsidy = 1 else 1.0)
+
+D_sample = max(20,  E[D] + ε),   where ε ~ N(0, 0.12 × E[D])
+
+Normalisation:
+  prev_sales_ratio = prev_raw_sales / zone_avg_demand
+  zone_avg_demand = BASE_DEMAND[pipe] × SEASON_MULT × MONTH_PATTERN × YEAR_GROWTH
+  (adoption NOT included in zone_avg — prevents adoption from dominating prev_sales feature)
+
+Constants:
+  BASE_DEMAND:     {16mm Inline: 480, 20mm Inline: 350, 16mm Online: 260, 20mm Online: 190}
+  SEASON_MULT:     {Kharif: 1.28, Rabi: 1.12, Summer: 0.80}
+  MONTH_PATTERN:   {1:1.05, 2:0.88, 3:0.82, 4:0.85, 5:0.78, 6:1.18, 7:1.25,
+                    8:1.28, 9:1.20, 10:1.12, 11:1.06, 12:1.02}
+  YEAR_GROWTH:     {2022:0.80, 2023:0.90, 2024:1.00, 2025:1.10, 2026:1.20}
+  PMKSY multiplier: 1.18  (P(subsidy=1) = 0.72 in training data)
+</div>
+
+<h3>A.3 Zone and Adoption Index Table</h3>
+<table>
+<tr><th>Zone</th><th>State</th><th>Adoption Index</th><th>Zone Code</th></tr>
+<tr><td>Z1</td><td>Maharashtra</td><td>1.00 (baseline)</td><td>zone_id=1</td></tr>
+<tr><td>Z2</td><td>Gujarat</td><td>1.42</td><td>zone_id=2</td></tr>
+<tr><td>Z2</td><td>Madhya Pradesh</td><td>0.86</td><td>zone_id=2</td></tr>
+<tr><td>Z2</td><td>Goa</td><td>0.82</td><td>zone_id=2</td></tr>
+<tr><td>Z2</td><td>Chhattisgarh</td><td>0.68</td><td>zone_id=2</td></tr>
+<tr><td>Z3</td><td>Andhra Pradesh</td><td>1.38</td><td>zone_id=3</td></tr>
+<tr><td>Z3</td><td>Telangana</td><td>1.26</td><td>zone_id=3</td></tr>
+<tr><td>Z3</td><td>Karnataka</td><td>1.20</td><td>zone_id=3</td></tr>
+<tr><td>Z3</td><td>Tamil Nadu</td><td>1.16</td><td>zone_id=3</td></tr>
+<tr><td>Z3</td><td>Kerala</td><td>0.72</td><td>zone_id=3</td></tr>
+<tr><td>Z4</td><td>Rajasthan</td><td>1.22</td><td>zone_id=4</td></tr>
+<tr><td>Z4</td><td>Haryana</td><td>0.84</td><td>zone_id=4</td></tr>
+<tr><td>Z4</td><td>Punjab</td><td>0.78</td><td>zone_id=4</td></tr>
+<tr><td>Z4</td><td>Uttar Pradesh</td><td>0.68</td><td>zone_id=4</td></tr>
+<tr><td>Z4</td><td>Delhi</td><td>0.58</td><td>zone_id=4</td></tr>
+<tr><td>Z5</td><td>Bihar</td><td>0.52</td><td>zone_id=5</td></tr>
+<tr><td>Z5</td><td>West Bengal</td><td>0.48</td><td>zone_id=5</td></tr>
+<tr><td>Z5</td><td>Odisha</td><td>0.44</td><td>zone_id=5</td></tr>
+<tr><td>Z5</td><td>Jharkhand</td><td>0.40</td><td>zone_id=5</td></tr>
+<tr><td>Z5</td><td>Assam</td><td>0.36</td><td>zone_id=5</td></tr>
+</table>
+
+<h3>A.4 Six-Step Pricing Algorithm — Full Formulae</h3>
+<div class="formula">
+<b>Given:</b>
+  base_price        ∈ {1050, 1200, 1350, 1500}  (₹/bundle, ex-factory)
+  competitor_price  ∈ {1214, 1380, 1500, 1650}   (₹/bundle, Maharashtra benchmark)
+  avg_demand        = avg_demand.json["by_pipe_type"][pipe]  (bundles/month)
+  D̂                = ML model prediction (bundles/month)
+  adoption_index    = STATE_META[state]["adoption"]
+
+<b>STEP 1 — ML Demand Prediction:</b>
+  D̂ = rf_model.predict(X)
+
+<b>STEP 2 — Demand Factor:</b>
+  demand_ratio  = D̂ / avg_demand
+  demand_factor = 1.0 + 0.35 × (demand_ratio − 1.0)
+  demand_factor = max(0.82, min(1.22, demand_factor))
+
+  Sensitivity coefficient 0.35: moderate enough to show meaningful price variation
+  without making prices volatile for distributors.
+  Range [0.82, 1.22]: max 22% uplift or 18% reduction from base.
+
+<b>STEP 3 — Adoption Factor:</b>
+  adoption_factor = 1.0 + (adoption_index − 1.0) × 0.15
+  adoption_factor = max(0.90, min(1.10, adoption_factor))
+
+  Coefficient 0.15: meaningful but bounded market premium/discount.
+  Examples:
+    Gujarat  (1.42): factor = 1.0 + 0.42 × 0.15 = 1.063 → +6.3% price premium
+    Assam    (0.36): factor = 1.0 − 0.64 × 0.15 = 0.904 → −9.6% discount
+    Maharashtra(1.00): factor = 1.0 + 0.00 × 0.15 = 1.000 → neutral
+
+<b>STEP 4 — Competitor-Aware Factor:</b>
+  price_diff_ratio (pdr) = (competitor_price − base_price) / base_price
+
+  if demand_factor ≥ 1.10:    [Strong demand — price toward competitor ceiling]
+    competitor_factor = max(0.99, min(1.10,  1.0 + 0.60 × pdr))
+  elif demand_factor ≤ 0.92:  [Weak demand — undercut to stimulate sales]
+    competitor_factor = max(0.92, min(0.99,  1.0 − 0.25 × |pdr|))
+  else:                        [Normal — slight undercut to stay competitive]
+    competitor_factor = max(0.96, min(1.04,  1.0 − 0.06 × pdr))
+
+  Example for 16mm Inline (base=1050, comp=1214):
+    pdr = (1214 − 1050) / 1050 = 0.1562
+    Strong demand case: cf = clip(1.0 + 0.60 × 0.156, 0.99, 1.10) = clip(1.094, ...) = 1.094
+    Weak demand case:   cf = clip(1.0 − 0.25 × 0.156, 0.92, 0.99) = clip(0.961, ...) = 0.961
+    Normal case:        cf = clip(1.0 − 0.06 × 0.156, 0.96, 1.04) = clip(0.991, ...) = 0.991
+
+<b>STEP 5 — Ex-Factory Price with Smoothing:</b>
+  raw_price      = base_price × demand_factor × competitor_factor × adoption_factor
+  smoothed_price = 0.50 × base_price + 0.50 × raw_price
+  final_price    = max(0.85 × base_price, min(1.20 × base_price, smoothed_price))
+
+  50/50 split rationale: preserves price stability for distributor relationships
+  while allowing ML signal to shift price meaningfully.
+  Hard bounds: price never below 85% or above 120% of manufacturing base.
+
+<b>STEP 6 — Round to Nearest ₹10:</b>
+  final_price = round(final_price / 10) × 10
+
+  Rationale: round prices are conventional in Indian B2B trade.
+</div>
+
+<h3>A.5 GST and Discount Calculation</h3>
+<div class="formula">
+<b>Discount Tier Function δ(q):</b>
+  δ(q) = 0.08  if q ≥ 500    (8% off)
+  δ(q) = 0.06  if q ≥ 100    (6% off)
+  δ(q) = 0.04  if q ≥ 50     (4% off)
+  δ(q) = 0.02  if q ≥ 10     (2% off)
+  δ(q) = 0.01  if q ≥ 5      (1% off)
+  δ(q) = 0.00  otherwise      (no discount)
+
+<b>Price per coil after discount (rounded to ₹10):</b>
+  price_per_coil = round((final_price × (1 − δ(q))) / 10) × 10
+
+<b>GST Computation (HSN 3917 — Polyethylene Irrigation Pipes):</b>
+  total_ex_gst   = price_per_coil × q
+  total_gst      = round(total_ex_gst × 0.12, 2)      [12% GST]
+  total_with_gst = round(total_ex_gst + total_gst, 2)
+
+<b>Worked Example (50 bundles × 16mm Inline @ AI price ₹1,110):</b>
+  δ(50) = 0.04   (4% discount for qty 50–99)
+  price_per_coil = round(1110 × 0.96 / 10) × 10 = round(106.56) × 10 = ₹1,070
+  total_ex_gst   = ₹1,070 × 50 = ₹53,500
+  total_gst      = ₹53,500 × 0.12 = ₹6,420.00
+  total_with_gst = ₹53,500 + ₹6,420 = ₹59,920.00
+</div>
+
+<h3>A.6 ML Model Hyperparameters (Complete)</h3>
+<table>
+<tr><th>Parameter</th><th>RandomForest Value</th><th>GradientBoosting Value</th><th>Rationale</th></tr>
+<tr><td>n_estimators</td><td>200</td><td>350</td><td>RF: 200 trees balances accuracy/speed. GBT: more trees needed due to sequential nature.</td></tr>
+<tr><td>max_depth</td><td>14</td><td>5</td><td>RF: deeper trees OK (bagging reduces overfitting). GBT: shallow trees; boosting corrects bias.</td></tr>
+<tr><td>min_samples_leaf</td><td>4</td><td>8</td><td>Regularisation — prevents fitting individual data points.</td></tr>
+<tr><td>learning_rate</td><td>N/A</td><td>0.05</td><td>Conservative shrinkage; prevents overfitting in boosting.</td></tr>
+<tr><td>subsample</td><td>N/A (1.0)</td><td>0.8</td><td>Stochastic GBT: 80% row sampling per tree reduces variance.</td></tr>
+<tr><td>random_state</td><td>42</td><td>42</td><td>Reproducibility of training results.</td></tr>
+<tr><td>Train/Test split</td><td colspan="2">80% / 20% (random_state=42)</td><td>Standard split for model evaluation.</td></tr>
+</table>
+
+<h3>A.7 Node.js API Complete Reference</h3>
+<table>
+<tr><th>Method</th><th>Endpoint</th><th>Description</th><th>Auth Required</th></tr>
+<tr><td>GET</td><td>/</td><td>Health check — "Halchal Backend Running"</td><td>No</td></tr>
+<tr><td>POST</td><td>/api/ai-price</td><td>Orchestrate ML price: lookup prev_sales → proxy to Flask → apply discount+GST</td><td>No</td></tr>
+<tr><td>POST</td><td>/api/cart/sync</td><td>Upsert cart items for session (debounced from frontend)</td><td>No</td></tr>
+<tr><td>GET</td><td>/api/cart/:sessionId</td><td>Load cart items for returning session</td><td>No</td></tr>
+<tr><td>DELETE</td><td>/api/cart/:sessionId</td><td>Clear cart after order placement</td><td>No</td></tr>
+<tr><td>POST</td><td>/api/orders</td><td>Create order with full pricing snapshot; validates stock</td><td>No</td></tr>
+<tr><td>GET</td><td>/api/stock</td><td>Fetch all stock levels</td><td>Admin</td></tr>
+<tr><td>POST</td><td>/api/stock/update</td><td>Update stock quantity for a pipe type</td><td>Admin</td></tr>
+<tr><td>POST</td><td>/api/stock/seed</td><td>One-time seed of initial stock records (6 product variants)</td><td>Admin</td></tr>
+<tr><td>POST</td><td>/api/approve-price</td><td>Upsert admin-approved price for pipe_type + region combo</td><td>Admin</td></tr>
+<tr><td>GET</td><td>/api/approved-prices</td><td>Fetch all approved prices, sorted by approved_at desc</td><td>No</td></tr>
+</table>
+
+<h3>A.8 Flask ML API Request/Response</h3>
+<pre>
+POST /calculate-price   (Flask, port 5001)
+
+Request JSON:
+{
+  "pipeType":         "16mm Inline",           // or pipe_type
+  "state":            "Maharashtra",            // state name
+  "zone_id":          "Z1",                     // "Z1"-"Z5" (optional if state given)
+  "month":            7,                        // 1-12 (defaults to current month)
+  "year":             2026,                     // (defaults to current year)
+  "prev_month_sales": 450,                      // actual bundles from last 30 days
+  "govt_subsidy":     1                         // 0 or 1 (PMKSY active)
+}
+
+Response JSON:
+{
+  "pipe_type":         "16mm Inline",
+  "zone_id":           "Z1",
+  "season":            "Kharif",
+  "predicted_demand":  634.5,                   // bundles/month
+  "recommended_price": 1110,                    // ₹ per bundle, ex-factory
+  "final_price":       1110,                    // same as recommended (step 6 output)
+  "base_price":        1050,                    // manufacturing cost base
+  "competitor_price":  1214,                    // Maharashtra benchmark
+  "factors": {
+    "demand_factor":     1.1200,               // step 2 output
+    "adoption_factor":   1.0000,               // step 3 output
+    "competitor_factor": 1.0420                // step 4 output
+  }
+}
+
+Error Response (400/500):
+  {"error": "Missing pipe_type"}   or   {"error": "exception message"}
+</pre>
+</div>
+
+<!-- REFERENCES -->
+<div class="chapter">
+<h2>REFERENCES</h2>
+<ol>
+  <li>Breiman, L. (2001). Random Forests. <em>Machine Learning</em>, 45(1), 5–32.</li>
+  <li>Chen, T., &amp; Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. <em>Proceedings of KDD 2016</em>, 785–794.</li>
+  <li>Friedman, J.H. (2001). Greedy Function Approximation: A Gradient Boosting Machine. <em>Annals of Statistics</em>, 29(5), 1189–1232.</li>
+  <li>Hochreiter, S., &amp; Schmidhuber, J. (1997). Long Short-Term Memory. <em>Neural Computation</em>, 9(8), 1735–1780.</li>
+  <li>IMARC Group (2023). <em>India Drip Irrigation Market Report 2023–2028</em>. IMARC Research.</li>
+  <li>Kumar, R., &amp; Karmakar, S. (2020). Crop Yield Forecasting Using Machine Learning. <em>IJAST</em>, 29(5), 1234–1245.</li>
+  <li>Liaw, A., &amp; Wiener, M. (2002). Classification and Regression by RandomForest. <em>R News</em>, 2(3), 18–22.</li>
+  <li>Meta AI Research (2024). <em>Llama 3.1: Open Foundation and Fine-Tuned Chat Models</em>. Meta AI Technical Report.</li>
+  <li>Ministry of Agriculture &amp; Farmers Welfare, GoI (2023). <em>PMKSY Annual Report 2022–23</em>.</li>
+  <li>Nagle, T.T., &amp; Müller, G. (2018). <em>The Strategy and Tactics of Pricing</em> (6th ed.). Routledge.</li>
+  <li>NABARD (2023). <em>Status of Micro Irrigation in India: NABARD Report 2022–23</em>.</li>
+  <li>OpenStreetMap Contributors (2024). Nominatim Geocoding API. https://nominatim.org/</li>
+  <li>Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. <em>JMLR</em>, 12, 2825–2830.</li>
+  <li>Raju, J.S., &amp; Roy, A. (2020). Market Information and Firm Performance. <em>Management Science</em>, 66(3).</li>
+  <li>Tyralis, H., et al. (2019). Random Forests for Water Scientists. <em>Water</em>, 11(5), 910.</li>
+  <li>GitHub (2019). <em>GitHub Actions Documentation</em>. https://docs.github.com/en/actions</li>
+  <li>MongoDB Inc. (2023). <em>MongoDB Atlas Documentation</em>. https://www.mongodb.com/docs/atlas/</li>
+  <li>Groq (2024). <em>Groq API Documentation — Llama 3.1</em>. https://console.groq.com/docs/</li>
+</ol>
+</div>
+
+</body>
+</html>

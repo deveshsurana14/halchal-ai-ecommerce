@@ -1,0 +1,21 @@
+State,Zone_ID,Zone_Label,Adoption_Index,Area_Under_MicroIrrigation_LakhHa,Drip_Adoption_Rank_India,Key_Crops,Data_Source
+Gujarat,Z2,West & Central,1.42,7.20,1,Cotton · Cumin · Groundnut,NCPAH 2023 + PM-KUSUM State Report
+Andhra Pradesh,Z3,South India,1.38,5.80,2,Chilli · Sugarcane · Mango,NCPAH 2023
+Telangana,Z3,South India,1.26,4.10,3,Cotton · Maize · Chilli,Telangana Dept of Agriculture 2023
+Rajasthan,Z4,North India,1.22,3.90,4,Cumin · Coriander · Pomegranate,PMKSY Rajasthan State Report 2023
+Karnataka,Z3,South India,1.20,3.60,5,Sugarcane · Grapes · Onion,NABARD Karnataka MFI Report 2023
+Tamil Nadu,Z3,South India,1.16,3.20,6,Banana · Tapioca · Turmeric,TN Dept of Agriculture 2023
+Maharashtra,Z1,Maharashtra,1.00,2.80,7,Sugarcane · Grapes · Onion,NABARD MH 2023 (Baseline)
+Madhya Pradesh,Z2,West & Central,0.86,1.60,8,Soybean · Wheat · Garlic,MP Dept of Agriculture 2023
+Haryana,Z4,North India,0.84,1.40,9,Potato · Vegetables · Mustard,Haryana Agriculture Dept 2023
+Goa,Z2,West & Central,0.82,0.40,10,Cashew · Mango · Coconut,NABARD Goa 2023
+Punjab,Z4,North India,0.78,1.20,11,Rice · Wheat · Potato,Punjab Agriculture Dept 2023
+Kerala,Z3,South India,0.72,0.90,12,Coconut · Banana · Rubber,Kerala Agriculture Dept 2023
+Uttar Pradesh,Z4,North India,0.68,1.00,13,Sugarcane · Potato · Wheat,UP Dept of Agriculture 2023
+Chhattisgarh,Z2,West & Central,0.68,0.60,14,Paddy · Vegetables,CG Agriculture Dept 2023
+Delhi,Z4,North India,0.58,0.10,15,Vegetables · Floriculture,Delhi Agriculture 2023
+Bihar,Z5,East & NE,0.52,0.50,16,Vegetables · Maize · Sugarcane,NABARD Bihar 2023
+West Bengal,Z5,East & NE,0.48,0.45,17,Potato · Vegetables · Jute,WB Dept Agriculture 2023
+Odisha,Z5,East & NE,0.44,0.35,18,Paddy · Vegetables,Odisha Agriculture 2023
+Jharkhand,Z5,East & NE,0.40,0.25,19,Vegetables · Pulses,Jharkhand Agriculture 2023
+Assam,Z5,East & NE,0.36,0.20,20,Tea · Jute · Rice,NABARD Assam 2023

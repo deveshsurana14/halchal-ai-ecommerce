@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI-Powered Dynamic Pricing Engine — Halchal Industries</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* ── Reset & base ─────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 11.5pt;
+    line-height: 1.75;
+    color: #1a1a2e;
+    background: #fff;
+    padding: 0;
+  }
+
+  /* ── Page layout ──────────────────────────────────────── */
+  .page {
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 20mm 22mm 20mm 22mm;
+  }
+
+  /* ── Cover page ───────────────────────────────────────── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(160deg, #05070F 0%, #0D1628 60%, #121F38 100%);
+    color: #EEF3FF;
+    padding: 40mm 20mm;
+    page-break-after: always;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: rgba(0,229,160,0.15);
+    border: 1px solid rgba(0,229,160,0.35);
+    color: #00E5A0;
+    font-family: 'Lora', serif;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32pt;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #EEF3FF;
+    margin-bottom: 18px;
+    max-width: 520px;
+  }
+
+  .cover h1 span {
+    color: #00E5A0;
+  }
+
+  .cover-sub {
+    font-size: 13pt;
+    color: #7A9EC6;
+    max-width: 460px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+  }
+
+  .cover-meta {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 28px;
+    color: #7A9EC6;
+    font-size: 10pt;
+    line-height: 1.9;
+  }
+
+  .cover-meta strong { color: #EEF3FF; }
+
+  /* ── TOC ──────────────────────────────────────────────── */
+  .toc { page-break-after: always; }
+
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    border-bottom: 2.5px solid #00E5A0;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    padding: 5px 0;
+    font-size: 11pt;
+  }
+
+  .toc-item .toc-num {
+    color: #00C080;
+    font-weight: 600;
+    min-width: 30px;
+  }
+
+  .toc-item .toc-text {
+    flex: 1;
+    color: #1a1a2e;
+  }
+
+  .toc-item .toc-dots {
+    flex: 1;
+    border-bottom: 1px dotted #ccc;
+    margin: 0 8px;
+    margin-bottom: 4px;
+  }
+
+  .toc-item .toc-page {
+    color: #7A9EC6;
+    font-size: 10pt;
+  }
+
+  .toc-section {
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 11.5pt;
+    color: #0D1628;
+    margin-top: 14px;
+  }
+
+  /* ── Body content ─────────────────────────────────────── */
+  .section { page-break-inside: avoid; margin-bottom: 36px; }
+  .section-break { page-break-before: always; }
+
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18pt;
+    font-weight: 700;
+    color: #0D1628;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #00E5A0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  h2.section-title .num {
+    background: #0D1628;
+    color: #00E5A0;
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  h3.sub-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13pt;
+    font-weight: 600;
+    color: #0D1628;
+    margin: 22px 0 10px;
+  }
+
+  h4.sub-sub {
+    font-family: 'Lora', serif;
+    font-size: 11pt;
+    font-weight: 600;
+    color: #3D5A7A;
+    margin: 16px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  p { margin-bottom: 12px; }
+
+  /* ── Tables ───────────────────────────────────────────── */
+  .tbl-wrap { overflow-x: auto; margin: 16px 0 24px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+  }
+
+  thead tr {
+    background: #0D1628;
+    color: #EEF3FF;
+  }
+
+  thead th {
+    padding: 9px 14px;
+    text-align: left;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    font-size: 9.5pt;
+  }
+
+  tbody tr:nth-child(even) { background: #f5f8ff; }
+  tbody tr:hover { background: #eef3ff; }
+
+  tbody td {
+    padding: 8px 14px;
+    border-bottom: 1px solid #e8ecf5;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  td code, th code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9pt;
+    background: rgba(0,192,128,0.1);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #00693E;
+  }
+
+  /* ── Code blocks ──────────────────────────────────────── */
+  .code-block {
+    background: #05070F;
+    border: 1px solid rgba(0,229,160,0.2);
+    border-left: 3px solid #00E5A0;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 16px 0 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5pt;
+    color: #EEF3FF;
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .code-block .comment { color: #4A7A6A; }
+  .code-block .kw      { color: #FF9D5C; }
+  .code-block .fn      { color: #00E5A0; }
+  .code-block .num     { color: #FFB020; }
+  .code-block .str     { color: #A0CFFF; }
+
+  /* ── Formula box ──────────────────────────────────────── */
+  .formula {
+    background: #f0f8f4;
+    border: 1px solid #c8ead9;
+    border-left: 4px solid #00C080;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10pt;
+    color: #0D3A26;
+    line-height: 1.9;
+    white-space: pre-wrap;
+  }
+
+  /* ── Info box ─────────────────────────────────────────── */
+  .info-box {
+    background: #f5f8ff;
+    border: 1px solid #c8d8f0;
+    border-left: 4px solid #3D5A7A;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0 22px;
+    font-size: 10.5pt;
+    color: #1a2a4a;
+  }
+
+  .info-box strong { color: #0D1628; }
+
+  /* ── Highlight box ────────────────────────────────────── */
+  .highlight-box {
+    background: linear-gradient(135deg, #0D1628 0%, #121F38 100%);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin: 20px 0 28px;
+    color: #EEF3FF;
+  }
+
+  .highlight-box h4 {
+    color: #00E5A0;
+    font-family: 'Lora', serif;
+    font-size: 10pt;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .highlight-box .formula-dark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5pt;
+    color: #EEF3FF;
+    line-height: 2;
+    white-space: pre-wrap;
+  }
+
+  .highlight-box .formula-dark .hl { color: #00E5A0; font-weight: 500; }
+  .highlight-box .formula-dark .cm { color: #3D5A7A; }
+
+  /* ── Architecture diagram ─────────────────────────────── */
+  .arch {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 20px 0 28px;
+  }
+
+  .arch-layer {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .arch-label {
+    width: 90px;
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: #7A9EC6;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .arch-box {
+    flex: 1;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-size: 10pt;
+  }
+
+  .arch-box.l1 { background: rgba(0,229,160,0.08); border: 1px solid rgba(0,229,160,0.25); }
+  .arch-box.l2 { background: rgba(255,176,32,0.08); border: 1px solid rgba(255,176,32,0.25); }
+  .arch-box.l3 { background: rgba(134,119,255,0.08); border: 1px solid rgba(134,119,255,0.25); }
+
+  .arch-box .arch-tag {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .arch-box.l1 .arch-tag { color: #00C080; }
+  .arch-box.l2 .arch-tag { color: #D99010; }
+  .arch-box.l3 .arch-tag { color: #6655CC; }
+
+  .arch-box .arch-desc { color: #3D5A7A; font-size: 10pt; }
+
+  .arch-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0 4px 90px;
+  }
+
+  .arch-arrow::after {
+    content: '▼';
+    color: #7A9EC6;
+    font-size: 14px;
+  }
+
+  /* ── Step cards ───────────────────────────────────────── */
+  .steps { display: flex; flex-direction: column; gap: 14px; margin: 16px 0 24px; }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 32px;
+    height: 32px;
+    background: #0D1628;
+    color: #00E5A0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 13pt;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content { flex: 1; }
+  .step-content h4 { font-size: 11pt; color: #0D1628; margin-bottom: 4px; font-weight: 600; }
+  .step-content p  { font-size: 10.5pt; color: #3D5A7A; margin-bottom: 0; }
+
+  /* ── Badge pills ──────────────────────────────────────── */
+  .pill {
+    display: inline-block;
+    font-size: 8.5pt;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .pill-green  { background: rgba(0,192,128,0.12); color: #007A55; }
+  .pill-gold   { background: rgba(255,176,32,0.12); color: #9A6800; }
+  .pill-blue   { background: rgba(61,90,122,0.12);  color: #3D5A7A; }
+  .pill-purple { background: rgba(134,119,255,0.12); color: #5544BB; }
+
+  /* ── Footer ───────────────────────────────────────────── */
+  .doc-footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #e8ecf5;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9pt;
+    color: #7A9EC6;
+  }
+
+  /* ── Print rules ──────────────────────────────────────── */
+  @media print {
+    body { font-size: 10.5pt; }
+    .page { padding: 15mm 18mm; }
+    .cover { min-height: unset; padding: 30mm 20mm; }
+    h2.section-title, h3.sub-title { page-break-after: avoid; }
+    table, .code-block, .formula, .highlight-box { page-break-inside: avoid; }
+    .section-break { page-break-before: always; }
+    @page { size: A4; margin: 0; }
+  }
+
+  @page { size: A4; margin: 15mm 18mm; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     COVER PAGE
+═══════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-badge">Technical Research Documentation</div>
+  <h1>AI-Powered<br/><span>Dynamic Pricing Engine</span></h1>
+  <p class="cover-sub">
+    A comprehensive study of the machine learning demand forecasting model,
+    multi-factor price computation pipeline, and B2B order pricing engine
+    developed for Halchal Industries — drip irrigation pipe manufacturer.
+  </p>
+  <div class="cover-meta">
+    <strong>Project:</strong> Halchal Industries — AI E-Commerce SaaS Platform<br/>
+    <strong>Domain:</strong> Agricultural Irrigation &amp; B2B Sales Intelligence<br/>
+    <strong>Stack:</strong> Python · scikit-learn · Flask · Node.js · MongoDB Atlas · React<br/>
+    <strong>Coverage:</strong> Pan-India · 36 States &amp; Union Territories<br/>
+    <strong>Document Type:</strong> Pricing Engine Architecture &amp; Algorithm Reference
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     TABLE OF CONTENTS
+═══════════════════════════════════════════════════ -->
+<div class="page toc">
+  <div class="toc-title">Table of Contents</div>
+
+  <div class="toc-section">Part I — System Overview</div>
+  <div class="toc-item"><span class="toc-num">1.</span><span class="toc-text">System Architecture</span><span class="toc-dots"></span><span class="toc-page">3</span></div>
+  <div class="toc-item"><span class="toc-num">2.</span><span class="toc-text">Three-Layer Pipeline</span><span class="toc-dots"></span><span class="toc-page">3</span></div>
+
+  <div class="toc-section">Part II — Machine Learning Layer</div>
+  <div class="toc-item"><span class="toc-num">3.</span><span class="toc-text">Problem Formulation</span><span class="toc-dots"></span><span class="toc-page">4</span></div>
+  <div class="toc-item"><span class="toc-num">4.</span><span class="toc-text">Dataset — Features &amp; Target Variable</span><span class="toc-dots"></span><span class="toc-page">4</span></div>
+  <div class="toc-item"><span class="toc-num">5.</span><span class="toc-text">Synthetic Data Generation Formula</span><span class="toc-dots"></span><span class="toc-page">5</span></div>
+  <div class="toc-item"><span class="toc-num">6.</span><span class="toc-text">Domain Constants — Zone, Season, Month, Year</span><span class="toc-dots"></span><span class="toc-page">6</span></div>
+  <div class="toc-item"><span class="toc-num">7.</span><span class="toc-text">Gradient Boosting Regressor — Algorithm &amp; Hyperparameters</span><span class="toc-dots"></span><span class="toc-page">8</span></div>
+  <div class="toc-item"><span class="toc-num">8.</span><span class="toc-text">Random Forest Regressor — Algorithm &amp; Hyperparameters</span><span class="toc-dots"></span><span class="toc-page">8</span></div>
+  <div class="toc-item"><span class="toc-num">9.</span><span class="toc-text">Model Selection, Evaluation &amp; Serialisation</span><span class="toc-dots"></span><span class="toc-page">9</span></div>
+  <div class="toc-item"><span class="toc-num">10.</span><span class="toc-text">Categorical Encoding</span><span class="toc-dots"></span><span class="toc-page">9</span></div>
+
+  <div class="toc-section">Part III — Dynamic Price Calculation Layer</div>
+  <div class="toc-item"><span class="toc-num">11.</span><span class="toc-text">Step 1 — ML Demand Prediction</span><span class="toc-dots"></span><span class="toc-page">10</span></div>
+  <div class="toc-item"><span class="toc-num">12.</span><span class="toc-text">Step 2 — Demand Factor</span><span class="toc-dots"></span><span class="toc-page">10</span></div>
+  <div class="toc-item"><span class="toc-num">13.</span><span class="toc-text">Step 3 — Demand-Aware Competitor Factor</span><span class="toc-dots"></span><span class="toc-page">11</span></div>
+  <div class="toc-item"><span class="toc-num">14.</span><span class="toc-text">Step 4 — Ex-Factory Price with Smoothing</span><span class="toc-dots"></span><span class="toc-page">11</span></div>
+  <div class="toc-item"><span class="toc-num">15.</span><span class="toc-text">Step 5 — State Logistics Factor</span><span class="toc-dots"></span><span class="toc-page">12</span></div>
+  <div class="toc-item"><span class="toc-num">16.</span><span class="toc-text">Step 6 — State Market Demand Factor</span><span class="toc-dots"></span><span class="toc-page">12</span></div>
+  <div class="toc-item"><span class="toc-num">17.</span><span class="toc-text">Steps 7 &amp; 8 — Final Price &amp; Rounding</span><span class="toc-dots"></span><span class="toc-page">13</span></div>
+  <div class="toc-item"><span class="toc-num">18.</span><span class="toc-text">State → Agricultural Zone Mapping</span><span class="toc-dots"></span><span class="toc-page">13</span></div>
+
+  <div class="toc-section">Part IV — B2B Order Pricing Engine</div>
+  <div class="toc-item"><span class="toc-num">19.</span><span class="toc-text">Bulk Discount Tiers</span><span class="toc-dots"></span><span class="toc-page">14</span></div>
+  <div class="toc-item"><span class="toc-num">20.</span><span class="toc-text">GST Calculation — HSN 3917</span><span class="toc-dots"></span><span class="toc-page">14</span></div>
+
+  <div class="toc-section">Part V — Summary</div>
+  <div class="toc-item"><span class="toc-num">21.</span><span class="toc-text">Complete End-to-End Formula Chain</span><span class="toc-dots"></span><span class="toc-page">15</span></div>
+  <div class="toc-item"><span class="toc-num">22.</span><span class="toc-text">Data Sources Referenced</span><span class="toc-dots"></span><span class="toc-page">15</span></div>
+  <div class="toc-item"><span class="toc-num">23.</span><span class="toc-text">Technology Stack</span><span class="toc-dots"></span><span class="toc-page">16</span></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PART I — SYSTEM OVERVIEW
+═══════════════════════════════════════════════════ -->
+<div class="page section-break">
+
+  <h2 class="section-title"><span class="num">§1</span> System Architecture</h2>
+
+  <p>
+    The Halchal Industries AI Pricing Engine is a real-time, demand-driven dynamic pricing system
+    built specifically for the B2B drip irrigation pipe market in India. The engine computes a
+    personalised delivered price for each customer based on their delivery state, the current
+    agricultural season, real-time market demand, competitive landscape, and order volume.
+  </p>
+
+  <p>
+    Unlike static catalogue pricing, this system produces a price that changes with season, geography,
+    and market conditions — making it a genuine dynamic pricing engine rather than a lookup table.
+  </p>
+
+  <h2 class="section-title" style="margin-top:32px"><span class="num">§2</span> Three-Layer Pipeline</h2>
+
+  <p>Every price calculation flows through three sequential layers:</p>
+
+  <div class="arch">
+    <div class="arch-layer">
+      <div class="arch-label">Layer 1</div>
+      <div class="arch-box l1">
+        <div class="arch-tag">ML Demand Forecasting</div>
+        <div class="arch-desc">
+          <strong>Python · scikit-learn · Flask (port 5001)</strong><br/>
+          Trained ensemble model predicts monthly demand (coils) for the given
+          product, region, season, and market conditions.
+          File: <code>backend/ml/ml_api.py</code>
+        </div>
+      </div>
+    </div>
+    <div class="arch-arrow"></div>
+    <div class="arch-layer">
+      <div class="arch-label">Layer 2</div>
+      <div class="arch-box l2">
+        <div class="arch-tag">Dynamic Price Calculation</div>
+        <div class="arch-desc">
+          <strong>Python · Flask (port 5001)</strong><br/>
+          8-step algorithm converts predicted demand into a delivered price
+          using demand factor, competitor positioning, logistics, and market adoption index.
+          File: <code>backend/ml/ml_api.py</code>
+        </div>
+      </div>
+    </div>
+    <div class="arch-arrow"></div>
+    <div class="arch-layer">
+      <div class="arch-label">Layer 3</div>
+      <div class="arch-box l3">
+        <div class="arch-tag">B2B Order Pricing Engine</div>
+        <div class="arch-desc">
+          <strong>Node.js · Express (port 5000)</strong><br/>
+          Applies volume-based bulk discounts and computes GST on the full order bill.
+          File: <code>backend/utils/pricingEngine.js</code>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PART II — MACHINE LEARNING LAYER
+═══════════════════════════════════════════════════ -->
+<div class="page section-break">
+
+  <h2 class="section-title"><span class="num">§3</span> Problem Formulation</h2>
+
+  <div class="info-box">
+    <strong>Regression Task:</strong> Given product type, delivery region, agricultural season,
+    calendar month, year, previous month's sales volume, and government subsidy status —
+    predict the expected quantity of drip pipe coils sold per month (continuous target variable).
+  </div>
+
+  <p>
+    The ML model solves a <strong>supervised regression problem</strong>. The output
+    (<em>predicted demand</em>) is not the final price — it is a demand signal that feeds the
+    pricing algorithm in Layer 2 to adjust the price up or down relative to market conditions.
+    This decouples demand forecasting from pricing strategy, allowing each to be tuned independently.
+  </p>
+
+  <h2 class="section-title" style="margin-top:32px"><span class="num">§4</span> Dataset — Features &amp; Target Variable</h2>
+
+  <p>
+    <strong>Type:</strong> Synthetic dataset generated from domain knowledge of Maharashtra's
+    agricultural market, structured to reflect real-world seasonal, regional, and economic patterns.<br/>
+    <strong>Size:</strong> ~26,000 records &nbsp;|&nbsp;
+    <strong>Split:</strong> 80% training / 20% test (<code>random_state=42</code>)
+  </p>
+
+  <h3 class="sub-title">Input Features (8 variables)</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Feature</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><code>Pipe_Type_enc</code></td><td><span class="pill pill-blue">Categorical → Int</span></td><td>16mm Inline, 20mm Inline, 16mm Online, 20mm Online</td></tr>
+        <tr><td>2</td><td><code>Region_enc</code></td><td><span class="pill pill-blue">Categorical → Int</span></td><td>8 Maharashtra agricultural zones</td></tr>
+        <tr><td>3</td><td><code>Season_enc</code></td><td><span class="pill pill-blue">Categorical → Int</span></td><td>Kharif, Rabi, Summer</td></tr>
+        <tr><td>4</td><td><code>Month</code></td><td><span class="pill pill-green">Integer</span></td><td>Calendar month (1–12)</td></tr>
+        <tr><td>5</td><td><code>Year</code></td><td><span class="pill pill-green">Integer</span></td><td>Year (2022–2025)</td></tr>
+        <tr><td>6</td><td><code>Base_Price</code></td><td><span class="pill pill-gold">Continuous (₹)</span></td><td>Manufacturer's base price per coil</td></tr>
+        <tr><td>7</td><td><code>Prev_Month_Sales</code></td><td><span class="pill pill-gold">Continuous</span></td><td>Previous month's sales volume (coils). Fetched live from MongoDB orders at inference time.</td></tr>
+        <tr><td>8</td><td><code>Govt_Subsidy_Active</code></td><td><span class="pill pill-purple">Binary (0/1)</span></td><td>PMKSY government subsidy active flag</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Target Variable:</strong> <code>Quantity_Sold</code> — monthly units sold (continuous, range ≈ 30–1,200 coils)</p>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     DATASET GENERATION
+═══════════════════════════════════════════════════ -->
+<div class="page section-break">
+
+  <h2 class="section-title"><span class="num">§5</span> Synthetic Data Generation Formula</h2>
+
+  <p>
+    Each record's demand is generated using a multiplicative factor model that captures
+    the product-specific baseline, regional variation, seasonal variation, within-season monthly
+    variation, year-on-year adoption growth, government subsidy effects, and stochastic market noise:
+  </p>
+
+  <div class="formula">base = BASE_DEMAND[pipe] × ZONE_MULT[zone] × SEASON_MULT[season]
+       × MONTH_PATTERN[month] × YEAR_GROWTH[year]
+
+if govt_subsidy == 1:
+    base = base × 1.18                  ← PMKSY subsidy boosts demand by 18%
+
+prev_sales = clip(base × Uniform(0.72, 1.28), 50, 1200)
+
+noise ~ Normal(0, base × 0.12)          ← 12% std dev market noise
+qty_sold = max(30, base + noise)        ← hard floor of 30 coils</div>
+
+  <p>
+    The noise term (<em>σ = 12% of base</em>) models real-world stochasticity: weather shocks,
+    credit cycle disruptions, competitor promotions, and localised demand spikes.
+    The <code>prev_sales</code> feature is intentionally correlated with base demand (±28% random
+    variation) to reflect the autocorrelation that exists in real monthly sales time series.
+  </p>
+
+  <h2 class="section-title" style="margin-top:32px"><span class="num">§6</span> Domain Constants</h2>
+
+  <h3 class="sub-title">Base Demand &amp; Prices by Product</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Product</th><th>Base Demand (coils/month)</th><th>Base Price (₹/coil)</th><th>Market Segment</th></tr></thead>
+      <tbody>
+        <tr><td>16mm Inline</td><td>520</td><td>₹1,150</td><td>Most popular — small/marginal farms</td></tr>
+        <tr><td>20mm Inline</td><td>380</td><td>₹1,450</td><td>Medium farms</td></tr>
+        <tr><td>16mm Online</td><td>280</td><td>₹1,400</td><td>Orchards, precision irrigation</td></tr>
+        <tr><td>20mm Online</td><td>210</td><td>₹1,600</td><td>Large precision setups</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-title">Zone Multipliers (Regional Demand Weight)</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Zone</th><th>Multiplier</th><th>Agricultural Basis</th></tr></thead>
+      <tbody>
+        <tr><td>Nashik</td><td>1.15</td><td>Highest — horticultural belt (grapes, onions, pomegranates)</td></tr>
+        <tr><td>Pune</td><td>1.00</td><td>Reference baseline</td></tr>
+        <tr><td>Kolhapur</td><td>0.98</td><td>Sugarcane and vegetable belt</td></tr>
+        <tr><td>Jalgaon</td><td>0.96</td><td>Banana belt</td></tr>
+        <tr><td>Solapur</td><td>0.94</td><td>Semi-arid, pulses and sugarcane</td></tr>
+        <tr><td>Aurangabad</td><td>0.90</td><td>Marathwada drought belt</td></tr>
+        <tr><td>Amravati</td><td>0.88</td><td>Cotton / soybean belt, lower drip adoption</td></tr>
+        <tr><td>Nagpur</td><td>0.85</td><td>Vidarbha — lowest drip adoption in Maharashtra</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-title">Seasonal Multipliers</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Season</th><th>Months</th><th>Multiplier</th><th>Agricultural Event</th></tr></thead>
+      <tbody>
+        <tr><td>Kharif</td><td>June – September</td><td>1.28</td><td>Peak season — monsoon onset, primary sowing season</td></tr>
+        <tr><td>Rabi</td><td>October – January</td><td>1.12</td><td>Post-monsoon, winter crops (wheat, chickpea)</td></tr>
+        <tr><td>Summer</td><td>February – May</td><td>0.80</td><td>Off-season — low rainfall, reduced irrigation installation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-title">Monthly Pattern (Within-Season Variation)</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Month</th><th>Multiplier</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td>January</td><td>1.05</td><td>Winter irrigation, Rabi maintenance</td></tr>
+        <tr><td>February</td><td>0.88</td><td>Post-harvest slowdown</td></tr>
+        <tr><td>March</td><td>0.82</td><td>Pre-summer, low activity</td></tr>
+        <tr><td>April</td><td>0.85</td><td>Planning season, minimal installation</td></tr>
+        <tr><td>May</td><td>0.78</td><td>Lowest — peak heat, pre-monsoon drought</td></tr>
+        <tr><td>June</td><td>1.18</td><td>Monsoon onset — pre-season installation rush</td></tr>
+        <tr><td>July</td><td>1.25</td><td>Active monsoon — mass installation</td></tr>
+        <tr><td>August</td><td>1.28</td><td>Peak — full monsoon, maximum demand</td></tr>
+        <tr><td>September</td><td>1.20</td><td>Late Kharif maintenance</td></tr>
+        <tr><td>October</td><td>1.12</td><td>Rabi start — new crop irrigation</td></tr>
+        <tr><td>November</td><td>1.06</td><td>Rabi mid-season</td></tr>
+        <tr><td>December</td><td>1.02</td><td>Year-end, steady Rabi demand</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-title">Year-on-Year Adoption Growth</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Year</th><th>Growth Factor</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>2022</td><td>0.82</td><td>Pre-expansion baseline</td></tr>
+        <tr><td>2023</td><td>0.91</td><td>Post-COVID recovery in agri spending</td></tr>
+        <tr><td>2024</td><td>1.00</td><td>Reference year (baseline = 1.0)</td></tr>
+        <tr><td>2025</td><td>1.09</td><td>Continued PMKSY expansion, rising drip adoption</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     ML ALGORITHMS
+═══════════════════════════════════════════════════ -->
+<div class="page section-break">
+
+  <h2 class="section-title"><span class="num">§7</span> Gradient Boosting Regressor</h2>
+
+  <p>
+    <strong>Library:</strong> <code>sklearn.ensemble.GradientBoostingRegressor</code><br/>
+    Gradient Boosting builds an additive ensemble of shallow decision trees sequentially,
+    where each tree corrects the residual errors of the previous ensemble.
+    The model minimises Mean Squared Error using gradient descent in function space.
+  </p>
+
+  <h4 class="sub-sub">Mathematical Form</h4>
+  <div class="formula">F_0(x) = initial prediction (mean of y)
+
+For m = 1 to M = 300:
+    r_m = −∂L(y, F_{m-1}(x)) / ∂F_{m-1}(x)     ← negative gradient (pseudo-residuals)
+    h_m = decision tree fitted to r_m
+    F_m(x) = F_{m-1}(x) + η · h_m(x)            ← η = 0.05 (learning rate)
+
+Final prediction: F_300(x) = Σ η · h_m(x)</div>
+
+  <h4 class="sub-sub">Hyperparameters</h4>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Parameter</th><th>Value</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>n_estimators</code></td><td>300</td><td>Number of boosting stages — more trees = better fit, slower training</td></tr>
+        <tr><td><code>learning_rate</code></td><td>0.05</td><td>Shrinkage — smaller values reduce overfitting, require more trees</td></tr>
+        <tr><td><code>max_depth</code></td><td>5</td><td>Maximum depth of each individual tree</td></tr>
+        <tr><td><code>min_samples_leaf</code></td><td>10</td><td>Minimum samples per leaf — controls overfitting on small cells</td></tr>
+        <tr><td><code>subsample</code></td><td>0.8</td><td>Stochastic gradient boosting — each tree uses 80% of training data randomly sampled</td></tr>
+        <tr><td><code>random_state</code></td><td>42</td><td>Reproducibility seed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title" style="margin-top:32px"><span class="num">§8</span> Random Forest Regressor</h2>
+
+  <p>
+    <strong>Library:</strong> <code>sklearn.ensemble.RandomForestRegressor</code><br/>
+    Random Forest builds multiple independent decision trees on bootstrap samples of the training data
+    (bagging). Each split considers only a random subset of features (<code>sqrt(n_features)</code>).
+    The final prediction is the arithmetic mean of all tree predictions.
+  </p>
+
+  <h4 class="sub-sub">Mathematical Form</h4>
+  <div class="formula">For b = 1 to B = 200:
+    D_b = bootstrap sample of training data (sampling with replacement)
+    T_b = decision tree trained on D_b
+    At each split: consider random subset of √8 ≈ 3 features
+
+Final prediction: ŷ = (1/B) Σ T_b(x)    ← average over 200 trees</div>
+
+  <h4 class="sub-sub">Hyperparameters</h4>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Parameter</th><th>Value</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>n_estimators</code></td><td>200</td><td>Number of trees in the forest</td></tr>
+        <tr><td><code>max_depth</code></td><td>12</td><td>Maximum tree depth</td></tr>
+        <tr><td><code>min_samples_leaf</code></td><td>5</td><td>Minimum samples per leaf node</td></tr>
+        <tr><td><code>random_state</code></td><td>42</td><td>Reproducibility seed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title" style="margin-top:32px"><span class="num">§9</span> Model Selection, Evaluation &amp; Serialisation</h2>
+
+  <div class="formula">best_model = GradientBoosting if R²(GB) > R²(RF) else RandomForest</div>
+
+  <p>Both models are trained and evaluated on the same 20% held-out test set. The model with the higher R² coefficient of determination is automatically selected and serialised to <code>rf_demand_model.pkl</code> (name is legacy; contains whichever model won).</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Metric</th><th>Definition</th><th>Target</th></tr></thead>
+      <tbody>
+        <tr><td>MAE</td><td>Mean Absolute Error — average absolute deviation in coils/month</td><td>As low as possible</td></tr>
+        <tr><td>R²</td><td>Coefficient of Determination — proportion of demand variance explained</td><td>&gt; 0.90</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title" style="margin-top:32px"><span class="num">§10</span> Categorical Encoding</h2>
+  <p>
+    The three categorical features (<code>Pipe_Type</code>, <code>Region</code>, <code>Season</code>)
+    are ordinally encoded using <code>sklearn.preprocessing.LabelEncoder</code>, which assigns an
+    integer (0, 1, 2, …) to each unique category. The fitted encoders are serialised to
+    <code>label_encoders.pkl</code> and reloaded at inference time to guarantee consistent mappings
+    between training and production.
+  </p>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PART III — DYNAMIC PRICE CALCULATION
+═══════════════════════════════════════════════════ -->
+<div class="page section-break">
+
+  <h2 class="section-title"><span class="num">§11–18</span> Dynamic Price Calculation — 8-Step Algorithm</h2>
+
+  <p>
+    Once the ML model predicts demand, the Flask API applies an 8-step deterministic algorithm
+    to compute the final delivered price. All steps are explicit, auditable, and interpretable —
+    making the system explainable to domain experts and regulators.
+  </p>
+
+  <h2 class="section-title" style="margin-top:28px"><span class="num">§11</span> Step 1 — ML Demand Prediction</h2>
+
+  <div class="formula">predicted_demand = model.predict([pipe_enc, region_enc, season_enc,
+                                month, year, base_price,
+                                prev_month_sales, govt_subsidy])</div>
+
+  <p>
+    At inference time, <code>prev_month_sales</code> is fetched dynamically from MongoDB Atlas by
+    aggregating all orders for the same product category in the last 30 days:
+  </p>
+  <div class="code-block"><span class="comment">// Node.js — live prev_month_sales from real order history</span>
+<span class="kw">const</span> minId = <span class="kw">new</span> ObjectId(<span class="fn">floor</span>(30daysAgo / 1000).toString(16) + <span class="str">"0000000000000000"</span>);
+<span class="kw">const</span> salesAgg = <span class="kw">await</span> Order.aggregate([
+  { $match: { _id: { $gte: minId }, pipe_type: { $regex: category } } },
+  { $group: { _id: null, total: { $sum: <span class="str">"$quantity"</span> } } }
+]);
+<span class="kw">const</span> prevMonthSales = salesAgg[<span class="num">0</span>]?.total ?? <span class="num">450</span>; <span class="comment">// fallback if no orders yet</span></div>
+
+  <h2 class="section-title" style="margin-top:28px"><span class="num">§12</span> Step 2 — Demand Factor</h2>
+
+  <p>Converts predicted demand into a bounded multiplicative pricing multiplier:</p>
+
+  <div class="formula">demand_ratio  = predicted_demand / avg_demand
+demand_factor = 1 + 0.15 × (demand_ratio − 1)
+demand_factor = clamp(demand_factor, 0.90, 1.10)</div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Scenario</th><th>demand_ratio</th><th>demand_factor</th><th>Price effect</th></tr></thead>
+      <tbody>
+        <tr><td>Demand 33% above average</td><td>1.33</td><td>1.05</td><td>Price ceiling reached (+5%)</td></tr>
+        <tr><td>Demand at average</td><td>1.00</td><td>1.00</td><td>No change</td></tr>
+        <tr><td>Demand 33% below average</td><td>0.67</td><td>0.95</td><td>Price floor reached (−5%)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    The 0.15 sensitivity coefficient ensures only 15% of demand deviation translates to price
+    movement, preventing volatile price swings from noisy demand signals.
+    <code>avg_demand</code> is loaded from <code>avg_demand.json</code> (historical mean per pipe type computed at training time).
+  </p>
+
+  <h2 class="section-title" style="margin-top:28px"><span class="num">§13</span> Step 3 — Demand-Aware Competitor Factor</h2>
+
+  <div class="formula">price_diff_ratio = (competitor_price − base_price) / base_price</div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Demand Condition</th><th>Strategy</th><th>Formula</th><th>Range</th></tr></thead>
+      <tbody>
+        <tr><td><code>demand_factor ≥ 1.05</code> (High)</td><td>Capture margin — price toward competitor ceiling</td><td><code>1 + 0.40 × price_diff_ratio</code></td><td>[0.97, 1.05]</td></tr>
+        <tr><td><code>0.95 &lt; df &lt; 1.05</code> (Normal)</td><td>Slight undercut — stay competitive without sacrificing margin</td><td><code>1 − 0.05 × price_diff_ratio</code></td><td>[0.96, 1.03]</td></tr>
+        <tr><td><code>demand_factor ≤ 0.95</code> (Low)</td><td>Aggressive undercut — stimulate sales, clear inventory</td><td><code>1 − 0.15 × |price_diff_ratio|</code></td><td>[0.95, 1.00]</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4 class="sub-sub">Competitor Prices (Maharashtra Market Rates, ₹/coil)</h4>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Product</th><th>Our Base Price</th><th>Competitor Price</th><th>price_diff_ratio</th></tr></thead>
+      <tbody>
+        <tr><td>16mm Inline</td><td>₹1,150</td><td>₹1,214</td><td>+5.57%</td></tr>
+        <tr><td>16mm Online</td><td>₹1,400</td><td>₹1,380</td><td>−1.43%</td></tr>
+        <tr><td>20mm Inline</td><td>₹1,450</td><td>₹1,500</td><td>+3.45%</td></tr>
+        <tr><td>20mm Online</td><td>₹1,600</td><td>₹1,650</td><td>+3.13%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="page section-break">
+
+  <h2 class="section-title"><span class="num">§14</span> Step 4 — Ex-Factory Price with Smoothing</h2>
+
+  <div class="formula">raw_price      = base_price × demand_factor × competitor_factor
+smoothed_price = 0.70 × base_price + 0.30 × raw_price
+ex_factory     = clamp(smoothed_price, base_price × 0.90, base_price × 1.10)</div>
+
+  <p>
+    <strong>70/30 exponential-like smoothing:</strong> Assigns 70% weight to the stable,
+    known base price and only 30% to the ML-computed dynamic component.
+    This prevents excessive price volatility while still allowing meaningful market-driven
+    adjustment — analogous to a weighted moving average in time-series smoothing.
+  </p>
+  <p>
+    <strong>±10% safety cap:</strong> The ex-factory price is hard-clamped to within 10% of the
+    manufacturer's base price, regardless of demand signals. This protects against model
+    overfitting or extreme demand predictions producing unrealistic prices.
+  </p>
+
+  <h2 class="section-title" style="margin-top:28px"><span class="num">§15</span> Step 5 — State Logistics Factor</h2>
+
+  <div class="formula">logistics_factor = STATE_LOGISTICS_FACTOR[delivery_state]
+                   (default: 1.050 for unknown states)</div>
+
+  <p>
+    Models the freight cost from the manufacturing hub (Pune/Nashik, Maharashtra) to the
+    customer's delivery state. Derived from road distance tiers and LTL (Less-than-Truckload)
+    freight rate indices.
+    <br/><strong>Source basis:</strong> Indian road freight indices, NIC logistics data.
+    <br/><strong>Range:</strong> 1.000 (Maharashtra, local — no markup) → 1.220 (Lakshadweep, island logistics)
+  </p>
+
+  <h4 class="sub-sub">Key Values</h4>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>State</th><th>Factor</th><th>State</th><th>Factor</th></tr></thead>
+      <tbody>
+        <tr><td>Maharashtra</td><td>1.000</td><td>Delhi</td><td>1.076</td></tr>
+        <tr><td>Goa</td><td>1.022</td><td>Punjab</td><td>1.092</td></tr>
+        <tr><td>Karnataka</td><td>1.032</td><td>Jammu &amp; Kashmir</td><td>1.112</td></tr>
+        <tr><td>Gujarat</td><td>1.040</td><td>Assam</td><td>1.122</td></tr>
+        <tr><td>Tamil Nadu</td><td>1.055</td><td>Arunachal Pradesh</td><td>1.152</td></tr>
+        <tr><td>Kerala</td><td>1.062</td><td>Andaman &amp; Nicobar</td><td>1.200</td></tr>
+        <tr><td>Jharkhand</td><td>1.074</td><td>Lakshadweep</td><td>1.220</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title" style="margin-top:28px"><span class="num">§16</span> Step 6 — State Market Demand Factor</h2>
+
+  <div class="formula">market_factor = STATE_MARKET_FACTOR[delivery_state]
+               (default: 1.000 for unknown states)</div>
+
+  <p>
+    Models price elasticity based on each state's drip irrigation adoption maturity index.
+    States with higher adoption have more established dealer networks, recurring bulk orders,
+    and price-inelastic buyers — allowing a marginal premium. States with low adoption are
+    more price-sensitive, requiring a slight discount to stimulate market entry.
+    <br/><strong>Source basis:</strong> NABARD Micro-Irrigation Report 2023-24,
+    Ministry of Agriculture area-under-drip-irrigation data by state.
+    <br/><strong>Range:</strong> 0.980 (Ladakh, lowest) → 1.055 (Gujarat, highest)
+  </p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>State</th><th>Factor</th><th>State</th><th>Factor</th></tr></thead>
+      <tbody>
+        <tr><td>Gujarat</td><td>1.055</td><td>Maharashtra</td><td>1.000</td></tr>
+        <tr><td>Andhra Pradesh</td><td>1.048</td><td>Bihar</td><td>1.008</td></tr>
+        <tr><td>Telangana</td><td>1.042</td><td>Assam</td><td>0.995</td></tr>
+        <tr><td>Rajasthan</td><td>1.038</td><td>Meghalaya</td><td>0.990</td></tr>
+        <tr><td>Karnataka</td><td>1.032</td><td>Nagaland</td><td>0.985</td></tr>
+        <tr><td>Tamil Nadu</td><td>1.030</td><td>Arunachal Pradesh</td><td>0.982</td></tr>
+        <tr><td>Haryana</td><td>1.018</td><td>Ladakh</td><td>0.980</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title" style="margin-top:28px"><span class="num">§17</span> Steps 7 &amp; 8 — Final Delivered Price &amp; Rounding</h2>
+
+  <div class="formula">final_price = ex_factory × logistics_factor × market_factor   ← Step 7
+
+final_price = round(final_price / 10) × 10                       ← Step 8 (round to ₹10)</div>
+
+  <p>
+    Rounding to the nearest ₹10 is standard B2B pricing practice in India — it eliminates
+    psychological friction from odd values (e.g. ₹1,237 → ₹1,240) and is consistent with
+    how drip pipe dealers quote prices in the Maharashtra market.
+  </p>
+
+  <h2 class="section-title" style="margin-top:28px"><span class="num">§18</span> State → Agricultural Zone Mapping</h2>
+
+  <p>
+    The ML model was trained exclusively on 8 Maharashtra agricultural zones. To extend pricing
+    coverage to all 36 Indian states and Union Territories without retraining,
+    every Indian state is mapped to its agriculturally closest Maharashtra zone. The ML model
+    then uses that zone as the <code>Region</code> input feature.
+  </p>
+
+  <div class="info-box">
+    <strong>Design rationale:</strong> This decoupling allows pan-India pricing without expanding the
+    training dataset. The ML model handles demand prediction using the zone's agricultural profile.
+    State-specific variation beyond zone similarity is captured by the separate
+    logistics and market factors applied after the ML output.
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Indian State / UT</th><th>Mapped Zone</th><th>Agricultural Similarity Basis</th></tr></thead>
+      <tbody>
+        <tr><td>Punjab, Haryana, Himachal Pradesh, Uttarakhand, J&amp;K, Chandigarh, AP, Telangana</td><td>Nashik</td><td>High-value horticulture, tube well irrigation</td></tr>
+        <tr><td>Maharashtra</td><td>Pune</td><td>Direct mapping (training zone)</td></tr>
+        <tr><td>Goa, Karnataka, Tamil Nadu, Kerala, Puducherry, Andaman &amp; Nicobar, Lakshadweep</td><td>Kolhapur</td><td>Deccan plateau / coastal, similar drip patterns</td></tr>
+        <tr><td>Gujarat, Dadra &amp; NH, DD</td><td>Solapur</td><td>Semi-arid, cotton and sugarcane belt</td></tr>
+        <tr><td>MP, Chhattisgarh, Jharkhand</td><td>Nagpur</td><td>Cotton/soybean Vidarbha-style belt</td></tr>
+        <tr><td>Rajasthan, Ladakh</td><td>Amravati</td><td>Arid, similar water scarcity stress profile</td></tr>
+        <tr><td>UP, Bihar</td><td>Jalgaon</td><td>Large-scale irrigation, similar demand curve</td></tr>
+        <tr><td>WB, Odisha, Assam, NE states</td><td>Aurangabad</td><td>Lower drip adoption, subsistence farming patterns</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PART IV — B2B ORDER PRICING ENGINE
+═══════════════════════════════════════════════════ -->
+<div class="page section-break">
+
+  <h2 class="section-title"><span class="num">§19</span> Bulk Discount Tiers</h2>
+
+  <p>
+    After the ML-delivered price is computed (Layer 2), the B2B order pricing engine (Layer 3)
+    applies volume-based bulk discounts that reflect standard dealer/distributor economics
+    in the Maharashtra drip irrigation market.
+  </p>
+
+  <div class="formula">discountFactor:
+  quantity ≥ 500 coils  →  0.92  (8% discount)
+  quantity ≥ 100 coils  →  0.94  (6% discount)
+  quantity ≥  50 coils  →  0.96  (4% discount)
+  quantity ≥  10 coils  →  0.98  (2% discount)
+  quantity ≥   5 coils  →  0.99  (1% discount)
+  quantity &lt;   5 coils  →  1.00  (no discount)
+
+pricePerCoil = round((aiPrice × discountFactor) / 10) × 10</div>
+
+  <div class="info-box">
+    <strong>Business rationale:</strong> Large B2B buyers (dealers, distributors, irrigation contractors)
+    ordering 100+ coils receive a 6% discount. Orders of 500+ coils (large-scale canal/project
+    irrigation) receive the maximum 8% discount. This incentivises volume purchasing while
+    maintaining margin on small retail orders.
+  </div>
+
+  <h2 class="section-title" style="margin-top:32px"><span class="num">§20</span> GST Calculation</h2>
+
+  <div class="formula">totalExGST   = pricePerCoil × quantity
+totalGST     = round(totalExGST × 0.12 × 100) / 100
+totalWithGST = round((totalExGST + totalGST) × 100) / 100</div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Parameter</th><th>Value</th><th>Legal Basis</th></tr></thead>
+      <tbody>
+        <tr><td>GST Rate</td><td>12%</td><td>GST Council of India Schedule</td></tr>
+        <tr><td>HSN Code</td><td>3917</td><td>Tubes, pipes and hoses of plastics (polyethylene irrigation pipes)</td></tr>
+        <tr><td>Applied On</td><td>Total bill (not per coil)</td><td>GST is a bill-level tax — applied on total transaction value</td></tr>
+        <tr><td>Minimum threshold</td><td>None</td><td>Mandatory on all sales by GST-registered entities regardless of order size</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PART V — SUMMARY
+═══════════════════════════════════════════════════ -->
+<div class="page section-break">
+
+  <h2 class="section-title"><span class="num">§21</span> Complete End-to-End Formula Chain</h2>
+
+  <div class="highlight-box">
+    <h4>Full Pricing Pipeline — Steps 1–9</h4>
+    <div class="formula-dark"><span class="hl">STEP 1</span>  predicted_demand = ML_Model(pipe, zone, season, month, year,
+                              prev_sales, subsidy)  <span class="cm">← ensemble model output</span>
+
+<span class="hl">STEP 2</span>  demand_ratio  = predicted_demand / avg_demand
+         demand_factor = clamp(1 + 0.15 × (demand_ratio − 1), 0.90, 1.10)
+
+<span class="hl">STEP 3</span>  price_diff_ratio  = (competitor_price − base_price) / base_price
+         competitor_factor = f(demand_factor, price_diff_ratio)
+
+<span class="hl">STEP 4</span>  raw_price      = base_price × demand_factor × competitor_factor
+         smoothed_price = 0.70 × base_price + 0.30 × raw_price
+         ex_factory     = clamp(smoothed_price, base × 0.90, base × 1.10)
+
+<span class="hl">STEP 5</span>  logistics_factor = STATE_LOGISTICS_FACTOR[state]
+
+<span class="hl">STEP 6</span>  market_factor = STATE_MARKET_FACTOR[state]
+
+<span class="hl">STEP 7</span>  final_price = ex_factory × logistics_factor × market_factor
+
+<span class="hl">STEP 8</span>  final_price = round(final_price / 10) × 10     <span class="cm">← ML API output (₹/coil)</span>
+
+<span class="hl">STEP 9</span>  pricePerCoil  = round((final_price × discountFactor) / 10) × 10
+         totalExGST    = pricePerCoil × quantity
+         totalGST      = totalExGST × 0.12
+         totalWithGST  = totalExGST + totalGST           <span class="cm">← Final invoice amount</span></div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:32px"><span class="num">§22</span> Data Sources Referenced</h2>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Data Used</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Drip irrigation adoption index by state</td><td>NABARD Micro-Irrigation Report 2023-24</td></tr>
+        <tr><td>Area under drip irrigation by state</td><td>Ministry of Agriculture &amp; Farmers Welfare, GoI</td></tr>
+        <tr><td>Government subsidy coverage (72% active rate)</td><td>PMKSY — Pradhan Mantri Krishi Sinchayee Yojana</td></tr>
+        <tr><td>Freight rate basis (logistics factor)</td><td>NIC logistics data, Indian road freight indices</td></tr>
+        <tr><td>GST rate + HSN code</td><td>GST Council of India, HSN 3917</td></tr>
+        <tr><td>Seasonal demand patterns</td><td>Indian agricultural calendar (Kharif/Rabi/Summer)</td></tr>
+        <tr><td>Competitor pricing</td><td>Maharashtra market rate survey</td></tr>
+        <tr><td>Zone demand multipliers</td><td>Regional drip adoption data, Maharashtra Agriculture Dept.</td></tr>
+        <tr><td>Year-on-year growth trend</td><td>PMKSY expansion data, NABARD annual reports</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title" style="margin-top:32px"><span class="num">§23</span> Technology Stack</h2>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Component</th><th>Technology</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>ML Framework</td><td>scikit-learn 1.x (Python)</td><td>GradientBoosting / RandomForest training &amp; inference</td></tr>
+        <tr><td>Data Processing</td><td>pandas, NumPy</td><td>Dataset generation, feature engineering</td></tr>
+        <tr><td>Model Serialisation</td><td>Python pickle</td><td>Save/load trained model + label encoders</td></tr>
+        <tr><td>ML API Server</td><td>Flask (Python), port 5001</td><td>REST endpoint for real-time price calculation</td></tr>
+        <tr><td>Backend API</td><td>Express.js (Node.js), port 5000</td><td>Orchestration, order management, cart sync</td></tr>
+        <tr><td>Database</td><td>MongoDB Atlas (cloud)</td><td>Orders, cart sessions, stock, approved prices</td></tr>
+        <tr><td>Live Sales Data</td><td>MongoDB aggregation pipeline</td><td>Dynamic prev_month_sales for ML inference</td></tr>
+        <tr><td>Frontend</td><td>React.js</td><td>B2B e-commerce UI with AI pricing display</td></tr>
+        <tr><td>Geolocation</td><td>Browser Geolocation API + OpenStreetMap Nominatim</td><td>Auto-detect delivery state for location-based pricing</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="doc-footer">
+    <span>Halchal Industries — AI Pricing Engine · Technical Documentation</span>
+    <span>Generated from source code · backend/ml/ &amp; backend/utils/</span>
+  </div>
+
+</div>
+
+</body>
+</html>

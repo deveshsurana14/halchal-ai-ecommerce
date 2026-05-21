@@ -1,0 +1,6 @@
+Zone_ID,Zone_Label,Representative_State,Adoption_Index,Logistics_Factor,16mm_Inline_Base,16mm_Inline_AI,16mm_Inline_Delta_Pct,16mm_Online_Base,16mm_Online_AI,16mm_Online_Delta_Pct,20mm_Inline_Base,20mm_Inline_AI,20mm_Inline_Delta_Pct,20mm_Online_Base,20mm_Online_AI,20mm_Online_Delta_Pct
+Z1,Maharashtra,Maharashtra,1.00,1.000,1050,1030,-1.9,1200,1220,+1.7,1350,1350,0.0,1500,1540,+2.7
+Z2,West & Central,Gujarat,1.42,1.040,1050,1120,+6.7,1200,1390,+15.8,1350,1470,+8.9,1500,1760,+17.3
+Z3,South India,Karnataka,1.20,1.032,1050,1090,+3.8,1200,1290,+7.5,1350,1420,+5.2,1500,1680,+12.0
+Z4,North India,Rajasthan,1.22,1.062,1050,1120,+6.7,1200,1330,+10.8,1350,1470,+8.9,1500,1740,+16.0
+Z5,East & NE,Bihar,0.52,1.088,1050,1050,0.0,1200,1230,+2.5,1350,1380,+2.2,1500,1560,+4.0

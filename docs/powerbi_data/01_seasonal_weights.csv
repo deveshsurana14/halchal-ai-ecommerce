@@ -1,0 +1,13 @@
+Month,Month_Name,Season,Demand_Multiplier,Reason,Crop_Activity
+1,January,Rabi,1.05,Post-harvest Rabi sowing — wheat and chickpea irrigation peak,Wheat · Chickpea · Mustard
+2,February,Summer,0.88,Transition month — low new installations,Vegetable nurseries
+3,March,Summer,0.82,Harvest season — no new irrigation setups,Wheat harvest begins
+4,April,Summer,0.85,Pre-Kharif enquiry phase — dealers stock up,Mango orchards · Watermelon
+5,May,Summer,0.78,Lowest demand — extreme heat slows field work,Watermelon · Muskmelon
+6,June,Kharif,1.18,Monsoon onset — cotton and soybean sowing begins,Cotton · Soybean · Maize
+7,July,Kharif,1.25,Peak installation — sugarcane and banana planting,Sugarcane · Banana · Cotton
+8,August,Kharif,1.28,Highest demand — full Kharif crop installation period,Sugarcane · Cotton · Pomegranate
+9,September,Kharif,1.20,Kharif tapering — late installations for grape vineyards,Grapes · Pomegranate
+10,October,Rabi,1.12,Rabi sowing — onion and tomato drip installations,Onion · Tomato · Chickpea
+11,November,Rabi,1.06,Rabi mid-season — ongoing drip maintenance and upgrades,Onion · Wheat
+12,December,Rabi,1.02,Low activity — cold slows installation in North India,Winter vegetables
