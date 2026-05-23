@@ -81,12 +81,13 @@ const TrustTicker = () => {
     "18 States Covered",
     "₹50Cr+ Pipes Sold",
   ];
-  const text = [...items, ...items].join("  ·  ");
+  const doubled = [...items, ...items];
   return (
     <div style={{
-      background: T.bg1,
-      borderBottom: `1px solid ${T.border}`,
-      height: 36,
+      background: T.isDark ? "#071A0F" : "#F0FDF4",
+      borderTop: `1px solid ${T.greenBd}`,
+      borderBottom: `1px solid ${T.greenBd}`,
+      height: 34,
       display: "flex",
       alignItems: "center",
       overflow: "hidden",
@@ -94,14 +95,32 @@ const TrustTicker = () => {
       <div style={{
         animation: "ticker 30s linear infinite",
         whiteSpace: "nowrap",
-        fontSize: 11,
-        fontWeight: 600,
-        color: T.text3,
-        letterSpacing: "0.05em",
-        fontFamily: T.font,
+        display: "inline-flex",
+        alignItems: "center",
         paddingLeft: "100%",
       }}>
-        {text}
+        {doubled.map((item, i) => (
+          <span key={i} style={{ display: "inline-flex", alignItems: "center" }}>
+            <span style={{
+              fontSize: 11,
+              fontWeight: 600,
+              color: T.text2,
+              letterSpacing: "0.05em",
+              fontFamily: T.font,
+            }}>
+              {item}
+            </span>
+            <span style={{
+              display: "inline-block",
+              width: 4, height: 4,
+              borderRadius: "50%",
+              background: T.green,
+              margin: "0 14px",
+              opacity: 0.55,
+              flexShrink: 0,
+            }} />
+          </span>
+        ))}
       </div>
     </div>
   );

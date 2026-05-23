@@ -1,114 +1,37 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { useTheme } from "../context/ThemeContext";
 
-const T = {
-  bg0: "#05070F", bg1: "#080D1C", bg2: "#0D1628", bg3: "#121F38",
-  accent: "#00E5A0", copper: "#FFB020",
-  border: "rgba(255,255,255,0.07)", borderMd: "rgba(255,255,255,0.15)",
-  text1: "#EEF3FF", text2: "#7A9EC6", text3: "#3D5A7A",
-  purple: "#8677FF",
-};
-
-const css = `
-  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes shimmer { 0%{background-position:-200% center;} 100%{background-position:200% center;} }
-  @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
-  @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(0,229,160,0.35);} 70%{box-shadow:0 0 0 10px rgba(0,229,160,0);} 100%{box-shadow:0 0 0 0 rgba(0,229,160,0);} }
-  @keyframes checkPop { 0%{transform:scale(0.5);opacity:0;} 70%{transform:scale(1.15);} 100%{transform:scale(1);opacity:1;} }
-
-  .contact-input {
-    width: 100%;
-    background: ${T.bg3};
-    border: 1px solid ${T.border};
-    border-radius: 10px;
-    color: ${T.text1};
-    font-family: 'Lora', serif;
-    font-size: 14px;
-    padding: 13px 16px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    box-sizing: border-box;
-  }
-  .contact-input::placeholder { color: ${T.text3}; }
-  .contact-input:focus {
-    border-color: ${T.accent};
-    box-shadow: 0 0 0 3px rgba(0,229,160,0.08);
-  }
-  .contact-input.error { border-color: rgba(255,80,80,0.6); }
-
-  .contact-card {
-    background: ${T.bg2};
-    border: 1px solid ${T.border};
-    border-radius: 16px;
-    padding: 24px;
-    display: flex; align-items: flex-start; gap: 16px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .contact-card:hover {
-    border-color: ${T.borderMd};
-    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-  }
-
-  .submit-btn {
-    width: 100%;
-    background: ${T.accent};
-    color: #04080F;
-    border: none;
-    border-radius: 10px;
-    padding: 15px;
-    font-size: 15px;
-    font-weight: 700;
-    font-family: 'Lora', serif;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    letter-spacing: 0.01em;
-  }
-  .submit-btn:hover { background: #00F0A0; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,229,160,0.28); }
-  .submit-btn:active { transform: translateY(0); }
-  .submit-btn:disabled { background: ${T.bg3}; color: ${T.text3}; cursor: not-allowed; transform: none; box-shadow: none; }
-
-  .office-card {
-    background: ${T.bg2};
-    border: 1px solid ${T.border};
-    border-radius: 16px;
-    padding: 28px;
-    transition: border-color 0.2s;
-  }
-  .office-card:hover { border-color: ${T.borderMd}; }
-
-  .footer-link {
-    color: ${T.text2}; font-size: 14px; text-decoration: none;
-    transition: color 0.2s; display: block; padding: 4px 0;
-  }
-  .footer-link:hover { color: ${T.text1}; }
-
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: ${T.bg1}; }
-  ::-webkit-scrollbar-thumb { background: ${T.bg3}; border-radius: 3px; }
-`;
+/* ─── Page-specific accent palette (fixed, not theme-toggled) ── */
+const ACCENT = "#00E5A0";
+const COPPER = "#FFB020";
+const PURPLE = "#8677FF";
 
 const CONTACT_INFO = [
   {
-    icon: "✉️", label: "Email Us", color: T.accent, bg: "rgba(0,229,160,0.10)",
-    primary: "sales@halchalindustries.com",
-    secondary: "support@halchalindustries.com",
+    icon: "✉️", label: "Email Us", color: ACCENT, bg: "rgba(0,229,160,0.10)",
+    primary: "contch.halchalindustries@gmail.com",
+    primaryHref: "mailto:contch.halchalindustries@gmail.com",
+    secondary: null,
     note: "We reply within 4 business hours",
   },
   {
     icon: "📞", label: "Call Us", color: "#00AEFF", bg: "rgba(0,174,255,0.10)",
-    primary: "+91 98220 54321",
-    secondary: "+91 98220 54322 (Support)",
+    primary: "+91 94235 80386",
+    primaryHref: "tel:+919423580386",
+    secondary: "WhatsApp: +91 94235 80386",
+    secondaryHref: "https://wa.me/919423580386",
     note: "Mon–Sat, 9 AM – 7 PM IST",
   },
   {
-    icon: "📍", label: "Head Office", color: T.copper, bg: "rgba(255,176,32,0.10)",
+    icon: "📍", label: "Head Office", color: COPPER, bg: "rgba(255,176,32,0.10)",
     primary: "Halchal Industries Pvt. Ltd.",
     secondary: "Plot 14, Bhosari MIDC, Pune – 411026",
     note: "Maharashtra, India",
   },
   {
-    icon: "🕐", label: "Business Hours", color: T.purple, bg: "rgba(134,119,255,0.10)",
+    icon: "🕐", label: "Business Hours", color: PURPLE, bg: "rgba(134,119,255,0.10)",
     primary: "Monday – Saturday",
     secondary: "9:00 AM – 7:00 PM IST",
     note: "Emergency support on WhatsApp 24×7",
@@ -118,14 +41,14 @@ const CONTACT_INFO = [
 const OFFICES = [
   {
     city: "Pune (Head Office)", address: "Plot 14, Bhosari MIDC, Pune – 411026, Maharashtra",
-    phone: "+91 98220 54321", email: "pune@halchalindustries.com",
-    tag: "Manufacturing & HQ", color: T.accent,
+    phone: "+91 94235 80386", email: "contch.halchalindustries@gmail.com",
+    tag: "Manufacturing & HQ", color: ACCENT,
     mapHint: "Near Bhosari MIDC Gate 2, opposite HDFC Bank",
   },
   {
     city: "Nashik (Distribution)", address: "Gat No. 287, Sinnar Industrial Area, Nashik – 422103, Maharashtra",
-    phone: "+91 98220 67890", email: "nashik@halchalindustries.com",
-    tag: "Warehouse & Dispatch", color: T.copper,
+    phone: "+91 94235 80386", email: "contch.halchalindustries@gmail.com",
+    tag: "Warehouse & Dispatch", color: COPPER,
     mapHint: "Near Sinnar Naka, on NH-60",
   },
 ];
@@ -140,42 +63,125 @@ const SUBJECTS = [
   "Other",
 ];
 
-
 /* ─── Simple footer ───────────────────────────────────────────────────── */
-const Footer = () => (
-  <footer style={{ background: T.bg1, borderTop: `1px solid ${T.border}`, padding: "48px 40px 32px" }}>
-    <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "space-between", marginBottom: 36 }}>
-      <div style={{ maxWidth: 300 }}>
-        <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, color: T.text1, marginBottom: 10 }}>Halchal Industries</div>
-        <p style={{ fontSize: 13, color: T.text3, lineHeight: 1.7 }}>Precision-engineered irrigation pipes backed by AI-powered pricing. Trusted across India since 2015.</p>
+const Footer = () => {
+  const T = useTheme();
+  return (
+    <footer style={{ background: T.bg1, borderTop: `1px solid ${T.border}`, padding: "48px 40px 32px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "space-between", marginBottom: 36 }}>
+        <div style={{ maxWidth: 300 }}>
+          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, color: T.text1, marginBottom: 10 }}>Halchal Industries</div>
+          <p style={{ fontSize: 13, color: T.text3, lineHeight: 1.7 }}>Precision-engineered irrigation pipes backed by AI-powered pricing. Trusted across India since 2015.</p>
+        </div>
+        <div style={{ display: "flex", gap: 60, flexWrap: "wrap" }}>
+          {[
+            { title: "Company", links: [["Home", "/home"], ["Products", "/products"], ["About", "/about"], ["Contact", "/contact"]] },
+            { title: "Legal", links: [["Privacy Policy", "/privacy-policy"], ["Terms & Conditions", "/terms"]] },
+          ].map(({ title, links }) => (
+            <div key={title}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: T.text3, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>{title}</div>
+              {links.map(([label, path]) => (
+                <Link key={label} to={path} style={{ color: T.text2, fontSize: 14, textDecoration: "none", transition: "color 0.2s", display: "block", padding: "4px 0" }}
+                  onMouseEnter={e => e.currentTarget.style.color = T.text1}
+                  onMouseLeave={e => e.currentTarget.style.color = T.text2}>
+                  {label}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-      <div style={{ display: "flex", gap: 60, flexWrap: "wrap" }}>
-        {[
-          { title: "Company", links: [["Home", "/home"], ["Products", "/products"], ["About", "/about"], ["Contact", "/contact"]] },
-          { title: "Legal", links: [["Privacy Policy", "/privacy-policy"], ["Terms & Conditions", "/terms"]] },
-        ].map(({ title, links }) => (
-          <div key={title}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: T.text3, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>{title}</div>
-            {links.map(([label, path]) => <Link key={label} to={path} className="footer-link">{label}</Link>)}
-          </div>
-        ))}
+      <div style={{ maxWidth: 1200, margin: "0 auto", borderTop: `1px solid ${T.border}`, paddingTop: 20, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+        <span style={{ fontSize: 12, color: T.text3 }}>© 2024 Halchal Industries Pvt. Ltd. All rights reserved.</span>
+        <span style={{ fontSize: 12, color: T.text3 }}>Pune & Nashik, Maharashtra, India</span>
       </div>
-    </div>
-    <div style={{ maxWidth: 1200, margin: "0 auto", borderTop: `1px solid ${T.border}`, paddingTop: 20, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-      <span style={{ fontSize: 12, color: T.text3 }}>© 2024 Halchal Industries Pvt. Ltd. All rights reserved.</span>
-      <span style={{ fontSize: 12, color: T.text3 }}>Pune & Nashik, Maharashtra, India</span>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 /* ─── Contact page ────────────────────────────────────────────────────── */
 const Contact = () => {
   const navigate = useNavigate();
+  const theme    = useTheme();
+  const T        = { ...theme, accent: ACCENT, copper: COPPER, purple: PURPLE, borderMd: theme.borderH };
+
+  const css = `
+    @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes shimmer { 0%{background-position:-200% center;} 100%{background-position:200% center;} }
+    @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+    @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(0,229,160,0.35);} 70%{box-shadow:0 0 0 10px rgba(0,229,160,0);} 100%{box-shadow:0 0 0 0 rgba(0,229,160,0);} }
+    @keyframes checkPop { 0%{transform:scale(0.5);opacity:0;} 70%{transform:scale(1.15);} 100%{transform:scale(1);opacity:1;} }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .contact-input {
+      width: 100%;
+      background: ${T.bg3};
+      border: 1px solid ${T.border};
+      border-radius: 10px;
+      color: ${T.text1};
+      font-family: 'Lora', serif;
+      font-size: 14px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .contact-input::placeholder { color: ${T.text3}; }
+    .contact-input:focus {
+      border-color: ${ACCENT};
+      box-shadow: 0 0 0 3px rgba(0,229,160,0.08);
+    }
+    .contact-input.error { border-color: rgba(255,80,80,0.6); }
+
+    .contact-card {
+      background: ${T.bg2};
+      border: 1px solid ${T.border};
+      border-radius: 16px;
+      padding: 24px;
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .contact-card:hover {
+      border-color: ${T.borderMd};
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: ${ACCENT};
+      color: #04080F;
+      border: none;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Lora', serif;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .submit-btn:hover { background: #00F0A0; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,229,160,0.28); }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:disabled { background: ${T.bg3}; color: ${T.text3}; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .office-card {
+      background: ${T.bg2};
+      border: 1px solid ${T.border};
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .office-card:hover { border-color: ${T.borderMd}; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: ${T.bg1}; }
+    ::-webkit-scrollbar-thumb { background: ${T.bg3}; border-radius: 3px; }
+  `;
 
   const [form, setForm] = useState({
     fullName: "", email: "", phone: "", company: "", subject: "", message: "",
   });
-  const [errors,    setErrors]    = useState({});
+  const [errors,     setErrors]     = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted,  setSubmitted]  = useState(false);
 
@@ -183,10 +189,10 @@ const Contact = () => {
 
   const validate = () => {
     const e = {};
-    if (!form.fullName.trim())           e.fullName = "Full name is required";
-    if (!form.email.match(/^[^@]+@[^@]+\.[^@]+$/)) e.email = "Enter a valid email address";
-    if (!form.subject)                   e.subject  = "Please select a subject";
-    if (form.message.trim().length < 20) e.message  = "Message must be at least 20 characters";
+    if (!form.fullName.trim())                        e.fullName = "Full name is required";
+    if (!form.email.match(/^[^@]+@[^@]+\.[^@]+$/))   e.email    = "Enter a valid email address";
+    if (!form.subject)                                e.subject  = "Please select a subject";
+    if (form.message.trim().length < 20)              e.message  = "Message must be at least 20 characters";
     return e;
   };
 
@@ -196,7 +202,7 @@ const Contact = () => {
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setSubmitting(true);
-    await new Promise(r => setTimeout(r, 1400)); // simulate network
+    await new Promise(r => setTimeout(r, 1400));
     setSubmitting(false);
     setSubmitted(true);
   };
@@ -248,7 +254,7 @@ const Contact = () => {
               <span style={{ width: 7, height: 7, borderRadius: "50%", background: T.accent, animation: "pulse-ring 2s infinite", display: "inline-block" }} />
               <span style={{ fontSize: 12, fontWeight: 600, color: T.accent, letterSpacing: "0.08em", textTransform: "uppercase" }}>Reply within 4 hours</span>
             </div>
-            <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(28px,4.5vw,50px)", fontWeight: 800, lineHeight: 1.15, marginBottom: 16 }}>
+            <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(28px,4.5vw,50px)", fontWeight: 800, lineHeight: 1.15, marginBottom: 16, color: T.text1 }}>
               Let's Talk
             </h1>
             <p style={{ fontSize: 16, color: T.text2, lineHeight: 1.7, fontWeight: 300 }}>
@@ -270,13 +276,11 @@ const Contact = () => {
 
               <form onSubmit={handleSubmit} noValidate>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-                  {/* Full Name */}
                   <div>
                     <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, display: "block", marginBottom: 7, letterSpacing: "0.04em" }}>FULL NAME *</label>
                     <input className={`contact-input${errors.fullName ? " error" : ""}`} placeholder="Rajesh Kumar" value={form.fullName} onChange={set("fullName")} />
                     {errors.fullName && <div style={{ fontSize: 11, color: "#FF6060", marginTop: 5 }}>{errors.fullName}</div>}
                   </div>
-                  {/* Email */}
                   <div>
                     <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, display: "block", marginBottom: 7, letterSpacing: "0.04em" }}>EMAIL ADDRESS *</label>
                     <input className={`contact-input${errors.email ? " error" : ""}`} type="email" placeholder="rajesh@company.com" value={form.email} onChange={set("email")} />
@@ -285,19 +289,16 @@ const Contact = () => {
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-                  {/* Phone */}
                   <div>
                     <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, display: "block", marginBottom: 7, letterSpacing: "0.04em" }}>PHONE NUMBER</label>
                     <input className="contact-input" type="tel" placeholder="+91 98765 43210" value={form.phone} onChange={set("phone")} />
                   </div>
-                  {/* Company */}
                   <div>
                     <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, display: "block", marginBottom: 7, letterSpacing: "0.04em" }}>COMPANY / FARM NAME</label>
                     <input className="contact-input" placeholder="Rajesh Agro Pvt. Ltd." value={form.company} onChange={set("company")} />
                   </div>
                 </div>
 
-                {/* Subject */}
                 <div style={{ marginBottom: 16 }}>
                   <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, display: "block", marginBottom: 7, letterSpacing: "0.04em" }}>SUBJECT *</label>
                   <select
@@ -311,7 +312,6 @@ const Contact = () => {
                   {errors.subject && <div style={{ fontSize: 11, color: "#FF6060", marginTop: 5 }}>{errors.subject}</div>}
                 </div>
 
-                {/* Message */}
                 <div style={{ marginBottom: 28 }}>
                   <label style={{ fontSize: 12, fontWeight: 600, color: T.text2, display: "block", marginBottom: 7, letterSpacing: "0.04em" }}>MESSAGE *</label>
                   <textarea
@@ -353,26 +353,31 @@ const Contact = () => {
                 <p style={{ fontSize: 13, color: T.text2, lineHeight: 1.6 }}>Reach us directly through any of the channels below. Our sales team is also available on WhatsApp for quick queries.</p>
               </div>
 
-              {CONTACT_INFO.map(({ icon, label, color, bg: bgColor, primary, secondary, note }) => (
+              {CONTACT_INFO.map(({ icon, label, color, bg: bgColor, primary, primaryHref, secondary, secondaryHref, note }) => (
                 <div key={label} className="contact-card">
                   <div style={{ width: 48, height: 48, borderRadius: 12, background: bgColor, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0 }}>{icon}</div>
                   <div>
                     <div style={{ fontSize: 11, fontWeight: 700, color, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 5 }}>{label}</div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: T.text1, marginBottom: 2 }}>{primary}</div>
-                    <div style={{ fontSize: 13, color: T.text2, marginBottom: 5 }}>{secondary}</div>
+                    {primaryHref
+                      ? <a href={primaryHref} target={primaryHref.startsWith("http") ? "_blank" : undefined} rel="noreferrer" style={{ fontSize: 14, fontWeight: 600, color: T.text1, marginBottom: 2, display: "block", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = color} onMouseLeave={e => e.currentTarget.style.color = T.text1}>{primary}</a>
+                      : <div style={{ fontSize: 14, fontWeight: 600, color: T.text1, marginBottom: 2 }}>{primary}</div>
+                    }
+                    {secondary && (secondaryHref
+                      ? <a href={secondaryHref} target="_blank" rel="noreferrer" style={{ fontSize: 13, color: T.text2, marginBottom: 5, display: "block", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = color} onMouseLeave={e => e.currentTarget.style.color = T.text2}>{secondary}</a>
+                      : <div style={{ fontSize: 13, color: T.text2, marginBottom: 5 }}>{secondary}</div>
+                    )}
                     <div style={{ fontSize: 11, color: T.text3 }}>{note}</div>
                   </div>
                 </div>
               ))}
 
-              {/* WhatsApp quick action */}
               <div style={{ background: "rgba(37,211,102,0.07)", border: "1px solid rgba(37,211,102,0.20)", borderRadius: 14, padding: "20px 22px", display: "flex", alignItems: "center", gap: 16 }}>
                 <div style={{ fontSize: 28 }}>💬</div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: T.text1, marginBottom: 4 }}>WhatsApp Business</div>
                   <div style={{ fontSize: 12, color: T.text2 }}>Instant quotes & order support · 24×7</div>
                 </div>
-                <a href="https://wa.me/919822054321" target="_blank" rel="noreferrer" style={{ background: "#25D366", color: "#fff", border: "none", padding: "9px 18px", borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: "pointer", textDecoration: "none", whiteSpace: "nowrap" }}>
+                <a href="https://wa.me/919423580386" target="_blank" rel="noreferrer" style={{ background: "#25D366", color: "#fff", border: "none", padding: "9px 18px", borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: "pointer", textDecoration: "none", whiteSpace: "nowrap" }}>
                   Chat Now
                 </a>
               </div>
@@ -381,7 +386,7 @@ const Contact = () => {
         </section>
 
         {/* ── Office Locations ──────────────────────────────── */}
-        <section style={{ padding: "0 40px 80px", background: T.bg1, borderTop: `1px solid ${T.border}`, paddingTop: 70 }}>
+        <section style={{ padding: "70px 40px 80px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <div style={{ marginBottom: 36 }}>
               <span style={{ background: "rgba(255,176,32,0.10)", border: "1px solid rgba(255,176,32,0.25)", borderRadius: 20, padding: "5px 14px", fontSize: 11, fontWeight: 600, color: T.copper, letterSpacing: "0.1em", textTransform: "uppercase" }}>Our Offices</span>
@@ -397,7 +402,6 @@ const Contact = () => {
                     <span style={{ fontSize: 10, fontWeight: 700, background: `${color}20`, color, padding: "3px 9px", borderRadius: 6, textTransform: "uppercase", letterSpacing: "0.06em" }}>{tag}</span>
                   </div>
 
-                  {/* Placeholder map */}
                   <div style={{ background: T.bg3, border: `1px solid ${T.border}`, borderRadius: 12, height: 140, marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
                     <div style={{ position: "absolute", inset: 0, opacity: 0.03, backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "24px 24px" }} />
                     <div style={{ textAlign: "center", position: "relative" }}>
@@ -407,10 +411,17 @@ const Contact = () => {
                   </div>
 
                   <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                    {[["📬", address], ["📞", phone], ["✉️", email]].map(([icon, val]) => (
+                    {[
+                      ["📬", address,  null],
+                      ["📞", phone,    `tel:${phone.replace(/\s/g, "")}`],
+                      ["✉️", email,    `mailto:${email}`],
+                    ].map(([ico, val, href]) => (
                       <div key={val} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                        <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{icon}</span>
-                        <span style={{ fontSize: 13, color: T.text2, lineHeight: 1.5 }}>{val}</span>
+                        <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{ico}</span>
+                        {href
+                          ? <a href={href} style={{ fontSize: 13, color: T.text2, lineHeight: 1.5, textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = color} onMouseLeave={e => e.currentTarget.style.color = T.text2}>{val}</a>
+                          : <span style={{ fontSize: 13, color: T.text2, lineHeight: 1.5 }}>{val}</span>
+                        }
                       </div>
                     ))}
                   </div>

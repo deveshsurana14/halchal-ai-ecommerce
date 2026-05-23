@@ -195,16 +195,16 @@ const Hero = ({ onShop }) => {
         backgroundImage: `url(${bgImg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        opacity: T.isDark ? 0.07 : 0.12,
+        opacity: T.isDark ? 0.18 : 0.26,
       }} />
       {/* Edge fade overlays — blend image into page bg */}
       <div style={{
         position: "absolute", inset: 0,
-        background: `linear-gradient(180deg, ${T.bg0} 0%, transparent 20%, transparent 80%, ${T.bg0} 100%)`,
+        background: `linear-gradient(180deg, ${T.bg0} 0%, transparent 12%, transparent 88%, ${T.bg0} 100%)`,
       }} />
       <div style={{
         position: "absolute", inset: 0,
-        background: `linear-gradient(90deg, ${T.bg0} 0%, transparent 12%, transparent 88%, ${T.bg0} 100%)`,
+        background: `linear-gradient(90deg, ${T.bg0} 0%, transparent 8%, transparent 92%, ${T.bg0} 100%)`,
       }} />
       {/* Subtle dot-grid texture on top of image */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)`, backgroundSize: "32px 32px", pointerEvents: "none" }} />
@@ -365,7 +365,7 @@ const SolutionSection = ({ onShop }) => {
               <div style={{ fontSize: 12, color: T.green, fontWeight: 700, fontFamily: T.font, marginBottom: 3 }}>Your price (ex-GST)</div>
               <div style={{ fontSize: 11, color: T.text3, fontFamily: T.font }}>+12% GST (HSN 3917) applied at checkout</div>
             </div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: T.text1, fontFamily: T.font, letterSpacing: "-0.025em" }}>₹524<span style={{ fontSize: 13, fontWeight: 500, color: T.text3 }}>/coil</span></div>
+            <div style={{ fontSize: 24, fontWeight: 800, color: T.text1, fontFamily: T.font, letterSpacing: "-0.025em" }}>₹1,060<span style={{ fontSize: 13, fontWeight: 500, color: T.text3 }}>/coil</span></div>
           </div>
         </div>
       </div>

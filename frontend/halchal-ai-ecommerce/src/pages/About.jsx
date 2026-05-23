@@ -1,100 +1,30 @@
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ChatBot from "../components/ChatBot";
+import { useTheme } from "../context/ThemeContext";
 
-const T = {
-  bg0: "#05070F", bg1: "#080D1C", bg2: "#0D1628", bg3: "#121F38",
-  accent: "#00E5A0", accentDk: "#00C080", copper: "#FFB020",
-  border: "rgba(255,255,255,0.07)", borderMd: "rgba(255,255,255,0.15)",
-  text1: "#EEF3FF", text2: "#7A9EC6", text3: "#3D5A7A",
-  purple: "#8677FF",
-};
-
-const css = `
-  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes shimmer { 0%{background-position:-200% center;} 100%{background-position:200% center;} }
-  @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
-  @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(0,229,160,0.35);} 70%{box-shadow:0 0 0 10px rgba(0,229,160,0);} 100%{box-shadow:0 0 0 0 rgba(0,229,160,0);} }
-
-  .about-fade { animation: fadeUp 0.6s ease both; }
-  .about-fade-1 { animation: fadeUp 0.6s 0.1s ease both; }
-  .about-fade-2 { animation: fadeUp 0.6s 0.22s ease both; }
-
-  .about-card {
-    background: ${T.bg2};
-    border: 1px solid ${T.border};
-    border-radius: 16px;
-    transition: border-color 0.25s, box-shadow 0.25s;
-  }
-  .about-card:hover {
-    border-color: ${T.borderMd};
-    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
-  }
-
-  .team-card {
-    background: ${T.bg2};
-    border: 1px solid ${T.border};
-    border-radius: 20px;
-    padding: 32px 28px;
-    text-align: center;
-    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-  }
-  .team-card:hover {
-    border-color: rgba(0,229,160,0.25);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 48px rgba(0,0,0,0.4);
-  }
-
-  .timeline-item {
-    display: flex; gap: 28px; position: relative;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: 19px; top: 44px;
-    width: 2px;
-    height: calc(100% + 16px);
-    background: linear-gradient(to bottom, ${T.accent}40, transparent);
-  }
-  .timeline-item:last-child::before { display: none; }
-
-  .cert-badge {
-    background: ${T.bg2};
-    border: 1px solid ${T.border};
-    border-radius: 12px;
-    padding: 20px 24px;
-    display: flex; align-items: center; gap: 16px;
-    transition: border-color 0.2s;
-  }
-  .cert-badge:hover { border-color: ${T.borderMd}; }
-
-  .footer-link {
-    color: ${T.text2}; font-size: 14px; text-decoration: none;
-    transition: color 0.2s; display: block; padding: 4px 0;
-  }
-  .footer-link:hover { color: ${T.text1}; }
-
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: ${T.bg1}; }
-  ::-webkit-scrollbar-thumb { background: ${T.bg3}; border-radius: 3px; }
-`;
+/* ─── Page-specific accent palette (fixed, not theme-toggled) ── */
+const ACCENT   = "#00E5A0";
+const ACCENTDK = "#00C080";
+const COPPER   = "#FFB020";
+const PURPLE   = "#8677FF";
 
 const TEAM = [
   {
     initials: "RS", name: "Rajendra Surana", role: "Founder & Managing Director",
-    color: T.accent, bg: "rgba(0,229,160,0.12)",
+    color: ACCENT, bg: "rgba(0,229,160,0.12)",
     bio: "30+ years in irrigation infrastructure across Maharashtra and Gujarat. Founded Halchal Industries in 2015 with a mission to modernise India's agri-supply chain.",
     since: "Since 2015",
   },
   {
     initials: "DS", name: "Devesh Surana", role: "Chief Technology Officer",
-    color: T.purple, bg: "rgba(134,119,255,0.12)",
+    color: PURPLE, bg: "rgba(134,119,255,0.12)",
     bio: "Architect of the AI-powered dynamic pricing engine. Specialises in ML demand forecasting and real-time pricing systems for B2B commerce.",
     since: "Since 2022",
   },
   {
     initials: "PS", name: "Priya Sharma", role: "Head of Operations",
-    color: T.copper, bg: "rgba(255,176,32,0.12)",
+    color: COPPER, bg: "rgba(255,176,32,0.12)",
     bio: "15 years in supply chain & logistics. Orchestrates Pan-India delivery from Pune and Nashik hubs, ensuring 5–7 day nationwide fulfilment.",
     since: "Since 2018",
   },
@@ -116,12 +46,12 @@ const TIMELINE = [
 ];
 
 const STATS = [
-  { value: "10,000+", label: "Happy Customers",    color: T.accent  },
-  { value: "₹50Cr+",  label: "Annual GMV",          color: T.copper  },
-  { value: "28",      label: "States Covered",       color: T.purple  },
-  { value: "99.8%",   label: "Quality Pass Rate",    color: T.accent  },
+  { value: "10,000+", label: "Happy Customers",    color: ACCENT  },
+  { value: "₹50Cr+",  label: "Annual GMV",          color: COPPER  },
+  { value: "28",      label: "States Covered",       color: PURPLE  },
+  { value: "99.8%",   label: "Quality Pass Rate",    color: ACCENT  },
   { value: "9+",      label: "Years of Excellence",  color: "#00AEFF" },
-  { value: "ISO",     label: "9001:2015 Certified",  color: T.copper  },
+  { value: "ISO",     label: "9001:2015 Certified",  color: COPPER  },
 ];
 
 const TECH_FEATURES = [
@@ -134,43 +64,117 @@ const TECH_FEATURES = [
 ];
 
 const CERTS = [
-  { icon: "🏆", label: "ISO 9001:2015", sub: "Quality Management System", color: T.copper },
-  { icon: "🌿", label: "BIS Certified", sub: "Bureau of Indian Standards", color: T.accent },
-  { icon: "🛡️", label: "MSME Registered", sub: "Ministry of MSME, Govt. of India", color: T.purple },
+  { icon: "🏆", label: "ISO 9001:2015", sub: "Quality Management System", color: COPPER },
+  { icon: "🌿", label: "BIS Certified", sub: "Bureau of Indian Standards", color: ACCENT },
+  { icon: "🛡️", label: "MSME Registered", sub: "Ministry of MSME, Govt. of India", color: PURPLE },
   { icon: "🚜", label: "Agri Ministry Listed", sub: "Approved supplier under PMKSY", color: "#00AEFF" },
 ];
 
 
 /* ─── Simple footer ───────────────────────────────────────────────────── */
-const Footer = () => (
-  <footer style={{ background: T.bg1, borderTop: `1px solid ${T.border}`, padding: "48px 40px 32px" }}>
-    <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "space-between", marginBottom: 36 }}>
-      <div style={{ maxWidth: 300 }}>
-        <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, color: T.text1, marginBottom: 10 }}>Halchal Industries</div>
-        <p style={{ fontSize: 13, color: T.text3, lineHeight: 1.7 }}>Precision-engineered irrigation pipes backed by AI-powered pricing. Trusted across India since 2015.</p>
+const Footer = () => {
+  const T = useTheme();
+  return (
+    <footer style={{ background: T.bg1, borderTop: `1px solid ${T.border}`, padding: "48px 40px 32px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 40, justifyContent: "space-between", marginBottom: 36 }}>
+        <div style={{ maxWidth: 300 }}>
+          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, color: T.text1, marginBottom: 10 }}>Halchal Industries</div>
+          <p style={{ fontSize: 13, color: T.text3, lineHeight: 1.7 }}>Precision-engineered irrigation pipes backed by AI-powered pricing. Trusted across India since 2015.</p>
+        </div>
+        <div style={{ display: "flex", gap: 60, flexWrap: "wrap" }}>
+          {[
+            { title: "Company", links: [["Home", "/home"], ["Products", "/products"], ["About", "/about"], ["Contact", "/contact"]] },
+            { title: "Legal",   links: [["Privacy Policy", "/privacy-policy"], ["Terms & Conditions", "/terms"]] },
+          ].map(({ title, links }) => (
+            <div key={title}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: T.text3, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>{title}</div>
+              {links.map(([label, path]) => (
+                <Link key={label} to={path} style={{ color: T.text2, fontSize: 14, textDecoration: "none", transition: "color 0.2s", display: "block", padding: "4px 0" }}
+                  onMouseEnter={e => e.currentTarget.style.color = T.text1}
+                  onMouseLeave={e => e.currentTarget.style.color = T.text2}>
+                  {label}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-      <div style={{ display: "flex", gap: 60, flexWrap: "wrap" }}>
-        {[
-          { title: "Company", links: [["Home", "/home"], ["Products", "/products"], ["About", "/about"], ["Contact", "/contact"]] },
-          { title: "Legal",   links: [["Privacy Policy", "/privacy-policy"], ["Terms & Conditions", "/terms"]] },
-        ].map(({ title, links }) => (
-          <div key={title}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: T.text3, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>{title}</div>
-            {links.map(([label, path]) => <Link key={label} to={path} className="footer-link">{label}</Link>)}
-          </div>
-        ))}
+      <div style={{ maxWidth: 1200, margin: "0 auto", borderTop: `1px solid ${T.border}`, paddingTop: 20, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+        <span style={{ fontSize: 12, color: T.text3 }}>© 2024 Halchal Industries Pvt. Ltd. All rights reserved.</span>
+        <span style={{ fontSize: 12, color: T.text3 }}>Pune & Nashik, Maharashtra, India</span>
       </div>
-    </div>
-    <div style={{ maxWidth: 1200, margin: "0 auto", borderTop: `1px solid ${T.border}`, paddingTop: 20, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-      <span style={{ fontSize: 12, color: T.text3 }}>© 2024 Halchal Industries Pvt. Ltd. All rights reserved.</span>
-      <span style={{ fontSize: 12, color: T.text3 }}>Pune & Nashik, Maharashtra, India</span>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 /* ─── About page ──────────────────────────────────────────────────────── */
 const About = () => {
   const navigate = useNavigate();
+  const theme    = useTheme();
+  const T        = { ...theme, accent: ACCENT, accentDk: ACCENTDK, copper: COPPER, purple: PURPLE, borderMd: theme.borderH };
+
+  const css = `
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes shimmer { 0%{background-position:-200% center;} 100%{background-position:200% center;} }
+    @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+    @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(0,229,160,0.35);} 70%{box-shadow:0 0 0 10px rgba(0,229,160,0);} 100%{box-shadow:0 0 0 0 rgba(0,229,160,0);} }
+
+    .about-fade { animation: fadeUp 0.6s ease both; }
+    .about-fade-1 { animation: fadeUp 0.6s 0.1s ease both; }
+    .about-fade-2 { animation: fadeUp 0.6s 0.22s ease both; }
+
+    .about-card {
+      background: ${T.bg2};
+      border: 1px solid ${T.border};
+      border-radius: 16px;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .about-card:hover {
+      border-color: ${T.borderMd};
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+
+    .team-card {
+      background: ${T.bg2};
+      border: 1px solid ${T.border};
+      border-radius: 20px;
+      padding: 32px 28px;
+      text-align: center;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .team-card:hover {
+      border-color: rgba(0,229,160,0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+    }
+
+    .timeline-item {
+      display: flex; gap: 28px; position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 19px; top: 44px;
+      width: 2px;
+      height: calc(100% + 16px);
+      background: linear-gradient(to bottom, ${ACCENT}40, transparent);
+    }
+    .timeline-item:last-child::before { display: none; }
+
+    .cert-badge {
+      background: ${T.bg2};
+      border: 1px solid ${T.border};
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+      transition: border-color 0.2s;
+    }
+    .cert-badge:hover { border-color: ${T.borderMd}; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: ${T.bg1}; }
+    ::-webkit-scrollbar-thumb { background: ${T.bg3}; border-radius: 3px; }
+  `;
 
   return (
     <>
@@ -190,7 +194,7 @@ const About = () => {
               <span style={{ fontSize: 12, fontWeight: 600, color: T.accent, letterSpacing: "0.08em", textTransform: "uppercase" }}>Est. 2015 · Pune, Maharashtra</span>
             </div>
 
-            <h1 className="about-fade-1" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(32px,5vw,58px)", fontWeight: 800, lineHeight: 1.15, marginBottom: 20 }}>
+            <h1 className="about-fade-1" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(32px,5vw,58px)", fontWeight: 800, lineHeight: 1.15, marginBottom: 20, color: T.text1 }}>
               India's Most Advanced<br />
               <span style={{ background: `linear-gradient(90deg, ${T.accent}, #00AEFF, ${T.accent})`, backgroundSize: "200%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "shimmer 4s linear infinite" }}>
                 Pipe Supply Platform
@@ -270,13 +274,11 @@ const About = () => {
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {TIMELINE.map(({ year, event, detail }) => (
                 <div key={year} className="timeline-item" style={{ paddingBottom: 16 }}>
-                  {/* Year dot */}
                   <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 8, paddingTop: 4 }}>
                     <div style={{ width: 40, height: 40, borderRadius: "50%", background: `linear-gradient(135deg, ${T.accent}33, ${T.accent}11)`, border: `2px solid ${T.accent}55`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                       <span style={{ fontSize: 10, fontWeight: 800, color: T.accent }}>{year.slice(2)}</span>
                     </div>
                   </div>
-                  {/* Content */}
                   <div className="about-card" style={{ flex: 1, padding: "22px 28px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 8, flexWrap: "wrap" }}>
                       <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 700, color: T.text1 }}>{event}</span>
@@ -309,7 +311,6 @@ const About = () => {
               ))}
             </div>
 
-            {/* CTA banner */}
             <div style={{ marginTop: 48, background: `linear-gradient(135deg, rgba(0,229,160,0.08), rgba(134,119,255,0.06))`, border: `1px solid rgba(0,229,160,0.20)`, borderRadius: 20, padding: "40px 48px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 24 }}>
               <div>
                 <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: 22, fontWeight: 700, color: T.text1, marginBottom: 8 }}>See the AI in action</h3>
@@ -366,7 +367,6 @@ const About = () => {
               ))}
             </div>
 
-            {/* Bottom CTA */}
             <div style={{ marginTop: 64, textAlign: "center" }}>
               <p style={{ color: T.text2, fontSize: 15, marginBottom: 20 }}>Questions about our manufacturing process or certifications?</p>
               <button onClick={() => navigate("/contact")} style={{ background: T.accent, color: "#04080F", border: "none", padding: "13px 32px", borderRadius: 10, fontSize: 14, fontWeight: 700, fontFamily: "'Lora',serif", cursor: "pointer" }}>

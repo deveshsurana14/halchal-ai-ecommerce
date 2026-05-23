@@ -104,11 +104,11 @@ app.post("/api/ai-price", async (req, res) => {
       predicted_demand:  mlData.predicted_demand,
       season:            mlData.season,
       base_price:        mlData.base_price,
-      ex_factory_price:  mlData.ex_factory_price,
+      ex_factory_price:  mlData.final_price,
       factors:           mlData.factors,
       pipe_type:         mlData.pipe_type,
-      state:             mlData.state,
-      zone:              mlData.zone,
+      state:             resolvedState,
+      zone:              mlData.zone_id,
     });
 
   } catch (error) {

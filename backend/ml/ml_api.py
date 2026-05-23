@@ -176,8 +176,9 @@ def calculate_price():
             "competitor_price":  competitor_price,
             "factors": {
                 "demand_factor":     round(demand_factor,     4),
-                "adoption_factor":   round(adoption_factor,   4),
                 "competitor_factor": round(competitor_factor, 4),
+                "logistics_factor":  1.0,
+                "market_factor":     round(adoption_factor,   4),
             }
         })
 
