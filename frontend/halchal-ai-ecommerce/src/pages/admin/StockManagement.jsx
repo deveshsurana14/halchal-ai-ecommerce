@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API_BASE from "../../config";
 
 const T = {
   bg0: "#05070E", bg1: "#0B1120", bg2: "#111B30", bg3: "#18253E",
@@ -43,7 +44,7 @@ export default function StockManagement() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/api/stock")
+    fetch(`${API_BASE}/api/stock`)
       .then(r => r.json())
       .then(d => {
         const f = {};
@@ -61,7 +62,7 @@ export default function StockManagement() {
     if (!qty || qty < 0) return;
     setSaving(s => ({ ...s, [pipe]: true }));
     try {
-      await fetch("http://localhost:5000/api/stock/update", {
+      await fetch(`${API_BASE}/api/stock/update`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pipe_type: pipe, quantity: qty * BUNDLE }),
       });

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import Navbar from "../components/Navbar";
+import API_BASE from "../config";
 
 /* ─── Design tokens ────────────────────────────────────────────────── */
 const T = {
@@ -293,7 +294,7 @@ const Cart = () => {
     const outcomes = [];
     for (const item of items) {
       try {
-        const res  = await fetch("http://localhost:5000/api/orders", {
+        const res  = await fetch(`${API_BASE}/api/orders`, {
           method:  "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

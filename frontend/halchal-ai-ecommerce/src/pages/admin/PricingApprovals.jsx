@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import API_BASE from "../../config";
 
 const T = {
   bg0: "#05070E", bg1: "#0B1120", bg2: "#111B30", bg3: "#18253E",
@@ -66,11 +67,11 @@ export default function PricingApprovals() {
     for (const pipe of PIPES) {
       try {
         const [ws, ns] = await Promise.all([
-          fetch("http://localhost:5000/api/ai-price", {
+          fetch(`${API_BASE}/api/ai-price`, {
             method: "POST", headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ pipe_type: pipe, zone, month, year, govt_subsidy: 1 }),
           }).then(r => r.json()),
-          fetch("http://localhost:5000/api/ai-price", {
+          fetch(`${API_BASE}/api/ai-price`, {
             method: "POST", headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ pipe_type: pipe, zone, month, year, govt_subsidy: 0 }),
           }).then(r => r.json()),
@@ -103,7 +104,7 @@ export default function PricingApprovals() {
 
   const doApprove = async (pipe, price) => {
     try {
-      await fetch("http://localhost:5000/api/approve-price", {
+      await fetch(`${API_BASE}/api/approve-price`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pipe_type: pipe, zone, price }),
       });

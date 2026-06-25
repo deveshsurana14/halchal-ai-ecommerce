@@ -3,7 +3,8 @@
 // All backend calls go through here
 // ─────────────────────────────────────────────
 
-const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+import API_BASE from "../config";
+const BASE_URL = `${API_BASE}/api`;
 
 // ─── Token helpers ────────────────────────────
 const getToken = () => localStorage.getItem("halchal_token");

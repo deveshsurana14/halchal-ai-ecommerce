@@ -5,6 +5,7 @@ import ChatBot from "../components/ChatBot";
 import { useCart } from "../context/CartContext";
 import Navbar from "../components/Navbar";
 import { useTheme } from "../context/ThemeContext";
+import API_BASE from "../config";
 
 /* ─── All Indian states / UTs ─────────────────────────────── */
 const ALL_STATES = [
@@ -208,7 +209,7 @@ const ProductDetails = () => {
     setLoading(true);
     setAiData(null);
     try {
-      const res  = await fetch("http://localhost:5000/api/ai-price", {
+      const res  = await fetch(`${API_BASE}/api/ai-price`, {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
         body:    JSON.stringify({ pipe_type: decodedName, quantity: Number(quantity), state }),

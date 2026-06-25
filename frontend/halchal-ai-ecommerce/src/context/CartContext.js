@@ -1,10 +1,11 @@
 import { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
+import API_BASE from "../config";
 
 const CartContext = createContext(null);
 
 const STORAGE_KEY  = "halchal_cart_v1";
 const SESSION_KEY  = "halchal_session_id";
-const BACKEND      = "http://localhost:5000";
+const BACKEND      = API_BASE;
 
 // Mirrors the discount + GST logic in backend/utils/pricingEngine.js
 // so the cart can recalculate live when quantity changes without a round-trip.

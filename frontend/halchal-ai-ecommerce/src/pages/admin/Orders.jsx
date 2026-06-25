@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API_BASE from "../../config";
 
 const T = {
   bg0: "#05070E", bg1: "#0B1120", bg2: "#111B30", bg3: "#18253E",
@@ -53,7 +54,7 @@ export default function Orders() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/api/orders")
+    fetch(`${API_BASE}/api/orders`)
       .then(r => r.json())
       .then(d => { if (Array.isArray(d) && d.length) setOrders(d); })
       .catch(() => {})
@@ -61,7 +62,7 @@ export default function Orders() {
   }, []);
 
   const approveOrder = async (id) => {
-    try { await fetch(`http://localhost:5000/api/orders/approve/${id}`, { method: "POST" }); } catch {}
+    try { await fetch(`${API_BASE}/api/orders/approve/${id}`, { method: "POST" }); } catch {}
     setOrders(prev => prev.map(o => o._id === id ? { ...o, status: "Approved", requires_approval: false } : o));
     showToast("Order approved successfully");
   };

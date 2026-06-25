@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import API_BASE from "../../config";
 
 const T = {
   bg0: "#05070E", bg1: "#0B1120", bg2: "#111B30", bg3: "#18253E",
@@ -110,7 +111,7 @@ export default function Dashboard() {
     }
     for (const pipe of PIPES) {
       try {
-        const res  = await fetch("http://localhost:5000/api/ai-price", {
+        const res  = await fetch(`${API_BASE}/api/ai-price`, {
           method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ pipe_type: pipe, zone, month, year }),
         });
@@ -129,7 +130,7 @@ export default function Dashboard() {
   useEffect(() => { fetchAI(); }, [fetchAI]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/orders")
+    fetch(`${API_BASE}/api/orders`)
       .then(r => r.json())
       .then(d => { if (Array.isArray(d) && d.length) setOrders(d); })
       .catch(() => {});
