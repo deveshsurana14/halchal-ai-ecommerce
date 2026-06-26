@@ -86,7 +86,7 @@ app.post("/api/ai-price", async (req, res) => {
       year:             year  || new Date().getFullYear(),
       prev_month_sales: prevMonthSales,
       govt_subsidy:     govt_subsidy !== undefined ? govt_subsidy : 1,
-    });
+    }, { timeout: 90000 });
 
     const mlData  = mlResponse.data;
     const aiPrice = mlData.final_price;
@@ -113,8 +113,8 @@ app.post("/api/ai-price", async (req, res) => {
     });
 
   } catch (error) {
-    console.error("AI Pricing Error:", error.message);
-    res.status(500).json({ error: "AI pricing failed" });
+    console.error("AI Pricing Error:", error.message, error.code);
+    res.status(500).json({ error: "AI pricing failed", detail: error.message });
   }
 });
 

@@ -188,5 +188,9 @@ def calculate_price():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/", methods=["GET"])
+def health():
+    return jsonify({"status": "ok", "service": "halchal-ml-api"})
+
 if __name__ == "__main__":
     app.run(port=5001, debug=False)
