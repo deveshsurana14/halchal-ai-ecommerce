@@ -33,8 +33,6 @@ const TEAM = [
 const TIMELINE = [
   { year: "2015", event: "Founded in Shirur, Pune", detail: "Halchal Industries was established in Wajewadi, Shirur with a vision to supply quality inline drip irrigation pipes to Indian farmers at fair, transparent prices." },
   { year: "2017", event: "ISO 9001:2015 Certified", detail: "Achieved international quality certification — validating our manufacturing processes, batch testing, and quality control systems across both product lines." },
-  { year: "2019", event: "Pan-India Expansion", detail: "Opened distribution centres in Nashik and Hyderabad. Nationwide delivery capability unlocked. Customer base reached 2,000+." },
-  { year: "2023", event: "AI Pricing Engine Launched", detail: "Deployed our proprietary ML model for demand forecasting and dynamic pricing — a first in the Indian pipe supply industry. Pricing accuracy improved 38%." },
 ];
 
 const STATS = [
