@@ -11,33 +11,27 @@ const PURPLE   = "#8677FF";
 
 const TEAM = [
   {
-    initials: "RS", name: "Rajendra Surana", role: "Founder & Managing Director",
+    initials: "NS", name: "Natha Sonawane", role: "Partner & Head of Manufacturing",
     color: ACCENT, bg: "rgba(0,229,160,0.12)",
-    bio: "30+ years in irrigation infrastructure across Maharashtra and Gujarat. Founded Halchal Industries in 2015 with a mission to modernise India's agri-supply chain.",
+    bio: "20+ years of hands-on experience in HDPE pipe extrusion and drip irrigation manufacturing. Oversees production quality, machine operations, and raw material procurement at the Shirur facility.",
     since: "Since 2015",
   },
   {
-    initials: "DS", name: "Devesh Surana", role: "Chief Technology Officer",
+    initials: "SS", name: "Sachin Sonawane", role: "Partner & Sales Director",
     color: PURPLE, bg: "rgba(134,119,255,0.12)",
-    bio: "Architect of the AI-powered dynamic pricing engine. Specialises in ML demand forecasting and real-time pricing systems for B2B commerce.",
+    bio: "Drives B2B sales across Maharashtra, Gujarat, and Rajasthan. Built Halchal's agri-dealer network from the ground up with 500+ active distributor relationships across the Pune–Nashik belt.",
     since: "Since 2022",
   },
   {
-    initials: "PS", name: "Priya Sharma", role: "Head of Operations",
+    initials: "MS", name: "Mihir Sancheti", role: "Partner & Business Development",
     color: COPPER, bg: "rgba(255,176,32,0.12)",
-    bio: "15 years in supply chain & logistics. Orchestrates Pan-India delivery from Pune and Nashik hubs, ensuring 5–7 day nationwide fulfilment.",
+    bio: "Leads market expansion and new product line development. Specialises in identifying high-potential agri-zones and onboarding large-scale institutional buyers across central and western India.",
     since: "Since 2018",
-  },
-  {
-    initials: "AK", name: "Amit Kulkarni", role: "Head of Sales & Partnerships",
-    color: "#00AEFF", bg: "rgba(0,174,255,0.12)",
-    bio: "B2B sales veteran with deep relationships across Maharashtra, Gujarat, Madhya Pradesh, and Karnataka agri-dealer networks.",
-    since: "Since 2017",
   },
 ];
 
 const TIMELINE = [
-  { year: "2015", event: "Founded in Pune", detail: "Rajendra Surana established Halchal Industries with ₹1.2Cr seed capital and a vision to supply quality inline irrigation pipes to Indian farmers at fair prices." },
+  { year: "2015", event: "Founded in Shirur, Pune", detail: "Halchal Industries was established in Wajewadi, Shirur with a vision to supply quality inline drip irrigation pipes to Indian farmers at fair, transparent prices." },
   { year: "2017", event: "ISO 9001:2015 Certified", detail: "Achieved international quality certification — validating our manufacturing processes, batch testing, and quality control systems across both product lines." },
   { year: "2019", event: "Pan-India Expansion", detail: "Opened distribution centres in Nashik and Hyderabad. Nationwide delivery capability unlocked. Customer base reached 2,000+." },
   { year: "2023", event: "AI Pricing Engine Launched", detail: "Deployed our proprietary ML model for demand forecasting and dynamic pricing — a first in the Indian pipe supply industry. Pricing accuracy improved 38%." },
@@ -99,7 +93,7 @@ const Footer = () => {
       </div>
       <div style={{ maxWidth: 1200, margin: "0 auto", borderTop: `1px solid ${T.border}`, paddingTop: 20, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
         <span style={{ fontSize: 12, color: T.text3 }}>© 2024 Halchal Industries Pvt. Ltd. All rights reserved.</span>
-        <span style={{ fontSize: 12, color: T.text3 }}>Pune & Nashik, Maharashtra, India</span>
+        <span style={{ fontSize: 12, color: T.text3 }}>Wajewadi, Shirur, Pune – 412208, Maharashtra</span>
       </div>
     </footer>
   );
@@ -189,7 +183,7 @@ const About = () => {
           <div style={{ position: "relative", maxWidth: 760, margin: "0 auto" }}>
             <div className="about-fade" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(0,229,160,0.10)", border: "1px solid rgba(0,229,160,0.25)", borderRadius: 20, padding: "6px 16px", marginBottom: 24 }}>
               <span style={{ width: 7, height: 7, borderRadius: "50%", background: T.accent, animation: "pulse-ring 2s infinite", display: "inline-block" }} />
-              <span style={{ fontSize: 12, fontWeight: 600, color: T.accent, letterSpacing: "0.08em", textTransform: "uppercase" }}>Est. 2015 · Pune, Maharashtra</span>
+              <span style={{ fontSize: 12, fontWeight: 600, color: T.accent, letterSpacing: "0.08em", textTransform: "uppercase" }}>Est. 2015 · Shirur, Pune, Maharashtra</span>
             </div>
 
             <h1 className="about-fade-1" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(32px,5vw,58px)", fontWeight: 800, lineHeight: 1.15, marginBottom: 20, color: T.text1 }}>

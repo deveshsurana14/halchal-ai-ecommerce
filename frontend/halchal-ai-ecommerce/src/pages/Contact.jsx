@@ -26,9 +26,9 @@ const CONTACT_INFO = [
   },
   {
     icon: "📍", label: "Head Office", color: COPPER, bg: "rgba(255,176,32,0.10)",
-    primary: "Halchal Industries Pvt. Ltd.",
-    secondary: "Plot 14, Bhosari MIDC, Pune – 411026",
-    note: "Maharashtra, India",
+    primary: "Halchal Industries",
+    secondary: "Wajewadi, Pimple Jagtap Chaufulla, Shirur",
+    note: "Pune – 412208, Maharashtra, India",
   },
   {
     icon: "🕐", label: "Business Hours", color: PURPLE, bg: "rgba(134,119,255,0.10)",
@@ -40,10 +40,10 @@ const CONTACT_INFO = [
 
 const OFFICES = [
   {
-    city: "Pune (Head Office)", address: "Plot 14, Bhosari MIDC, Pune – 411026, Maharashtra",
+    city: "Shirur, Pune (Factory)", address: "Wajewadi, Pimple Jagtap Chaufulla, Taluka Shirur, Pune – 412208, Maharashtra",
     phone: "+91 94235 80386", email: "contch.halchalindustries@gmail.com",
     tag: "Manufacturing & HQ", color: ACCENT,
-    mapHint: "Near Bhosari MIDC Gate 2, opposite HDFC Bank",
+    mapHint: "Wajewadi village, Shirur Taluka, Pune district",
   },
   {
     city: "Nashik (Distribution)", address: "Gat No. 287, Sinnar Industrial Area, Nashik – 422103, Maharashtra",
@@ -93,7 +93,7 @@ const Footer = () => {
       </div>
       <div style={{ maxWidth: 1200, margin: "0 auto", borderTop: `1px solid ${T.border}`, paddingTop: 20, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
         <span style={{ fontSize: 12, color: T.text3 }}>© 2024 Halchal Industries Pvt. Ltd. All rights reserved.</span>
-        <span style={{ fontSize: 12, color: T.text3 }}>Pune & Nashik, Maharashtra, India</span>
+        <span style={{ fontSize: 12, color: T.text3 }}>Wajewadi, Shirur, Pune – 412208, Maharashtra</span>
       </div>
     </footer>
   );

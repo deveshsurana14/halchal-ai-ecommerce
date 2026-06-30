@@ -66,7 +66,7 @@ export default function Settings() {
     name: "Halchal Industries Pvt. Ltd.",
     email: "contact@halchal.in",
     phone: "+91-20-26543210",
-    address: "Plot 42, MIDC, Chinchwad, Pune – 411019",
+    address: "Wajewadi, Pimple Jagtap Chaufulla, Shirur, Pune – 412208",
     gst: "27AABCH1234K1Z5",
     website: "www.halchal.in",
   });

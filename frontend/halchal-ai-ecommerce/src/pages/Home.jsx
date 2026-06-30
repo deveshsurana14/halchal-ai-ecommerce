@@ -850,7 +850,7 @@ const Footer = () => {
             <div style={{ fontSize: 11, fontWeight: 700, color: T.text3, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 16, fontFamily: T.font }}>Contact</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {[
-                { text: "Pune & Nashik, Maharashtra", href: null },
+                { text: "Shirur, Pune – 412208, Maharashtra", href: null },
                 { text: "+91 98765 43210",           href: "tel:+919876543210" },
                 { text: "hello@halchal.in",           href: "mailto:hello@halchal.in" },
                 { text: "Mon–Sat, 9 am–6 pm IST",    href: null },
