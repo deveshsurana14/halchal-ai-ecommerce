@@ -47,9 +47,39 @@ RULES:
 - Respond in the same language as the user (Hindi, Marathi, or English).
 - If the question is unrelated to irrigation/farming/Halchal products, politely redirect.`;
 
+/* ─── Per-acre pipe usage map ─── */
+const CROP_DATA = {
+  onion:       { pipe: "16mm Inline Drip Pipe", mPerAcre: 3800, spacing: "30cm emitter spacing, raised beds",   season: "Rabi" },
+  kanda:       { pipe: "16mm Inline Drip Pipe", mPerAcre: 3800, spacing: "30cm emitter spacing, raised beds",   season: "Rabi" },
+  sugarcane:   { pipe: "16mm Inline Drip Pipe", mPerAcre: 3500, spacing: "60cm emitter spacing, 90–120cm rows", season: "Kharif" },
+  ganna:       { pipe: "16mm Inline Drip Pipe", mPerAcre: 3500, spacing: "60cm emitter spacing, 90–120cm rows", season: "Kharif" },
+  cotton:      { pipe: "20mm Inline Drip Pipe", mPerAcre: 3200, spacing: "90cm emitter spacing",                season: "Kharif" },
+  tomato:      { pipe: "16mm Inline Drip Pipe", mPerAcre: 4000, spacing: "30–40cm emitter spacing",             season: "Rabi" },
+  banana:      { pipe: "16mm Inline Drip Pipe", mPerAcre: 4500, spacing: "50cm spacing, twin-lateral",          season: "Year-round" },
+  grape:       { pipe: "16mm Inline Drip Pipe", mPerAcre: 4200, spacing: "50cm spacing, double lateral",        season: "Year-round" },
+  angoor:      { pipe: "16mm Inline Drip Pipe", mPerAcre: 4200, spacing: "50cm spacing, double lateral",        season: "Year-round" },
+  pomegranate: { pipe: "16mm Inline Drip Pipe", mPerAcre: 2800, spacing: "5×5m tree spacing",                  season: "Year-round" },
+  anar:        { pipe: "16mm Inline Drip Pipe", mPerAcre: 2800, spacing: "5×5m tree spacing",                  season: "Year-round" },
+  soybean:     { pipe: "16mm Inline Drip Pipe", mPerAcre: 3500, spacing: "45cm emitter spacing",               season: "Kharif" },
+  wheat:       { pipe: "16mm Inline Drip Pipe", mPerAcre: 3200, spacing: "20–25cm emitter spacing",            season: "Rabi" },
+  chilli:      { pipe: "16mm Inline Drip Pipe", mPerAcre: 4000, spacing: "30cm emitter spacing",               season: "Rabi" },
+  mirchi:      { pipe: "16mm Inline Drip Pipe", mPerAcre: 4000, spacing: "30cm emitter spacing",               season: "Rabi" },
+};
+
+/* ─── Extract acre/bigha number from message ─── */
+function extractAcres(q) {
+  const m = q.match(/(\d+(\.\d+)?)\s*(acr|acre|acres|bigha|biga)/i);
+  if (!m) return null;
+  let val = parseFloat(m[1]);
+  if (/bigha/i.test(m[3])) val = val * 0.62; // 1 bigha ≈ 0.62 acre
+  return val;
+}
+
 /* ─── Fallback keyword matching when no API key is set ─── */
 function keywordFallback(q) {
+  const raw = q;
   q = q.toLowerCase();
+
   // Greetings
   if (q.match(/^(hi|hello|hey|hii|helo|namaste|good\s*(morning|evening|afternoon)|how are you|what's up|whats up)/)) {
     return "Hello! I'm **Halchal AI**, your drip irrigation advisor.\n\nTell me your **crop**, **land size** (in acres), and **region** — I'll recommend the right pipe and estimate the quantity you need.";
@@ -58,30 +88,38 @@ function keywordFallback(q) {
   if (q.includes("what can you") || q.includes("help me") || q.includes("what do you") || q.includes("your purpose") || q.includes("groq") || q.includes("connected")) {
     return "I help farmers and distributors choose the right drip irrigation pipe.\n\nJust tell me:\n- **Crop** (sugarcane, onion, cotton, grape…)\n- **Land size** (acres or bigha)\n- **Region/State** (Maharashtra, Gujarat…)\n\nI'll recommend the pipe type and total metres needed.";
   }
-  // Crops
-  if (q.includes("banana")) return "For banana crops: **16mm Inline Drip Pipe** (2L/hr emitters, 50cm spacing, twin-lateral). Estimated usage: ~4,500m per acre.";
-  if (q.includes("sugarcane") || q.includes("ganna")) return "For sugarcane: **16mm Inline Drip Pipe** (1.2L/hr, 60cm emitter spacing). Row-to-row: 90–120cm. ~3,500m per acre.";
-  if (q.includes("cotton")) return "For cotton: **20mm Inline Drip Pipe** (2L/hr, 90cm spacing). Best for Kharif season in Maharashtra/Gujarat.";
-  if (q.includes("onion") || q.includes("kanda")) return "For onion: **16mm Inline Drip Pipe** on raised beds (30cm emitter spacing). Ideal for Rabi season.";
-  if (q.includes("tomato")) return "For tomato: **16mm Inline Drip Pipe** on raised beds, 30–40cm emitter spacing, 0.6mm wall thickness.";
-  if (q.includes("grape") || q.includes("angoor")) return "For grapes: **16mm Inline Drip Pipe** — double lateral per row, 50cm spacing. Popular in Nashik region.";
-  if (q.includes("pomegranate") || q.includes("anar")) return "For pomegranate: **16mm Inline Drip** or micro-sprinklers. 5×5m tree spacing. Common in Solapur, Maharashtra.";
-  if (q.includes("soybean") || q.includes("soya")) return "For soybean: **16mm Inline Drip Pipe** (1.2L/hr, 45cm spacing). Kharif crop — suits Maharashtra/MP.";
-  if (q.includes("wheat") || q.includes("gehu")) return "For wheat: **16mm Inline Drip** (surface or subsurface). Rabi season — saves 40% water vs. flood irrigation.";
-  if (q.includes("chilli") || q.includes("mirchi")) return "For chilli: **16mm Inline Drip Pipe** (1L/hr, 30cm emitter spacing). Rabi crop, beds of 1.2m width.";
-  // Land size
-  if (q.includes("acre") || q.includes("bigha")) return "For 1 acre with 16mm drip: typically **3,500–4,500 metres** depending on crop row spacing. Share your crop for an exact number.";
+
+  // Detect crop + acres together → full recommendation
+  const acres = extractAcres(q);
+  const matchedCrop = Object.keys(CROP_DATA).find(k => q.includes(k));
+  if (matchedCrop && acres) {
+    const c = CROP_DATA[matchedCrop];
+    const totalM = Math.round(c.mPerAcre * acres);
+    const coils  = Math.ceil(totalM / 300);
+    const region = q.includes("maharashtra") ? "Maharashtra" : q.includes("gujarat") ? "Gujarat" : q.includes("rajasthan") ? "Rajasthan" : null;
+    return `For **${acres} acres of ${matchedCrop}** ${region ? `in ${region}` : ""}:\n- **Pipe:** ${c.pipe}\n- **Spacing:** ${c.spacing}\n- **Season:** ${c.season}\n- **Total pipe needed:** ~${totalM.toLocaleString("en-IN")}m (~**${coils} coils** of 300m each)\n\nVisit the **Products** page to see AI-priced coils for your region.`;
+  }
+
+  // Crop only (no acres given)
+  if (matchedCrop) {
+    const c = CROP_DATA[matchedCrop];
+    return `For **${matchedCrop}**: **${c.pipe}** (${c.spacing}). Season: ${c.season}.\n\nEstimated usage: ~${c.mPerAcre.toLocaleString("en-IN")}m per acre (~${Math.ceil(c.mPerAcre/300)} coils/acre).\n\nHow many acres do you have?`;
+  }
+
+  // Acres only (no crop)
+  if (acres) return `For ${acres} acres, the total pipe needed depends on your crop.\n\n- Onion/Tomato: ~${Math.round(3800*acres).toLocaleString("en-IN")}m\n- Sugarcane: ~${Math.round(3500*acres).toLocaleString("en-IN")}m\n- Cotton: ~${Math.round(3200*acres).toLocaleString("en-IN")}m\n\nWhat crop are you growing?`;
+
   // Pricing
-  if (q.includes("price") || q.includes("cost") || q.includes("rate") || q.includes("kitna")) return "**16mm Drip Pipe**: ₹1,050–₹1,200 per coil (300m) · **20mm Drip Pipe**: ₹1,350–₹1,500 per coil. Our AI prices dynamically based on season, region, and demand — check the **Products** page for live pricing.";
+  if (q.includes("price") || q.includes("cost") || q.includes("rate") || q.includes("kitna")) return "**16mm Drip Pipe**: ₹1,050–₹1,200 per coil (300m) · **20mm Drip Pipe**: ₹1,350–₹1,500 per coil.\n\nOur AI prices dynamically based on season, region, and demand — check the **Products** page for live pricing.";
   // Season
   if (q.includes("kharif")) return "For Kharif season (June–Oct): Cotton, sugarcane, soybean. Recommend **pressure-compensating drippers** to handle monsoon rain variations.";
   if (q.includes("rabi")) return "For Rabi season (Nov–Mar): Onion, chilli, wheat. Most water-critical season — drip irrigation saves 40–50% water vs. flood irrigation.";
-  // Region
-  if (q.includes("maharashtra") || q.includes("nashik") || q.includes("pune") || q.includes("solapur")) return "In Maharashtra: Sugarcane (Kolhapur/Pune), Grapes (Nashik), Pomegranate (Solapur), Onion (Nashik). Share your crop and I'll give a specific recommendation.";
-  if (q.includes("gujarat")) return "In Gujarat: Drip adoption is very high. Cotton, groundnut, and castor benefit most. Recommend **20mm Inline** for cotton and **16mm Inline** for smaller crops.";
-  if (q.includes("rajasthan")) return "In Rajasthan: Pomegranate, jatropha, and vegetables. Water is scarce — drip irrigation is essential. **16mm Inline** is most common here.";
+  // Region only
+  if (q.includes("maharashtra") || q.includes("nashik") || q.includes("pune") || q.includes("solapur")) return "In Maharashtra: Sugarcane (Kolhapur/Pune), Grapes (Nashik), Pomegranate (Solapur), Onion (Nashik).\n\nTell me your crop and land size for a full recommendation.";
+  if (q.includes("gujarat")) return "In Gujarat: Cotton, groundnut, and castor benefit most from drip. Recommend **20mm Inline** for cotton and **16mm Inline** for smaller crops.\n\nTell me your crop and land size for a full recommendation.";
+  if (q.includes("rajasthan")) return "In Rajasthan: Pomegranate, jatropha, and vegetables. Water is scarce — drip irrigation is essential. **16mm Inline** is most common.\n\nTell me your crop and land size for a full recommendation.";
   // Default
-  return "I can help with crop-specific drip pipe recommendations, land size estimates, and season advice.\n\nTell me your **crop**, **land size** (acres), and **state** to get started.";
+  return "I can help with crop-specific drip pipe recommendations and quantity estimates.\n\nTell me your **crop**, **land size** (acres), and **state** to get started.";
 }
 
 /* ─── Icons ─── */
