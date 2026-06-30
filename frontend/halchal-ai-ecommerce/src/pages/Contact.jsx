@@ -384,7 +384,7 @@ const Contact = () => {
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <div style={{ marginBottom: 36 }}>
               <span style={{ background: "rgba(255,176,32,0.10)", border: "1px solid rgba(255,176,32,0.25)", borderRadius: 20, padding: "5px 14px", fontSize: 11, fontWeight: 600, color: T.copper, letterSpacing: "0.1em", textTransform: "uppercase" }}>Our Offices</span>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(22px,3vw,32px)", fontWeight: 700, color: T.text1, marginTop: 16 }}>Two Hubs Serving All of India</h2>
+              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(22px,3vw,32px)", fontWeight: 700, color: T.text1, marginTop: 16 }}>Our Factory</h2>
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(340px,1fr))", gap: 24 }}>
