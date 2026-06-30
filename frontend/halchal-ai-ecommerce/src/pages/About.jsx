@@ -40,9 +40,7 @@ const TIMELINE = [
   { year: "2015", event: "Founded in Pune", detail: "Rajendra Surana established Halchal Industries with ₹1.2Cr seed capital and a vision to supply quality inline irrigation pipes to Indian farmers at fair prices." },
   { year: "2017", event: "ISO 9001:2015 Certified", detail: "Achieved international quality certification — validating our manufacturing processes, batch testing, and quality control systems across both product lines." },
   { year: "2019", event: "Pan-India Expansion", detail: "Opened distribution centres in Nashik and Hyderabad. Nationwide delivery capability unlocked. Customer base reached 2,000+." },
-  { year: "2021", event: "₹10Cr Annual Revenue", detail: "Crossed our first major revenue milestone driven by increased demand for drip-irrigation adoption under the PM Krishi Sinchayee Yojana." },
   { year: "2023", event: "AI Pricing Engine Launched", detail: "Deployed our proprietary ML model for demand forecasting and dynamic pricing — a first in the Indian pipe supply industry. Pricing accuracy improved 38%." },
-  { year: "2024", event: "10,000+ Customers · 28 States", detail: "Now serving 10,000+ farmers, contractors, and agri-businesses across 28 Indian states and UTs, with ₹50Cr+ in annual GMV." },
 ];
 
 const STATS = [
