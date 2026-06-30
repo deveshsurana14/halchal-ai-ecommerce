@@ -446,34 +446,6 @@ const ProductDetails = () => {
                 </div>
               ) : aiData ? (
                 <div style={{ background: T.bg0, border: `1px solid ${T.greenBd}`, borderRadius: 14, overflow: "hidden", marginBottom: 20 }}>
-                  {/* ML Insights */}
-                  <div style={{ padding: "18px 18px 14px", borderBottom: `1px solid ${T.border}` }}>
-                    <div style={{ fontSize: 11, fontWeight: 700, color: T.text3, letterSpacing: "0.07em", textTransform: "uppercase", fontFamily: T.font, marginBottom: 14 }}>
-                      ML Pricing Breakdown
-                    </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px 20px", marginBottom: 18 }}>
-                      {[
-                        ["Season",        aiData.season],
-                        ["Pred. demand",  `${Math.round(aiData.predicted_demand)} units`],
-                        ["Ex-factory",    `₹${aiData.ex_factory_price?.toLocaleString("en-IN")}`],
-                        ["Agri zone",     aiData.zone],
-                      ].map(([k, v]) => (
-                        <div key={k}>
-                          <div style={{ fontSize: 10, color: T.text3, marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.05em", fontFamily: T.font }}>{k}</div>
-                          <div style={{ fontSize: 13, color: T.text2, fontWeight: 600, fontFamily: T.font }}>{v}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div style={{ fontSize: 11, fontWeight: 700, color: T.text3, letterSpacing: "0.07em", textTransform: "uppercase", fontFamily: T.font, marginBottom: 12 }}>
-                      Price factors
-                    </div>
-                    <FactorBar label="Demand factor"     sublabel="ML model"   value={aiData.factors?.demand_factor}     good={aiData.factors?.demand_factor >= 1} />
-                    <FactorBar label="Competitor factor" sublabel="market"     value={aiData.factors?.competitor_factor} good={aiData.factors?.competitor_factor <= 1} />
-                    <FactorBar label="Logistics factor"  sublabel="freight"    value={aiData.factors?.logistics_factor}  good={false} />
-                    <FactorBar label="Market factor"     sublabel="adoption"   value={aiData.factors?.market_factor}     good={aiData.factors?.market_factor >= 1} />
-                  </div>
-
                   {/* Price summary */}
                   <div style={{ padding: "16px 18px" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
