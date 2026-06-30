@@ -139,6 +139,9 @@ const Navbar = ({ activePage }) => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [menuOpen,    setMenuOpen]    = useState(false);
   const [isLoggedIn,  setIsLoggedIn]  = useState(() => !!localStorage.getItem("halchal_auth"));
+  const [currentUser, setCurrentUser] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("halchal_user") || "null"); } catch { return null; }
+  });
 
   const profileRef  = useRef(null);
   const searchRef   = useRef(null);
@@ -169,7 +172,9 @@ const Navbar = ({ activePage }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("halchal_auth");
+    localStorage.removeItem("halchal_user");
     setIsLoggedIn(false);
+    setCurrentUser(null);
     setProfileOpen(false);
     navigate("/home");
   };
@@ -303,7 +308,7 @@ const Navbar = ({ activePage }) => {
                 }}
                 aria-label="Open profile menu"
                 aria-expanded={profileOpen}>
-                H
+                {(currentUser?.name || "U")[0].toUpperCase()}
               </button>
               {profileOpen && (
                 <div style={{
@@ -315,9 +320,11 @@ const Navbar = ({ activePage }) => {
                 }}>
                   <div style={{ padding: "14px 16px", borderBottom: `1px solid ${T.border}` }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <div style={{ width: 34, height: 34, borderRadius: "50%", background: T.green + "20", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800, color: T.green, flexShrink: 0 }}>H</div>
+                      <div style={{ width: 34, height: 34, borderRadius: "50%", background: T.green + "20", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800, color: T.green, flexShrink: 0 }}>
+                        {(currentUser?.name || "U")[0].toUpperCase()}
+                      </div>
                       <div>
-                        <div style={{ fontSize: 13, fontWeight: 700, color: T.text1, fontFamily: T.font }}>Hrishikesh</div>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: T.text1, fontFamily: T.font }}>{currentUser?.name || "User"}</div>
                         <div style={{ fontSize: 11, color: T.text3, marginTop: 1, fontFamily: T.font }}>Customer account</div>
                       </div>
                     </div>
