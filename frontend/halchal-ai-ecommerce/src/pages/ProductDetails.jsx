@@ -42,27 +42,6 @@ function detectStateFromGeo(address) {
   return ALL_STATES.find(s => raw.includes(normalize(s)) || normalize(s).includes(raw)) || null;
 }
 
-/* ─── Factor bar ───────────────────────────────────────────── */
-const FactorBar = ({ label, sublabel, value, good }) => {
-  const T   = useTheme();
-  const pct = Math.min(Math.abs((value ?? 1) - 1) / 0.20 * 100, 100);
-  return (
-    <div style={{ marginBottom: 14 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 5 }}>
-        <div>
-          <span style={{ fontSize: 12, color: T.text2, fontFamily: T.font }}>{label}</span>
-          {sublabel && <span style={{ fontSize: 10, color: T.text3, marginLeft: 6, fontFamily: T.font }}>{sublabel}</span>}
-        </div>
-        <span style={{ fontSize: 12, fontWeight: 700, color: good ? T.green : T.amber, fontFamily: T.font }}>
-          ×{value?.toFixed(4)}
-        </span>
-      </div>
-      <div style={{ height: 3, background: T.bg3, borderRadius: 2, overflow: "hidden" }}>
-        <div style={{ height: "100%", borderRadius: 2, width: `${pct}%`, background: good ? T.green : T.amber, transition: "width 0.45s ease" }} />
-      </div>
-    </div>
-  );
-};
 
 /* ─── Icons ────────────────────────────────────────────────── */
 const CartIcon = () => (
