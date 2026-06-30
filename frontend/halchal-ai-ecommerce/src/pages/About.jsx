@@ -19,7 +19,7 @@ const TEAM = [
   {
     initials: "SS", name: "Sachin Sonawane", role: "Partner & Sales Director",
     color: PURPLE, bg: "rgba(134,119,255,0.12)",
-    bio: "Drives B2B sales across Maharashtra, Gujarat, and Rajasthan. Built Halchal's agri-dealer network from the ground up with 500+ active distributor relationships across the Pune–Nashik belt.",
+    bio: "Drives B2B sales across Maharashtra, Gujarat, and Rajasthan. Built Halchal's agri-dealer network from the ground up with 500+ active distributor relationships across the Pune region.",
     since: "Since 2022",
   },
   {
@@ -46,7 +46,7 @@ const STATS = [
 
 const TECH_FEATURES = [
   { icon: "🧠", title: "ML Demand Forecasting", desc: "Random Forest model trained on 4 years of sales data predicts per-product demand for each state and season combination." },
-  { icon: "📍", title: "Geo-Based Logistics Pricing", desc: "Logistics cost factor computed per state using distance from Pune/Nashik hubs, road connectivity, and freight rates." },
+  { icon: "📍", title: "Geo-Based Logistics Pricing", desc: "Logistics cost factor computed per state using distance from our Pune factory, road connectivity, and freight rates." },
   { icon: "📈", title: "Dynamic Market Factors", desc: "Market adoption rates, competitor pricing signals, and seasonal agri trends automatically adjust the final price in real time." },
   { icon: "⚡", title: "Sub-2s Price Calculation", desc: "Every price quote is computed live in under 2 seconds, incorporating all four pricing factors simultaneously." },
   { icon: "🔒", title: "Admin Approval Workflow", desc: "Orders above 100 coils are automatically routed to admin review before confirmation, ensuring margin protection." },

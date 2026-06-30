@@ -282,7 +282,7 @@ const ProblemSection = () => {
           {[
             {
               title: "Market rates vary 25–40% by district",
-              desc:  "The same 16mm inline pipe costs ₹480 in Nashik and ₹640 in Nagpur. Distributors set prices based on relationships and proximity — not actual cost data.",
+              desc:  "The same 16mm inline pipe costs ₹480 near the factory and ₹640 further away. Distributors set prices based on relationships and proximity — not actual cost data.",
             },
             {
               title: "No way to verify you're paying fairly",
@@ -347,7 +347,7 @@ const SolutionSection = ({ onShop }) => {
 
           {[
             { label: "Seasonal demand factor",  val: "1.12×", note: "Pre-Kharif surge", color: T.green },
-            { label: "Zone logistics factor",    val: "0.97×", note: "Pune–Nashik belt",  color: T.amber },
+            { label: "Zone logistics factor",    val: "0.97×", note: "Shirur, Pune",      color: T.amber },
             { label: "Market adoption factor",   val: "1.03×", note: "Vidarbha-adjacent", color: T.green },
             { label: "Bulk discount (50 coils)", val: "−10%",  note: "5+ coil tier",      color: T.green },
           ].map(({ label, val, note, color }) => (
@@ -384,7 +384,7 @@ const FeaturesSection = () => {
     { icon: <Ic.Eye />,      color: T.green, bg: T.greenBg, bd: T.greenBd, title: "Full factor transparency",    desc: "See the four factors driving your price: demand, competitor activity, logistics, and market adoption. No hidden markups." },
     { icon: <Ic.Layers />,   color: T.green, bg: T.greenBg, bd: T.greenBd, title: "Bulk discount calculator",   desc: "Automatic tier pricing from 5 coils to 500+. Know your exact price break before you commit to any order size." },
     { icon: <Ic.Receipt />,  color: T.amber, bg: T.amberBg, bd: T.amberBd, title: "GST-ready billing",          desc: "12% GST under HSN 3917 is auto-calculated. Download a complete tax invoice immediately after placing your order." },
-    { icon: <Ic.Package />,  color: T.amber, bg: T.amberBg, bd: T.amberBd, title: "Complete pipe range",        desc: "16mm and 20mm, inline and online emitters. All variants stocked at our Pune and Nashik warehouses, year-round." },
+    { icon: <Ic.Package />,  color: T.amber, bg: T.amberBg, bd: T.amberBd, title: "Complete pipe range",        desc: "16mm and 20mm, inline and online emitters. All variants stocked at our Pune factory, year-round." },
   ];
   return (
     <section id="features" style={{ padding: "88px 40px", background: T.bg0 }}>
@@ -544,9 +544,9 @@ const TestimonialsSection = () => {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
           {[
             {
-              quote: "Ordered 80 coils for our grape farm in Nashik. Delivery arrived within 5 days — well packed, no damage, and the pipe quality is excellent. Emitter spacing is consistent throughout. Will definitely reorder next season.",
+              quote: "Ordered 80 coils for our grape farm near Pune. Delivery arrived within 5 days — well packed, no damage, and the pipe quality is excellent. Emitter spacing is consistent throughout. Will definitely reorder next season.",
               name:  "Sandip Mhaske",
-              role:  "Grape farmer · Nashik, Maharashtra",
+              role:  "Grape farmer · Pune, Maharashtra",
               stars: 5,
             },
             {

@@ -45,12 +45,6 @@ const OFFICES = [
     tag: "Manufacturing & HQ", color: ACCENT,
     mapHint: "Wajewadi village, Shirur Taluka, Pune district",
   },
-  {
-    city: "Nashik (Distribution)", address: "Gat No. 287, Sinnar Industrial Area, Nashik – 422103, Maharashtra",
-    phone: "+91 94235 80386", email: "contch.halchalindustries@gmail.com",
-    tag: "Warehouse & Dispatch", color: COPPER,
-    mapHint: "Near Sinnar Naka, on NH-60",
-  },
 ];
 
 const SUBJECTS = [

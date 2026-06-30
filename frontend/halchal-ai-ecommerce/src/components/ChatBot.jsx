@@ -26,7 +26,7 @@ CROP RECOMMENDATIONS:
 - Sugarcane: 16mm inline, 60cm emitter spacing, 1.2L/hr, ~3500m/acre
 - Banana: 16mm inline, twin-lateral system, 2–4L/hr, ~4500m/acre
 - Cotton: 20mm inline, 90cm emitter spacing, 2L/hr
-- Grapes: 16mm inline, double lateral per row, 50cm spacing (Nashik region)
+- Grapes: 16mm inline, double lateral per row, 50cm spacing (Pune region)
 - Pomegranate: 16mm inline or micro-sprinklers, 5×5m spacing (Solapur, Maharashtra)
 - Onion/Garlic: Flat drip tape or 16mm on raised beds, 30cm spacing
 - Tomato/Chilli: 16mm inline on raised beds, 30–40cm spacing
@@ -36,7 +36,7 @@ SEASONS:
 - Rabi (Nov–Mar): Onion, chilli, wheat — most water-critical season, drip saves 40–50%
 - Zaid (Mar–Jun): Vegetables, watermelon, cucumber — peak irrigation demand
 
-REGIONS: Maharashtra (sugarcane Kolhapur/Pune, grapes Nashik, pomegranate Solapur, onion Nashik), Gujarat (cotton, banana), Rajasthan (pomegranate, vegetables), Karnataka/AP (banana)
+REGIONS: Maharashtra (sugarcane Kolhapur/Pune, grapes Pune, pomegranate Solapur, onion Pune), Gujarat (cotton, banana), Rajasthan (pomegranate, vegetables), Karnataka/AP (banana)
 
 PRICING: 16mm ₹8–12/m · 20mm ₹14–18/m · PVC main line ₹25–60/m · Complete 1-acre system ₹18,000–40,000
 
@@ -114,7 +114,7 @@ function keywordFallback(q) {
   if (q.includes("kharif")) return "For Kharif season (June–Oct): Cotton, sugarcane, soybean. Recommend **pressure-compensating drippers** to handle monsoon rain variations.";
   if (q.includes("rabi")) return "For Rabi season (Nov–Mar): Onion, chilli, wheat. Most water-critical season — drip irrigation saves 40–50% water vs. flood irrigation.";
   // Region only
-  if (q.includes("maharashtra") || q.includes("nashik") || q.includes("pune") || q.includes("solapur")) return "In Maharashtra: Sugarcane (Kolhapur/Pune), Grapes (Nashik), Pomegranate (Solapur), Onion (Nashik).\n\nTell me your crop and land size for a full recommendation.";
+  if (q.includes("maharashtra") || q.includes("nashik") || q.includes("pune") || q.includes("solapur")) return "In Maharashtra: Sugarcane (Kolhapur/Pune), Grapes (Pune), Pomegranate (Solapur), Onion (Pune).\n\nTell me your crop and land size for a full recommendation.";
   if (q.includes("gujarat")) return "In Gujarat: Cotton, groundnut, and castor benefit most from drip. Recommend **20mm Inline** for cotton and **16mm Inline** for smaller crops.\n\nTell me your crop and land size for a full recommendation.";
   if (q.includes("rajasthan")) return "In Rajasthan: Pomegranate, jatropha, and vegetables. Water is scarce — drip irrigation is essential. **16mm Inline** is most common.\n\nTell me your crop and land size for a full recommendation.";
   // Default

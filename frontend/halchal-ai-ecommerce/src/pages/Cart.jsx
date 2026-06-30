@@ -515,7 +515,7 @@ const Cart = () => {
                   "GST Tax Invoice included",
                   "Orders above 100 coils routed to admin approval",
                   "Stock confirmed at time of order",
-                  "Pan-India delivery from Pune/Nashik hub",
+                  "Pan-India delivery from Pune",
                 ].map(text => (
                   <div key={text} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
                     <span style={{ marginTop: 1 }}><CheckIcon /></span>
