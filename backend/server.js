@@ -13,6 +13,7 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
+const bcrypt = require("bcryptjs");
 const { calculateFinalOrderPrice } = require("./utils/pricingEngine");
 
 // Maps a full product name to its ML base category
@@ -42,12 +43,62 @@ const ApprovedPrice = require("./model/ApprovedPrice");
 const Stock         = require("./model/Stock");
 const Order         = require("./model/Order");
 const Cart          = require("./model/Cart");
+const User          = require("./model/User");
 
 /* =========================
    Root Route
 ========================= */
 app.get("/", (req, res) => {
   res.send("Halchal Backend Running");
+});
+
+/* =========================
+   Auth — Register
+========================= */
+app.post("/api/auth/register", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    if (!name || !email || !password)
+      return res.status(400).json({ error: "All fields are required." });
+    if (password.length < 6)
+      return res.status(400).json({ error: "Password must be at least 6 characters." });
+
+    const exists = await User.findOne({ email: email.toLowerCase().trim() });
+    if (exists)
+      return res.status(409).json({ error: "An account with this email already exists." });
+
+    const hashed = await bcrypt.hash(password, 10);
+    const user   = await User.create({ name: name.trim(), email: email.toLowerCase().trim(), password: hashed });
+
+    res.status(201).json({ message: "Account created successfully.", user: { id: user._id, name: user.name, email: user.email } });
+  } catch (err) {
+    console.error("Register error:", err.message);
+    res.status(500).json({ error: "Registration failed. Please try again." });
+  }
+});
+
+/* =========================
+   Auth — Login
+========================= */
+app.post("/api/auth/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password)
+      return res.status(400).json({ error: "Email and password are required." });
+
+    const user = await User.findOne({ email: email.toLowerCase().trim() });
+    if (!user)
+      return res.status(401).json({ error: "No account found with this email. Please create an account." });
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match)
+      return res.status(401).json({ error: "Incorrect password. Please try again." });
+
+    res.json({ message: "Login successful.", user: { id: user._id, name: user.name, email: user.email } });
+  } catch (err) {
+    console.error("Login error:", err.message);
+    res.status(500).json({ error: "Login failed. Please try again." });
+  }
 });
 
 /* =========================

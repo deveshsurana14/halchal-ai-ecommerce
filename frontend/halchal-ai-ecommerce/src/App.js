@@ -21,6 +21,7 @@ import Orders from "./pages/admin/Orders";
 import PricingApprovals from "./pages/admin/PricingApprovals";
 import Reports from "./pages/admin/Reports";
 import Settings from "./pages/admin/Settings";
+import ContactMessages from "./pages/admin/ContactMessages";
 import ProductDetails from "./pages/ProductDetails";
 
 import { CartProvider } from "./context/CartContext";
@@ -58,6 +59,7 @@ function App() {
             <Route path="orders" element={<Orders />} />
             <Route path="pricing-approvals" element={<PricingApprovals />} />
             <Route path="reports" element={<Reports />} />
+            <Route path="messages" element={<ContactMessages />} />
             <Route path="settings" element={<Settings />} />
 
           </Route>

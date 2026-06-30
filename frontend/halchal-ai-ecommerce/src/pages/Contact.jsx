@@ -197,6 +197,21 @@ const Contact = () => {
     setErrors({});
     setSubmitting(true);
     await new Promise(r => setTimeout(r, 1400));
+
+    const existing = JSON.parse(localStorage.getItem("halchal_contact_messages") || "[]");
+    const newMsg = {
+      id: Date.now().toString(36).toUpperCase().slice(-8),
+      fullName: form.fullName,
+      email: form.email,
+      phone: form.phone,
+      company: form.company,
+      subject: form.subject,
+      message: form.message,
+      timestamp: new Date().toISOString(),
+      read: false,
+    };
+    localStorage.setItem("halchal_contact_messages", JSON.stringify([newMsg, ...existing]));
+
     setSubmitting(false);
     setSubmitted(true);
   };
