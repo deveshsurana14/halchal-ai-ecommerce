@@ -79,7 +79,7 @@ const TrustTicker = () => {
     "HSN 3917 Compliant",
     "HDPE UV-Stabilised",
     "18 States Covered",
-    "₹50Cr+ Pipes Sold",
+    "₹5Cr+ Pipes Sold",
   ];
   const doubled = [...items, ...items];
   return (

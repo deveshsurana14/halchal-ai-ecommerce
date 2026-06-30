@@ -513,7 +513,7 @@ const BenefitsSection = () => {
         <div className="scroll-reveal" style={{ background: T.bg0, border: `1px solid ${T.border}`, borderRadius: 20, padding: "52px 48px", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 32 }}>
           {[
             { val: "1,400+",  label: "Farmers trust Halchal",  color: T.green },
-            { val: "₹50Cr+",  label: "Worth of pipes sold",    color: T.amber },
+            { val: "₹5Cr+",   label: "Worth of pipes sold",    color: T.amber },
             { val: "99.2%",   label: "On-time delivery rate",  color: T.green },
             { val: "28",      label: "States covered by 2025", color: T.green },
             { val: "< 2s",    label: "Price calculation time", color: T.amber },

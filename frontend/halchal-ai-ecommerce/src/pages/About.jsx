@@ -45,7 +45,7 @@ const TIMELINE = [
 
 const STATS = [
   { value: "10,000+", label: "Happy Customers",    color: ACCENT  },
-  { value: "₹50Cr+",  label: "Annual GMV",          color: COPPER  },
+  { value: "₹5Cr+",   label: "Annual GMV",          color: COPPER  },
   { value: "28",      label: "States Covered",       color: PURPLE  },
   { value: "99.8%",   label: "Quality Pass Rate",    color: ACCENT  },
   { value: "9+",      label: "Years of Excellence",  color: "#00AEFF" },
