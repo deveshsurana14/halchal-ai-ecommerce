@@ -77,7 +77,6 @@ function extractAcres(q) {
 
 /* ─── Fallback keyword matching when no API key is set ─── */
 function keywordFallback(q) {
-  const raw = q;
   q = q.toLowerCase();
 
   // Greetings
