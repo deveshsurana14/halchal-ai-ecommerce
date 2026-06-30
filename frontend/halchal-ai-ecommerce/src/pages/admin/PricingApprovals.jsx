@@ -55,9 +55,7 @@ export default function PricingApprovals() {
 
   const activeZone = ZONES.find(z => z.id === zone) || ZONES[0];
 
-  const getMock = useCallback((pipe) =>
-    Math.round(BASE[pipe].base * activeZone.mult / 10) * 10,
-  [activeZone.mult]);
+  const getMock = useCallback((pipe) => BASE[pipe].base, []);
 
   const fetchPrices = useCallback(async () => {
     setLoading(true);
@@ -78,20 +76,16 @@ export default function PricingApprovals() {
         ]);
         let wp = ws.approvedPrice ?? ws.finalPrice;
         let np = ns.approvedPrice ?? ns.finalPrice;
-        if (wp && wp < 100) wp = Math.round(wp * 300 / 10) * 10;
-        if (np && np < 100) np = Math.round(np * 300 / 10) * 10;
-        if (wp) wp = Math.round(wp * activeZone.mult / 10) * 10;
-        if (np) np = Math.round(np * activeZone.mult / 10) * 10;
         res[pipe] = {
           withSub: wp || getMock(pipe),
-          noSub:   np || Math.round(getMock(pipe) * 0.93 / 10) * 10,
+          noSub:   np || getMock(pipe),
           season:  ws.season || null,
           demand:  ws.predicted_demand || null,
           factors: ws.factors || null,
         };
       } catch {
         const mock = getMock(pipe);
-        res[pipe] = { withSub: mock, noSub: Math.round(mock * 0.93 / 10) * 10, season: null, demand: null, factors: null };
+        res[pipe] = { withSub: mock, noSub: mock, season: null, demand: null, factors: null };
       }
     }
     setPrices(res);
