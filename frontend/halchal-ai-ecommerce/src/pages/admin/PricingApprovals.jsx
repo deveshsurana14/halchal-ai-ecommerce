@@ -40,7 +40,6 @@ const HISTORY = [
 
 export default function PricingApprovals() {
   const [zone,      setZone]      = useState("Z1");
-  const [subsidy,   setSubsidy]   = useState(true);
   const [prices,    setPrices]    = useState({});
   const [overrides, setOverrides] = useState({});
   const [approved,  setApproved]  = useState({});
@@ -64,28 +63,19 @@ export default function PricingApprovals() {
     const res   = {};
     for (const pipe of PIPES) {
       try {
-        const [ws, ns] = await Promise.all([
-          fetch(`${API_BASE}/api/ai-price`, {
-            method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ pipe_type: pipe, zone, month, year, govt_subsidy: 1 }),
-          }).then(r => r.json()),
-          fetch(`${API_BASE}/api/ai-price`, {
-            method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ pipe_type: pipe, zone, month, year, govt_subsidy: 0 }),
-          }).then(r => r.json()),
-        ]);
+        const ws = await fetch(`${API_BASE}/api/ai-price`, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ pipe_type: pipe, zone, month, year, govt_subsidy: 1 }),
+        }).then(r => r.json());
         let wp = ws.approvedPrice ?? ws.finalPrice;
-        let np = ns.approvedPrice ?? ns.finalPrice;
         res[pipe] = {
-          withSub: wp || getMock(pipe),
-          noSub:   np || getMock(pipe),
+          price:   wp || getMock(pipe),
           season:  ws.season || null,
           demand:  ws.predicted_demand || null,
           factors: ws.factors || null,
         };
       } catch {
-        const mock = getMock(pipe);
-        res[pipe] = { withSub: mock, noSub: mock, season: null, demand: null, factors: null };
+        res[pipe] = { price: getMock(pipe), season: null, demand: null, factors: null };
       }
     }
     setPrices(res);
@@ -110,7 +100,7 @@ export default function PricingApprovals() {
   const approveAll = () => {
     PIPES.forEach(pipe => {
       if (!approved[pipe]) {
-        const ai  = subsidy ? prices[pipe]?.withSub : prices[pipe]?.noSub;
+        const ai  = prices[pipe]?.price;
         const fin = overrides[pipe] ? parseFloat(overrides[pipe]) : ai;
         if (fin) doApprove(pipe, fin);
       }
@@ -146,25 +136,6 @@ export default function PricingApprovals() {
           </p>
         </div>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-          {/* PMKSY subsidy toggle */}
-          <div
-            onClick={() => setSubsidy(s => !s)}
-            style={{
-              display: "flex", alignItems: "center", gap: 9,
-              background: subsidy ? T.greenSoft : T.roseSoft,
-              border: `1px solid ${subsidy ? T.greenBorder : "rgba(255,85,119,0.25)"}`,
-              borderRadius: 9, padding: "8px 14px", cursor: "pointer", userSelect: "none",
-            }}
-          >
-            <div style={{ width: 34, height: 20, borderRadius: 10, background: subsidy ? T.green : T.t3, position: "relative", transition: "background 0.22s", flexShrink: 0 }}>
-              <div style={{ position: "absolute", top: 3, left: subsidy ? 17 : 3, width: 14, height: 14, borderRadius: "50%", background: "#fff", transition: "left 0.22s" }} />
-            </div>
-            <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: subsidy ? T.green : T.rose }}>PMKSY Subsidy</div>
-              <div style={{ fontSize: 10, color: T.t3 }}>{subsidy ? "Active — demand +18%" : "Inactive — adjusted down"}</div>
-            </div>
-          </div>
-
           <select
             value={zone}
             onChange={e => setZone(e.target.value)}
@@ -196,7 +167,7 @@ export default function PricingApprovals() {
                 {pendingCount} price{pendingCount > 1 ? "s" : ""} waiting for your approval
               </div>
               <div style={{ fontSize: 12, color: T.t2, marginTop: 2 }}>
-                {activeZone.label} · {subsidy ? "PMKSY Active" : "No Subsidy"} · Review each price below and click Approve
+                {activeZone.label} · Review each price below and click Approve
               </div>
             </div>
           </div>
@@ -223,8 +194,7 @@ export default function PricingApprovals() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 16 }}>
         {PIPES.map((pipe, i) => {
           const pd         = prices[pipe];
-          const aiPrice    = subsidy ? pd?.withSub : pd?.noSub;
-          const altPrice   = subsidy ? pd?.noSub : pd?.withSub;
+          const aiPrice    = pd?.price;
           const meta       = BASE[pipe];
           const override   = overrides[pipe];
           const finalPrice = override ? parseFloat(override) : aiPrice;
@@ -280,7 +250,7 @@ export default function PricingApprovals() {
                         ₹{aiPrice ?? "—"}
                       </div>
                       <div style={{ fontSize: 10, color: T.t3, marginTop: 4 }}>
-                        /bundle · {subsidy ? "PMKSY Active" : "No Subsidy"}
+                        /bundle
                       </div>
                     </div>
 
@@ -299,19 +269,6 @@ export default function PricingApprovals() {
                       )}
                     </div>
                   </div>
-
-                  {/* Other subsidy state comparison */}
-                  {altPrice && (
-                    <div style={{ fontSize: 12, color: T.t3, background: T.bg3, borderRadius: 8, padding: "9px 14px", marginBottom: 14, display: "flex", justifyContent: "space-between" }}>
-                      <span>{subsidy ? "Without PMKSY" : "With PMKSY"}:</span>
-                      <span style={{ color: T.t2, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>
-                        ₹{altPrice}/bundle{" "}
-                        <span style={{ color: T.t3, fontWeight: 400 }}>
-                          ({subsidy ? "−" : "+"}₹{Math.abs(aiPrice - altPrice)} impact)
-                        </span>
-                      </span>
-                    </div>
-                  )}
 
                   {/* Why this price — zone context */}
                   <div style={{ background: "rgba(56,192,255,0.06)", border: "1px solid rgba(56,192,255,0.13)", borderRadius: 8, padding: "10px 14px", marginBottom: 16, display: "flex", gap: 8, alignItems: "flex-start" }}>
