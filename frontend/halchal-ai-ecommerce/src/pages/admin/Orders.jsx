@@ -84,7 +84,7 @@ export default function Orders() {
     pending:  orders.filter(o => o.status === "Pending Approval").length,
     approved: orders.filter(o => o.status === "Approved").length,
     shipped:  orders.filter(o => o.status === "Shipped").length,
-    revenue:  orders.filter(o => o.status !== "Cancelled").reduce((s, o) => s + (o.amount || 0), 0),
+    revenue:  orders.filter(o => o.status !== "Cancelled").reduce((s, o) => s + (o.total_with_gst || o.amount || 0), 0),
   };
 
   return (
@@ -186,8 +186,8 @@ export default function Orders() {
                       <td style={{ padding: "13px 16px", fontSize: 12, color: T.t2 }}>{order.pipe_type}</td>
                       <td style={{ padding: "13px 16px", fontSize: 12, color: T.t2 }}>{order.quantity} bundle{order.quantity !== 1 ? "s" : ""}</td>
                       <td style={{ padding: "13px 16px", fontSize: 12, color: T.t2 }}>{order.region}</td>
-                      <td style={{ padding: "13px 16px", fontSize: 13, color: T.green, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>₹{(order.amount || 0).toLocaleString()}</td>
-                      <td style={{ padding: "13px 16px", fontSize: 11, color: T.t3 }}>{order.date || "—"}</td>
+                      <td style={{ padding: "13px 16px", fontSize: 13, color: T.green, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>₹{(order.total_with_gst || order.amount || 0).toLocaleString()}</td>
+                      <td style={{ padding: "13px 16px", fontSize: 11, color: T.t3 }}>{order.date || (order.created_at ? new Date(order.created_at).toLocaleDateString("en-IN") : "—")}</td>
                       <td style={{ padding: "13px 16px" }}><Badge status={order.status} /></td>
                       <td style={{ padding: "13px 16px" }}>
                         <div style={{ display: "flex", gap: 6 }} onClick={e => e.stopPropagation()}>
@@ -215,7 +215,7 @@ export default function Orders() {
                             <div><span style={{ color: T.t3 }}>Pipe: </span>{order.pipe_type}</div>
                             <div><span style={{ color: T.t3 }}>Qty: </span>{order.quantity} bundle{order.quantity !== 1 ? "s" : ""} ({(order.quantity * 300).toLocaleString()}m)</div>
                             <div><span style={{ color: T.t3 }}>Region: </span>{order.region}</div>
-                            <div><span style={{ color: T.t3 }}>Amount: </span><span style={{ color: T.green, fontWeight: 700 }}>₹{(order.amount || 0).toLocaleString()}</span></div>
+                            <div><span style={{ color: T.t3 }}>Amount: </span><span style={{ color: T.green, fontWeight: 700 }}>₹{(order.total_with_gst || order.amount || 0).toLocaleString()}</span></div>
                             <div><span style={{ color: T.t3 }}>Status: </span>{order.status}</div>
                           </div>
                         </td>

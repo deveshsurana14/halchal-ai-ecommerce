@@ -46,7 +46,6 @@ const NAV = [
   { label: "Stock Management",  path: "stock",             icon: Icons.box,    badge: 2    },
   { label: "Orders",            path: "orders",            icon: Icons.orders, badge: 3    },
   { label: "Pricing Approvals", path: "pricing-approvals", icon: Icons.tag,    badge: 4    },
-  { label: "Reports",           path: "reports",           icon: Icons.chart,  badge: null },
   { label: "Messages",          path: "messages",          icon: Icons.mail,   badge: null },
   { label: "Settings",          path: "settings",          icon: Icons.cog,    badge: null },
 ];

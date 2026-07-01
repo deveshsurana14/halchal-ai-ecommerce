@@ -258,6 +258,42 @@ const Cart = () => {
   const [results,    setResults]    = useState(null);   // array of { name, status, message }
   const [ordersDone, setOrdersDone] = useState(false);
 
+  const handlePlaceOrderDirect = async () => {
+    setPlacing(true);
+    setResults(null);
+    const all = [];
+    for (const item of items) {
+      try {
+        const res = await fetch(`${API_BASE}/api/orders`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            pipe_type:        item.name,
+            quantity:         item.quantity,
+            region:           item.state,
+            session_id:       sessionId,
+            approved_price:   item.approvedPrice,
+            final_price:      item.finalPrice,
+            discount_percent: item.discountPercent,
+            total_ex_gst:     item.totalExGST,
+            total_gst:        item.totalGST,
+            total_with_gst:   item.totalWithGST,
+            season:           item.season,
+            zone:             item.zone,
+            predicted_demand: item.predictedDemand,
+          }),
+        });
+        const data = await res.json();
+        all.push({ name: item.name, status: res.ok ? "ok" : "err", message: res.ok ? (data.message || "Order placed!") : (data.error || "Failed") });
+      } catch {
+        all.push({ name: item.name, status: "err", message: "Network error — is the backend running?" });
+      }
+    }
+    setResults(all);
+    if (all.every(r => r.status === "ok")) { clearCart(); setOrdersDone(true); }
+    setPlacing(false);
+  };
+
   const handlePlaceAllOrders = async () => {
     setPlacing(true);
     setResults(null);
@@ -507,6 +543,27 @@ const Cart = () => {
                       <span className="spinner" /> Placing Orders...
                     </span>
                   : `Place ${itemCount > 1 ? "All " + itemCount + " Orders" : "Order"}`}
+              </button>
+
+              {/* Demo / test order path — bypasses payment */}
+              <button
+                disabled={placing}
+                onClick={handlePlaceOrderDirect}
+                style={{
+                  marginTop: 10, width: "100%", padding: "12px",
+                  background: "transparent",
+                  border: "1px solid rgba(0,229,160,0.30)",
+                  color: T.accent, borderRadius: 10,
+                  fontSize: 13, fontWeight: 600,
+                  fontFamily: "'Lora', Georgia, serif",
+                  cursor: placing ? "not-allowed" : "pointer",
+                  opacity: placing ? 0.5 : 1,
+                  transition: "border-color 0.2s, background 0.2s",
+                }}
+                onMouseEnter={e => { if (!placing) { e.currentTarget.style.background = "rgba(0,229,160,0.07)"; e.currentTarget.style.borderColor = "rgba(0,229,160,0.55)"; } }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(0,229,160,0.30)"; }}
+              >
+                Place Order (Demo)
               </button>
 
               {/* Trust signals */}

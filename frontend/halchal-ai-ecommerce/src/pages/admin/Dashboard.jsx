@@ -194,20 +194,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Zone strip */}
-      <div style={{
-        background: T.amberSoft, border: `1px solid ${T.amberBorder}`,
-        borderRadius: 10, padding: "10px 18px",
-        display: "flex", alignItems: "center", gap: 14, fontSize: 12,
-        animation: "slideUp 0.3s ease both", animationDelay: "40ms",
-      }}>
-        <span style={{ color: T.amber, fontWeight: 700 }}>{activeZone.label}</span>
-        <span style={{ color: T.t3 }}>·</span>
-        <span style={{ color: T.t2 }}>{activeZone.states}</span>
-        <span style={{ color: T.t3 }}>·</span>
-        <span style={{ color: T.t3 }}>Transport multiplier: <span style={{ color: T.t1, fontWeight: 600 }}>{activeZone.mult}×</span></span>
-      </div>
-
       {/* KPI cards */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16 }}>
         {KPI.map(({ label, value, sub, accent, icon }, i) => (

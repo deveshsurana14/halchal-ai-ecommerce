@@ -13,23 +13,40 @@ const T = {
 };
 
 const BUNDLE = 300;
-const PIPES  = ["16mm Inline", "16mm Online", "20mm Inline", "20mm Online"];
-const PIPE_COLORS = ["#00D68F", "#F5A623", "#38C0FF", "#818CF8"];
+const PIPES = [
+  "Premium 16mm Inline", "Gold 16mm Inline",
+  "Supreme 16mm Online",
+  "Premium 20mm Inline", "Shakti 20mm Inline",
+  "Supreme 20mm Online",
+];
+const PIPE_COLORS = ["#00D68F", "#00A36C", "#F5A623", "#38C0FF", "#2196F3", "#818CF8"];
 
-const CAP = { "16mm Inline": 20, "16mm Online": 20, "20mm Inline": 16, "20mm Online": 16 };
-const MOCK = { "16mm Inline": 14, "16mm Online": 9,  "20mm Inline": 6,  "20mm Online": 3  };
+const CAP = {
+  "Premium 16mm Inline": 300, "Gold 16mm Inline": 250,
+  "Supreme 16mm Online": 300,
+  "Premium 20mm Inline": 250, "Shakti 20mm Inline": 200,
+  "Supreme 20mm Online": 200,
+};
+const MOCK = {
+  "Premium 16mm Inline": 200, "Gold 16mm Inline": 200,
+  "Supreme 16mm Online": 200,
+  "Premium 20mm Inline": 200, "Shakti 20mm Inline": 200,
+  "Supreme 20mm Online": 200,
+};
 const META = {
-  "16mm Inline": { crop: "Banana · Grapes · Onion",       season: "Rabi / Kharif", reorder: 5 },
-  "16mm Online": { crop: "Tomato · Chilli · Pomegranate", season: "All seasons",   reorder: 5 },
-  "20mm Inline": { crop: "Sugarcane · Cotton",            season: "Kharif",        reorder: 4 },
-  "20mm Online": { crop: "Cotton · Maize",                season: "Kharif",        reorder: 3 },
+  "Premium 16mm Inline": { crop: "Banana · Grapes · Onion",       season: "Rabi / Kharif", reorder: 50 },
+  "Gold 16mm Inline":    { crop: "Pomegranate · Grapes",          season: "Rabi",          reorder: 40 },
+  "Supreme 16mm Online": { crop: "Tomato · Chilli · Pomegranate", season: "All seasons",   reorder: 50 },
+  "Premium 20mm Inline": { crop: "Sugarcane · Cotton",            season: "Kharif",        reorder: 40 },
+  "Shakti 20mm Inline":  { crop: "Sugarcane · Maize",             season: "Kharif",        reorder: 30 },
+  "Supreme 20mm Online": { crop: "Cotton · Maize",                season: "Kharif",        reorder: 30 },
 };
 const HISTORY = [
-  { date: "May 1", "16mm Inline": 13, "16mm Online": 10, "20mm Inline": 7, "20mm Online": 4 },
-  { date: "May 2", "16mm Inline": 13, "16mm Online": 10, "20mm Inline": 7, "20mm Online": 4 },
-  { date: "May 3", "16mm Inline": 14, "16mm Online": 9,  "20mm Inline": 7, "20mm Online": 3 },
-  { date: "May 5", "16mm Inline": 14, "16mm Online": 9,  "20mm Inline": 6, "20mm Online": 3 },
-  { date: "May 7", "16mm Inline": 14, "16mm Online": 9,  "20mm Inline": 6, "20mm Online": 3 },
+  { date: "May 1", "Premium 16mm Inline": 210, "Gold 16mm Inline": 205, "Supreme 16mm Online": 208, "Premium 20mm Inline": 202, "Shakti 20mm Inline": 198, "Supreme 20mm Online": 197 },
+  { date: "May 2", "Premium 16mm Inline": 208, "Gold 16mm Inline": 204, "Supreme 16mm Online": 206, "Premium 20mm Inline": 201, "Shakti 20mm Inline": 199, "Supreme 20mm Online": 198 },
+  { date: "May 3", "Premium 16mm Inline": 205, "Gold 16mm Inline": 202, "Supreme 16mm Online": 204, "Premium 20mm Inline": 200, "Shakti 20mm Inline": 200, "Supreme 20mm Online": 200 },
+  { date: "May 5", "Premium 16mm Inline": 202, "Gold 16mm Inline": 201, "Supreme 16mm Online": 202, "Premium 20mm Inline": 200, "Shakti 20mm Inline": 200, "Supreme 20mm Online": 200 },
+  { date: "May 7", "Premium 16mm Inline": 200, "Gold 16mm Inline": 200, "Supreme 16mm Online": 200, "Premium 20mm Inline": 200, "Shakti 20mm Inline": 200, "Supreme 20mm Online": 200 },
 ];
 
 const levelColor = (pct) => pct > 60 ? T.green  : pct > 30 ? T.amber : T.rose;
