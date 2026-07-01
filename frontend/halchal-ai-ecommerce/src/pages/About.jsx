@@ -173,7 +173,7 @@ const About = () => {
         <Navbar />
 
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section style={{ position: "relative", overflow: "hidden", padding: "90px 40px 80px", textAlign: "center" }}>
+        <section className="m-hero-pad" style={{ position: "relative", overflow: "hidden", padding: "90px 40px 80px", textAlign: "center" }}>
           {/* Grid bg */}
           <div style={{ position: "absolute", inset: 0, opacity: 0.025, backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
           <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,229,160,0.07), transparent)` }} />
@@ -207,7 +207,7 @@ const About = () => {
         </section>
 
         {/* ── Stats strip ──────────────────────────────────── */}
-        <section style={{ padding: "0 40px 70px" }}>
+        <section className="m-prod-pad" style={{ padding: "0 40px 70px" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <div style={{ background: T.bg2, border: `1px solid ${T.border}`, borderRadius: 20, padding: "40px 48px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(140px,1fr))", gap: 24 }}>
               {STATS.map(({ value, label, color }) => (
@@ -221,7 +221,7 @@ const About = () => {
         </section>
 
         {/* ── Mission & Vision ─────────────────────────────── */}
-        <section style={{ padding: "0 40px 80px" }}>
+        <section className="m-prod-pad" style={{ padding: "0 40px 80px" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
               <span style={{ background: "rgba(0,229,160,0.10)", border: "1px solid rgba(0,229,160,0.25)", borderRadius: 20, padding: "5px 14px", fontSize: 11, fontWeight: 600, color: T.accent, letterSpacing: "0.1em", textTransform: "uppercase" }}>Who We Are</span>
@@ -254,7 +254,7 @@ const About = () => {
         </section>
 
         {/* ── Company Timeline ─────────────────────────────── */}
-        <section style={{ padding: "0 40px 80px", background: T.bg1, borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}` }}>
+        <section className="m-prod-pad" style={{ padding: "0 40px 80px", background: T.bg1, borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}` }}>
           <div style={{ maxWidth: 860, margin: "0 auto", paddingTop: 70 }}>
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <span style={{ background: "rgba(255,176,32,0.10)", border: "1px solid rgba(255,176,32,0.25)", borderRadius: 20, padding: "5px 14px", fontSize: 11, fontWeight: 600, color: T.copper, letterSpacing: "0.1em", textTransform: "uppercase" }}>Our Journey</span>
@@ -283,7 +283,7 @@ const About = () => {
         </section>
 
         {/* ── AI Technology ────────────────────────────────── */}
-        <section style={{ padding: "80px 40px" }}>
+        <section className="m-section" style={{ padding: "80px 40px" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <span style={{ background: "rgba(134,119,255,0.10)", border: "1px solid rgba(134,119,255,0.25)", borderRadius: 20, padding: "5px 14px", fontSize: 11, fontWeight: 600, color: T.purple, letterSpacing: "0.1em", textTransform: "uppercase" }}>AI Technology</span>
@@ -314,7 +314,7 @@ const About = () => {
         </section>
 
         {/* ── Leadership Team ──────────────────────────────── */}
-        <section style={{ padding: "0 40px 80px", background: T.bg1, borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}` }}>
+        <section className="m-prod-pad" style={{ padding: "0 40px 80px", background: T.bg1, borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}` }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", paddingTop: 70 }}>
             <div style={{ textAlign: "center", marginBottom: 56 }}>
               <span style={{ background: "rgba(0,174,255,0.10)", border: "1px solid rgba(0,174,255,0.25)", borderRadius: 20, padding: "5px 14px", fontSize: 11, fontWeight: 600, color: "#00AEFF", letterSpacing: "0.1em", textTransform: "uppercase" }}>Leadership</span>
@@ -338,7 +338,7 @@ const About = () => {
         </section>
 
         {/* ── Certifications ──────────────────────────────── */}
-        <section style={{ padding: "80px 40px" }}>
+        <section className="m-section" style={{ padding: "80px 40px" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <div style={{ textAlign: "center", marginBottom: 48 }}>
               <span style={{ background: "rgba(255,176,32,0.10)", border: "1px solid rgba(255,176,32,0.25)", borderRadius: 20, padding: "5px 14px", fontSize: 11, fontWeight: 600, color: T.copper, letterSpacing: "0.1em", textTransform: "uppercase" }}>Trust & Compliance</span>

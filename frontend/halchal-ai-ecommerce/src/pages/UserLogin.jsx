@@ -119,7 +119,7 @@ export default function UserLogin() {
       </div>
 
       <div style={{ width: "100%", maxWidth: 440, position: "relative", zIndex: 1 }}>
-        <div style={{ background: T.bg1, border: `1px solid ${T.border}`, borderRadius: 20, padding: "44px 40px", boxShadow: "0 24px 80px rgba(0,0,0,0.55)" }}>
+        <div className="m-login-box" style={{ background: T.bg1, border: `1px solid ${T.border}`, borderRadius: 20, padding: "44px 40px", boxShadow: "0 24px 80px rgba(0,0,0,0.55)" }}>
 
           {/* Brand */}
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32 }}>

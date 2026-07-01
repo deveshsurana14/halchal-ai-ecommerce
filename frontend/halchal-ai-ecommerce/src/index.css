@@ -196,3 +196,68 @@ img { transition: opacity 0.3s ease; }
 [data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 [data-theme="light"] ::selection      { background: rgba(22,163,74,0.22); color: #0F172A; }
 [data-theme="light"] ::-moz-selection { background: rgba(22,163,74,0.22); color: #0F172A; }
+
+/* ── Mobile responsive layout overrides ─────────────────────── */
+@media (max-width: 768px) {
+  /* Cart: stack sidebar below items */
+  .m-cart-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .m-cart-layout > *:last-child {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  /* Page inner padding: narrow on mobile */
+  .m-page-pad {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 24px !important;
+  }
+  .m-prod-pad {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Hero section padding */
+  .m-hero-pad {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Section padding (88px 40px → 48px 20px) */
+  .m-section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 52px !important;
+    padding-bottom: 52px !important;
+  }
+
+  /* Any 2-col equal grid should stack */
+  .m-2col {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Prod card image height on mobile */
+  .prod-img { height: 160px !important; }
+
+  /* Login box full-width on small screens */
+  .m-login-box {
+    padding: 28px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .m-hero-pad {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
+  .m-section {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+  nav { padding: 0 14px !important; }
+}

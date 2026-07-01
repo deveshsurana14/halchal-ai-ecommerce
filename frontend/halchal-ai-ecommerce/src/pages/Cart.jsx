@@ -430,7 +430,7 @@ const Cart = () => {
 
         <Navbar />
 
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 40px 80px" }}>
+        <div className="m-page-pad" style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 40px 80px" }}>
 
           {/* Page title */}
           <div style={{ marginBottom: 36 }}>
@@ -447,7 +447,7 @@ const Cart = () => {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 32, alignItems: "start" }}>
+          <div className="m-cart-layout" style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 32, alignItems: "start" }}>
 
             {/* ── Cart items ── */}
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>

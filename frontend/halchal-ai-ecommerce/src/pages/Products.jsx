@@ -211,7 +211,7 @@ const Products = () => {
         <Navbar />
 
         {/* Page header */}
-        <div style={{ padding: "56px 40px 0", maxWidth: 1200, margin: "0 auto" }}>
+        <div className="m-page-pad" style={{ padding: "56px 40px 0", maxWidth: 1200, margin: "0 auto" }}>
           <span style={{ display: "inline-block", fontSize: 11, fontWeight: 700, color: T.text3, letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 14, fontFamily: T.font }}>
             All products
           </span>
@@ -262,7 +262,7 @@ const Products = () => {
         </div>
 
         {/* Product grid */}
-        <div style={{ padding: "0 40px 88px", maxWidth: 1200, margin: "0 auto" }}>
+        <div className="m-prod-pad" style={{ padding: "0 40px 88px", maxWidth: 1200, margin: "0 auto" }}>
           {filtered.length === 0 ? (
             <EmptyState query={query} onClear={() => setQuery("")} />
           ) : (

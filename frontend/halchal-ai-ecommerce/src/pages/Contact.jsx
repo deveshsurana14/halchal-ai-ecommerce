@@ -11,8 +11,8 @@ const PURPLE = "#8677FF";
 const CONTACT_INFO = [
   {
     icon: "✉️", label: "Email Us", color: ACCENT, bg: "rgba(0,229,160,0.10)",
-    primary: "contch.halchalindustries@gmail.com",
-    primaryHref: "mailto:contch.halchalindustries@gmail.com",
+    primary: "halchalindustries@gmail.com",
+    primaryHref: "mailto:halchalindustries@gmail.com",
     secondary: null,
     note: "We reply within 4 business hours",
   },
@@ -41,7 +41,7 @@ const CONTACT_INFO = [
 const OFFICES = [
   {
     city: "Shirur, Pune (Factory)", address: "Wajewadi, Pimple Jagtap Chaufulla, Taluka Shirur, Pune – 412208, Maharashtra",
-    phone: "+91 94235 80386", email: "contch.halchalindustries@gmail.com",
+    phone: "+91 94235 80386", email: "halchalindustries@gmail.com",
     tag: "Manufacturing & HQ", color: ACCENT,
     mapHint: "Wajewadi village, Shirur Taluka, Pune district",
   },
@@ -255,7 +255,7 @@ const Contact = () => {
         <Navbar />
 
         {/* Page header */}
-        <section style={{ position: "relative", padding: "70px 40px 56px", textAlign: "center", overflow: "hidden" }}>
+        <section className="m-hero-pad" style={{ position: "relative", padding: "70px 40px 56px", textAlign: "center", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0, opacity: 0.025, backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
           <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 50% 50% at 50% 0%, rgba(0,229,160,0.06), transparent)" }} />
           <div style={{ position: "relative", maxWidth: 640, margin: "0 auto" }}>
@@ -273,8 +273,8 @@ const Contact = () => {
         </section>
 
         {/* Main content: form + info */}
-        <section style={{ padding: "0 40px 80px" }}>
-          <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 40, alignItems: "start" }}>
+        <section className="m-prod-pad" style={{ padding: "0 40px 80px" }}>
+          <div className="m-2col" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 40, alignItems: "start" }}>
 
             {/* ── Contact Form ── */}
             <div style={{ background: T.bg2, border: `1px solid ${T.border}`, borderRadius: 20, padding: "40px" }}>
@@ -395,7 +395,7 @@ const Contact = () => {
         </section>
 
         {/* ── Office Locations ──────────────────────────────── */}
-        <section style={{ padding: "70px 40px 80px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
+        <section className="m-section" style={{ padding: "70px 40px 80px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
             <div style={{ marginBottom: 36 }}>
               <span style={{ background: "rgba(255,176,32,0.10)", border: "1px solid rgba(255,176,32,0.25)", borderRadius: 20, padding: "5px 14px", fontSize: 11, fontWeight: 600, color: T.copper, letterSpacing: "0.1em", textTransform: "uppercase" }}>Our Offices</span>
@@ -441,7 +441,7 @@ const Contact = () => {
         </section>
 
         {/* ── FAQ strip ──────────────────────────────────────── */}
-        <section style={{ padding: "70px 40px 80px" }}>
+        <section className="m-section" style={{ padding: "70px 40px 80px" }}>
           <div style={{ maxWidth: 860, margin: "0 auto" }}>
             <div style={{ textAlign: "center", marginBottom: 44 }}>
               <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: "clamp(22px,3vw,30px)", fontWeight: 700, color: T.text1, marginBottom: 10 }}>Frequently Asked Questions</h2>

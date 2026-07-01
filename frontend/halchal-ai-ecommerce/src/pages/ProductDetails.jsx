@@ -409,7 +409,7 @@ const ProductDetails = () => {
 
         <Navbar />
 
-        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "40px 40px 88px" }}>
+        <div className="m-page-pad" style={{ maxWidth: 1160, margin: "0 auto", padding: "40px 40px 88px" }}>
 
           {/* Back breadcrumb */}
           <button

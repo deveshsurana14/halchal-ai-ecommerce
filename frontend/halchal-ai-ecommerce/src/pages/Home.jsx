@@ -211,7 +211,7 @@ const Hero = ({ onShop }) => {
       {/* Single soft green glow */}
       <div style={{ position: "absolute", top: "40%", left: "50%", transform: "translate(-50%,-50%)", width: "50%", height: "50%", background: "radial-gradient(ellipse, rgba(34,197,94,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-      <div style={{ position: "relative", maxWidth: 860, margin: "0 auto", padding: "108px 40px 100px", textAlign: "center" }}>
+      <div className="m-hero-pad" style={{ position: "relative", maxWidth: 860, margin: "0 auto", padding: "108px 40px 100px", textAlign: "center" }}>
 
         {/* Status chip */}
         <div className="fade-up" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: T.greenBg, border: `1px solid ${T.greenBd}`, borderRadius: 100, padding: "5px 14px 5px 10px", marginBottom: 36 }}>
@@ -269,7 +269,7 @@ const Hero = ({ onShop }) => {
 const ProblemSection = () => {
   const T = useTheme();
   return (
-    <section style={{ padding: "88px 40px", background: T.bg0 }}>
+    <section className="m-section" style={{ padding: "88px 40px", background: T.bg0 }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div className="scroll-reveal" style={{ maxWidth: 540, marginBottom: 52 }}>
           <Eyebrow color={T.red + "BB"}>The problem</Eyebrow>
@@ -315,7 +315,7 @@ const ProblemSection = () => {
 const SolutionSection = ({ onShop }) => {
   const T = useTheme();
   return (
-    <section style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
+    <section className="m-section" style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
       <div className="solution-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
         <div className="scroll-reveal">
           <Eyebrow color={T.green}>The fix</Eyebrow>
@@ -387,7 +387,7 @@ const FeaturesSection = () => {
     { icon: <Ic.Package />,  color: T.amber, bg: T.amberBg, bd: T.amberBd, title: "Complete pipe range",        desc: "16mm and 20mm, inline and online emitters. All variants stocked at our Pune factory, year-round." },
   ];
   return (
-    <section id="features" style={{ padding: "88px 40px", background: T.bg0 }}>
+    <section id="features" className="m-section" style={{ padding: "88px 40px", background: T.bg0 }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div className="scroll-reveal" style={{ textAlign: "center", marginBottom: 60 }}>
           <Eyebrow>What Halchal does</Eyebrow>
@@ -415,7 +415,7 @@ const FeaturesSection = () => {
 const HowItWorks = () => {
   const T = useTheme();
   return (
-    <section id="how-it-works" style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
+    <section id="how-it-works" className="m-section" style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
       <div style={{ maxWidth: 960, margin: "0 auto", textAlign: "center" }}>
         <div className="scroll-reveal" style={{ marginBottom: 60 }}>
           <Eyebrow>How it works</Eyebrow>
@@ -425,7 +425,7 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36 }}>
+        <div className="m-2col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36 }}>
           {[
             { step: "01", title: "Pick your state and crop", desc: "We auto-detect your location via GPS or let you choose manually. This sets your agri zone and logistics cost baseline." },
             { step: "02", title: "Enter your quantity",       desc: "How many coils you need — from a single coil to a 500+ project order. Volume discounts apply in real time." },
@@ -458,7 +458,7 @@ const ProductsPreview = ({ navigate, sectionRef }) => {
     { name: "20mm Online Drip Pipe", category: "Online emitter · 200m coil",  badge: null,           pipeType: "Shakti 20mm Inline"  },
   ];
   return (
-    <section ref={sectionRef} id="products" style={{ padding: "88px 40px", background: T.bg0 }}>
+    <section ref={sectionRef} id="products" className="m-section" style={{ padding: "88px 40px", background: T.bg0 }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div className="scroll-reveal" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48, flexWrap: "wrap", gap: 16 }}>
           <div>
@@ -508,7 +508,7 @@ const ProductsPreview = ({ navigate, sectionRef }) => {
 const BenefitsSection = () => {
   const T = useTheme();
   return (
-    <section style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
+    <section className="m-section" style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div className="scroll-reveal" style={{ background: T.bg0, border: `1px solid ${T.border}`, borderRadius: 20, padding: "52px 48px", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 32 }}>
           {[
@@ -535,7 +535,7 @@ const BenefitsSection = () => {
 const TestimonialsSection = () => {
   const T = useTheme();
   return (
-    <section style={{ padding: "88px 40px", background: T.bg0 }}>
+    <section className="m-section" style={{ padding: "88px 40px", background: T.bg0 }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div className="scroll-reveal" style={{ textAlign: "center", marginBottom: 56 }}>
           <Eyebrow>From farmers</Eyebrow>
@@ -617,7 +617,7 @@ const PricingSection = ({ navigate }) => {
     },
   ];
   return (
-    <section id="pricing" style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
+    <section id="pricing" className="m-section" style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div className="scroll-reveal" style={{ textAlign: "center", marginBottom: 56 }}>
           <Eyebrow>Volume pricing</Eyebrow>
@@ -687,7 +687,7 @@ const FAQSection = () => {
   const T = useTheme();
   const [open, setOpen] = useState(null);
   return (
-    <section id="faq" style={{ padding: "88px 40px", background: T.bg0 }}>
+    <section id="faq" className="m-section" style={{ padding: "88px 40px", background: T.bg0 }}>
       <div style={{ maxWidth: 760, margin: "0 auto" }}>
         <div className="scroll-reveal" style={{ textAlign: "center", marginBottom: 52 }}>
           <Eyebrow>Questions</Eyebrow>
@@ -722,7 +722,7 @@ const FAQSection = () => {
 const FinalCTA = ({ navigate }) => {
   const T = useTheme();
   return (
-    <section style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
+    <section className="m-section" style={{ padding: "88px 40px", background: T.bg1, borderTop: `1px solid ${T.border}` }}>
       <div className="scroll-reveal" style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
         <SectionHeading style={{ marginBottom: 18 }}>
           See what you should actually be paying.
