@@ -1,4 +1,4 @@
-# Halchal Industries — AI-Powered Pricing & E-Commerce Platform
+# Halchal Industries - AI-Powered Pricing & E-Commerce Platform
 
 > A full-stack B2B e-commerce system with a machine learning pricing engine built for **Halchal Industries**, a drip irrigation manufacturer based in Pune, Maharashtra.
 
@@ -8,7 +8,7 @@
 
 ## What This Project Solves
 
-Halchal Industries sells drip irrigation pipes across India through regional distributors. Pricing was done manually, with no visibility into seasonal demand, regional market maturity, or competitor positioning — leading to lost margins in high-demand zones and slow movement in price-sensitive ones.
+Halchal Industries sells drip irrigation pipes across India through regional distributors. Pricing was done manually, with no visibility into seasonal demand, regional market maturity, or competitor positioning, leading to lost margins in high-demand zones and slow movement in price-sensitive ones.
 
 This system replaces that with:
 - An ML model that forecasts demand per region and season
